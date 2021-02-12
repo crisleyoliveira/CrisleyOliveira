@@ -648,6 +648,7 @@ z-index: -1;
   object-fit: cover;
   transform: scale(1.2);
   transition: all 1.5s cubic-bezier(0.33, 1, 0.68, 1);
+  transition-delay: .5s;
 }
 
 #portfolio .portfolio_layout figure.in_viewport img,

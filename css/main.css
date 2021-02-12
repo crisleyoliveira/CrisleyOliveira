@@ -907,15 +907,17 @@ footer .credits{
 #intro_animation .letters:first-of-type{
   transform: none;
   position: absolute;
-  top: 2vw;
+  top: 50%;
+  transform: translateY(-20vw);
   left: 0;
 }
 
 #intro_animation .letters:nth-of-type(2){
   transform: none;
   left: auto;
-  top: auto;
-  bottom: -2vw;
+  top: 50%;
+  transform: translateY(0vw);
+  /* bottom: -2vw; */
   right: 0;
   text-align: right;
   line-height: 1;

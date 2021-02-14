@@ -49,3 +49,68 @@ function myFunction() {
     header.classList.remove("sticky");
   }
 }
+
+
+
+
+
+
+
+
+
+// Overlaps 
+
+
+function collision($fixed, $moving) {
+    var x1 = $fixed.offset().left;
+    var y1 = $fixed.offset().top;
+    var h1 = $fixed.outerHeight(true);
+    var w1 = $fixed.outerWidth(true);
+    var b1 = y1 + h1;
+    var r1 = x1 + w1;
+    var x2 = $moving.offset().left;
+    var y2 = $moving.offset().top;
+    var h2 = $moving.outerHeight(true);
+    var w2 = $moving.outerWidth(true);
+    var b2 = y2 + h2;
+    var r2 = x2 + w2;
+  
+    if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+    return true;
+  }
+  
+  $(window).scroll(function() {
+        var all = $("#contact");
+        for (var i = 0; i < all.length; i++) {
+           if (collision($("header"), all.eq(i))) {
+                $( "header" ).addClass( "invert" );
+               break; //no need to test the others !
+             } else {
+                $( "header" ).removeClass( "invert" );
+             }
+           }
+        });
+
+
+
+
+
+
+// Buttons
+
+
+        document.querySelectorAll('.animate_text').forEach(link => {
+            link.innerHTML = '<div><span>' + link.textContent.trim().split('').join('</span><span>') + '</span></div>'
+            link.querySelectorAll('span').forEach(s => s.innerHTML = s.textContent == ' ' ? '&nbsp;' : s.textContent)
+        });
+
+
+
+
+// Mobile menu trigger
+
+$(function() {                       
+    $(".mobile_menu_trigger").click(function() {  
+      $('body').toggleClass("mobile_menu_open");      
+    });
+  });

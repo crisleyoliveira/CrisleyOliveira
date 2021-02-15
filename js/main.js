@@ -122,7 +122,7 @@ $(function() {
 
 
   $(function() {                       
-    $(".mobile_menu_open a").click(function() {  
+    $("header ul li a:not(.logo)").click(function() {  
       $('body').removeClass("mobile_menu_open");      
     });
   });

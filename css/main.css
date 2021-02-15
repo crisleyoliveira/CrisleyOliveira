@@ -416,7 +416,7 @@ header nav{
     content: "";
     background: #F3DEDE;
     position: fixed;
-    top: 0;
+    top: 2.6vh;
     left: 0;
     width: 100vw;
     height: 100vh; /* Fallback for browsers that do not support Custom Properties */

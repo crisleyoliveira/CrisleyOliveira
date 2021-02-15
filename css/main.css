@@ -1453,16 +1453,19 @@ main{
   display: inline-block;
   transform: translate3d(0, 120%, 0);
   animation: intro_animation__letter 5s forwards;
+  opacity: 0;
 }
 
 
 @keyframes intro_animation__letter {
   0%, 25% {
-    transform: translate3d(0, 120%, 0)
+    transform: translate3d(0, 120%, 0);
+    opacity: 1;
   }
   
   40%, 100%{
-    transform: translate3d(0, 0, 0)
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
   }
 }
 

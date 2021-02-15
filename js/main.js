@@ -121,6 +121,13 @@ $(function() {
   });
 
 
+  $(function() {                       
+    $(".mobile_menu_open a").click(function() {  
+      $('body').removeClass("mobile_menu_open");      
+    });
+  });
+
+
 
 // Projects Modal
 

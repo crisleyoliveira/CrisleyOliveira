@@ -98,11 +98,16 @@ function collision($fixed, $moving) {
 
 // Buttons
 
+// Returns width of browser viewport
 
-        document.querySelectorAll('.animate_text').forEach(link => {
-            link.innerHTML = '<div><span>' + link.textContent.trim().split('').join('</span><span>') + '</span></div>'
-            link.querySelectorAll('span').forEach(s => s.innerHTML = s.textContent == ' ' ? '&nbsp;' : s.textContent)
-        });
+
+    document.querySelectorAll('.animate_text').forEach(link => {
+        link.innerHTML = '<div><span>' + link.textContent.trim().split('').join('</span><span>') + '</span></div>'
+        link.querySelectorAll('span').forEach(s => s.innerHTML = s.textContent == ' ' ? '&nbsp;' : s.textContent)
+    });
+
+
+        
 
 
 
@@ -114,3 +119,39 @@ $(function() {
       $('body').toggleClass("mobile_menu_open");      
     });
   });
+
+
+
+// Projects Modal
+
+// Closes Modal
+$(function() {                       
+    $(".modal button").click(function() {  
+        $('.modal').removeClass("open"); 
+        $('body').removeClass("lock");  
+    });
+});
+
+// Opens first project
+$(function() {                       
+    $(".portfolio_layout:first-of-type a").click(function() {  
+        $('.modal:first-of-type').addClass("open");  
+        $('body').addClass("lock");      
+    });
+});
+
+// Opens second project
+$(function() {                       
+    $(".portfolio_layout:nth-of-type(2) a").click(function() {  
+        $('.modal:nth-of-type(2)').addClass("open");  
+        $('body').addClass("lock");      
+    });
+});
+
+// Opens third project
+$(function() {                       
+    $(".portfolio_layout:nth-of-type(3) a").click(function() {  
+        $('.modal:nth-of-type(3)').addClass("open");  
+        $('body').addClass("lock");      
+    });
+});

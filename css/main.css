@@ -362,13 +362,23 @@ header{
   transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-header.sticky{
-  transform: translateY(-20%);
+header .container{
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+header.sticky .container{
+  transform: translateY(-2rem);
 }
 
 header nav{
   transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
   padding: 1.6rem 0;
+}
+
+@media (max-width: 767px){
+  header .container{
+    transform: translateY(-2rem);
+  }
 }
 
 
@@ -381,13 +391,30 @@ header nav{
 
 @media (max-width: 767px){
 
-  header nav{
-    transform: translateX(100vw);
+
+  .mobile_menu_open{
+    overflow: hidden
   }
+
+  header ul li:not(:first-of-type),
+  header ul::after{
+    z-index: 99999;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s ease;
+  }
+
+  .mobile_menu_open header ul li:not(:first-of-type),
+  .mobile_menu_open header ul::after{
+  visibility: visible;
+  overflow-y: auto;
+  opacity: 1;
+  transition: opacity .5s ease;
+}
 
   header ul::after {
     content: "";
-    background: #A98365;
+    background: #F3DEDE;
     position: fixed;
     top: 0;
     left: 0;
@@ -405,9 +432,6 @@ header nav{
     z-index: 9;
   }
 
-  header ul li:first-of-type{
-    transform: translateX(-100vw);
-  }
 
 
   .mobile_menu_trigger{
@@ -425,9 +449,13 @@ header nav{
     transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1);
   }
 
-  .mobile_menu_open .mobile_menu_trigger{
-    transform: translateX(100vw);
+
+  .mobile_menu_trigger span{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
   }
+
 
   .mobile_menu_trigger span,
   .mobile_menu_trigger span::after,
@@ -492,11 +520,6 @@ header nav{
     transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1);
   }
 
-  .mobile_menu_open{
-    transform: translateX(-100vw);
-    overflow: hidden;
-  }
-
 }
 
 
@@ -548,9 +571,18 @@ header.invert ul li a{
   
   header ul li a:not(.logo){
     padding: .8rem;
+    margin: 2.4rem .8rem;
+  }
+}
+
+
+@media (min-width: 992px){
+
+  header ul li a:not(.logo){
     margin: 2.4rem 1.6rem;
   }
 }
+
 
 
 
@@ -836,7 +868,12 @@ header ul li h1{
 #portfolio .portfolio_layout:nth-of-type(2) .portfolio_grid article{
   grid-column: 7 / span 5;
   grid-row: 1 / span 4;
-  margin-top: 7.2rem;
+}
+
+@media (min-width: 1200px){
+  #portfolio .portfolio_layout:nth-of-type(2) .portfolio_grid article{
+    margin-top: 7.2rem;
+  }
 }
 
 
@@ -888,6 +925,9 @@ header ul li h1{
   object-fit: cover;
   transition: height 1.5s cubic-bezier(0.33, 1, 0.68, 1), transform 15s cubic-bezier(0.33, 1, 0.68, 1);
   transition-delay: .5s;
+}
+
+#portfolio .portfolio_layout img{
   cursor: pointer;
 }
 
@@ -905,6 +945,7 @@ header ul li h1{
 #portfolio .portfolio_layout article h1{
   margin: 4rem 0 1.6rem;
   cursor: pointer;
+  line-height: 1.2;
 }
 
 #portfolio .portfolio_layout article p{
@@ -1010,6 +1051,13 @@ header ul li h1{
     padding-bottom: 5.2rem;
   }
 }
+
+@media (max-width: 1199px){
+  #about_my_work{
+    padding-bottom: 2rem;
+  }
+}
+
 
 
 @media (min-width: 768px){
@@ -1178,14 +1226,25 @@ main{
 
 
 #contact{
-  height: 100vh;
   background: #000;
 }
 
 #contact .container{
-  padding-top: 7.2vw;
-  padding-bottom: 7.2vw;
+  padding-top: 12rem;
+  padding-bottom: 15.6rem;
 }
+
+@media (min-width: 1200px){
+  #contact{
+    height: 100vh;
+  }
+  #contact .container{
+    padding-top: 7.2vw;
+    padding-bottom: 7.2vw;
+  }
+}
+
+
 
 #contact h1,
 #contact p,
@@ -1200,7 +1259,19 @@ main{
 #contact h1{
   text-transform: uppercase;
   font-size: 6.17vw;
-  text-align: center;
+}
+
+@media (min-width: 930px){
+  #contact h1{
+    text-align: right;
+  }
+}
+
+@media (max-width: 1199px){
+  #contact h1{
+    font-size: 5.8vw;
+    margin-top: 0;
+  }
 }
 
 #contact a{
@@ -1272,6 +1343,7 @@ main{
   }
   #contact p{
     margin: 3.2rem 0;
+    font-size: 1.3rem;
   }
 
 }
@@ -1285,6 +1357,7 @@ main{
 
 
 #intro_animation{
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -1483,12 +1556,12 @@ header{
   transform: translateY(var(--y));
   transition: transform var(--duration) ease, box-shadow var(--duration) ease;
 }
+
 .animate_text div {
   display: flex;
   overflow: hidden;
   text-shadow: 2px 1.7rem #fff;
 }
-
 header ul li a.animate_text div{
   text-shadow: 2px 1.8rem #000;
 }
@@ -1496,6 +1569,14 @@ header ul li a.animate_text div{
 header.invert ul li a.animate_text div{
   text-shadow: 2px 1.8rem #fff;
 }
+
+@media (min-width: 768px){
+  header ul li a.animate_text div{
+    text-shadow: 2px 3rem #000;
+  }
+}
+
+
 
 
 .animate_text.contact_email div {
@@ -1580,4 +1661,100 @@ header.invert ul li a.animate_text div{
 
 .animate_text:hover span {
   transform: translateY(-100%);
+}
+
+
+
+/* Modal */
+
+
+body.lock{
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, .75);  
+  backdrop-filter: blur(5px);
+  z-index: 99999;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s ease;
+  overflow-x: hidden;
+}
+
+.modal.open {
+  visibility: visible;
+  overflow-y: auto;
+  opacity: 1;
+  transition: opacity .5s ease;
+}
+
+.modal .content-wrapper{
+  height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+  padding-top: 30vh;
+  transition: all 1s ease;
+}
+
+.modal.open .content-wrapper{
+  padding-top: 7.2rem;
+}
+
+.modal .content-wrapper .row{
+  padding: 4rem 0;
+}
+
+.modal .close-modal{
+  position: fixed;
+  right: 30px;
+  top: 30px;
+  padding: 17px;
+  z-index: 99999;
+  user-select: none;
+  border: 1px solid rgba(0,0,0,1);
+  border-radius: 50%;
+  backface-visibility: hidden;
+  background: transparent;
+  outline: none;
+}
+
+.modal .close-modal::before,
+.modal .close-modal::after{
+  position: absolute;
+    content: "";
+    background: #000;
+    width: 20px;
+    height: 1px;
+    top: 16px;
+    left: 7px;
+}
+
+.modal .close-modal::before{
+  transform: rotate(45deg);
+}
+
+.modal .close-modal::after{
+  transform: rotate(-45deg);
+}
+
+
+.modal figure{
+  width: 100%;
+}
+
+.modal figure + figure{
+  margin-top: 12rem;
+}
+
+.modal figure img{
+  width: 100%;
+  height: auto;
 }

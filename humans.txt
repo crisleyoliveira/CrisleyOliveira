@@ -3,11 +3,8 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Tiago Alexandre Lopes -- UI/UX, Frontend -- https://www.tiagoalexandrelopes.com
 
-# THANKS
-
-    <name>
 
 # TECHNOLOGY COLOPHON
 

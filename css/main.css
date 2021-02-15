@@ -419,7 +419,8 @@ header nav{
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
     z-index: 0;
   }
   header ul li:not(:first-of-type){
@@ -797,6 +798,7 @@ header ul li h1{
 #portfolio .portfolio_layout{
   position: relative;
   margin-bottom: 15.2rem;
+  overflow: hidden;
 }
 
 #portfolio .portfolio_layout a{
@@ -813,7 +815,8 @@ header ul li h1{
 @media (min-width: 768px){
   #portfolio .portfolio_layout .portfolio_grid{
     width: 100%;
-    max-height: 100vh;
+    max-height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
@@ -1063,7 +1066,8 @@ header ul li h1{
 @media (min-width: 768px){
   #about_my_work .about_my_work_grid{
     width: 100%;
-    max-height: 100vh;
+    max-height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
@@ -1236,7 +1240,8 @@ main{
 
 @media (min-width: 1200px){
   #contact{
-    height: 100vh;
+    height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
   }
   #contact .container{
     padding-top: 7.2vw;
@@ -1260,6 +1265,8 @@ main{
   text-transform: uppercase;
   font-size: 6.17vw;
 }
+
+
 
 @media (min-width: 930px){
   #contact h1{
@@ -1295,6 +1302,12 @@ main{
   transition: all 0.3s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
+
+@media (min-width: 768px){
+  #contact a.animate_text.contact_email div{
+    text-shadow: none;
+  }
+}
 
 #contact .credits{
   position: absolute;
@@ -1361,7 +1374,8 @@ main{
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
   background: #F9F6F3;
   animation: intro_animation 5s forwards;
   z-index: 999;
@@ -1383,7 +1397,8 @@ main{
   bottom: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
   background: #000;
   animation: intro_animation__curtain 5s forwards;
 }
@@ -1569,7 +1584,7 @@ header.invert ul li a.animate_text div{
   text-shadow: 2px 1.8rem #fff;
 }
 
-@media (min-width: 768px){
+@media (max-width: 767px){
   header ul li a.animate_text div{
     text-shadow: 2px 3rem #000;
   }

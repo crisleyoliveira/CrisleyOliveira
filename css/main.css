@@ -934,7 +934,7 @@ header ul li h1{
   cursor: pointer;
 }
 
-@media (min-with: 768px){
+@media (min-width: 768px){
   #portfolio .portfolio_layout img,
   #about_my_work img{
     height: 0;
@@ -1270,7 +1270,7 @@ main{
 
 #contact h1{
   text-transform: uppercase;
-  font-size: 6.17vw;
+  font-size: 5.8vw;
 }
 
 
@@ -1704,13 +1704,19 @@ body.lock{
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, .75);  
+  background-color: rgba(255, 255, 255, 1);  
   backdrop-filter: blur(5px);
   z-index: 99999;
   visibility: hidden;
   opacity: 0;
   transition: all .3s ease;
   overflow-x: hidden;
+}
+
+@media (min-width: 768px){
+  .modal{
+    background-color: rgba(255, 255, 255, .75);  
+  }
 }
 
 .modal.open {

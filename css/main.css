@@ -1546,11 +1546,11 @@ main{
 
 @keyframes main_intro_animation {
   0%{
-    transform: translate3d(0, 7.2rem, 0);
+    padding-top: 7.2rem;
   }
   
   100%{
-    transform: translate3d(0, 0, 0);
+    padding-top: 0;
   }
 }
 

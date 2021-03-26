@@ -292,7 +292,8 @@ hr {
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1184px;
+    width: calc(100vw - 120px);
+    max-width: 1600px;
   }
 }
 .container-fluid {

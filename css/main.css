@@ -798,7 +798,7 @@ header ul li h1{
 #portfolio .portfolio_layout{
   position: relative;
   margin-bottom: 15.2rem;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 #portfolio .portfolio_layout a{

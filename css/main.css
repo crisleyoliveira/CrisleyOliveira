@@ -927,6 +927,7 @@ header ul li h1{
   height: 100%;
   object-fit: cover;
   transition: height 1.5s cubic-bezier(0.33, 1, 0.68, 1), transform 15s cubic-bezier(0.33, 1, 0.68, 1);
+  backface-visibility: hidden;
   transition-delay: .5s;
 }
 

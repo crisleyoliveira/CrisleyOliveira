@@ -345,6 +345,11 @@ p{
 }
 
 
+
+section{
+  overflow-x: hidden;
+}
+
 section p,
 section h1,
 section a,
@@ -1253,6 +1258,7 @@ main{
   }
   #contact .container{
     padding-top: 7.2vw;
+    padding-top: 10.2vw;
     padding-bottom: 7.2vw;
   }
 }
@@ -1372,7 +1378,11 @@ main{
 
 
 
-
+footer .credits p{
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+}
 
 
 
@@ -1705,7 +1715,7 @@ body.lock{
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 1);  
+  background-color: rgba(249, 246, 243, 0); 
   backdrop-filter: blur(5px);
   z-index: 99999;
   visibility: hidden;
@@ -1714,17 +1724,18 @@ body.lock{
   overflow-x: hidden;
 }
 
-@media (min-width: 768px){
-  .modal{
-    background-color: rgba(255, 255, 255, .75);  
-  }
-}
-
 .modal.open {
   visibility: visible;
   overflow-y: auto;
   opacity: 1;
   transition: opacity .5s ease;
+  background-color: rgba(249, 246, 243, 1);
+}
+
+@media (min-width: 768px){
+  .modal{
+    background-color: rgba(249, 246, 243, .75); 
+  }
 }
 
 .modal .content-wrapper{

@@ -1889,4 +1889,9 @@ body.lock{
     padding: 0;
   }
 
+  .modal h1{
+    line-height: 1.2;
+    margin-bottom: 2.4rem;
+  }
+
 }

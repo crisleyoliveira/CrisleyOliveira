@@ -802,6 +802,13 @@ header ul li h1{
   position: relative;
 }
 
+@media (max-width: 1199px){
+  #hero h1 br{
+    display: none;
+  }
+}
+
+
 #hero h1 span::after{
   content: "";
   width: 100%;
@@ -1769,7 +1776,7 @@ body.lock{
 }
 
 .modal .content-wrapper .row{
-  padding: 4rem 0;
+  padding: 7.2rem 0;
 }
 
 .modal .close-modal{
@@ -1817,4 +1824,69 @@ body.lock{
 .modal figure img{
   width: 100%;
   height: auto;
+}
+
+.modal h1{
+  margin-top: 0;
+  text-align: center;
+  font-size: 5.6rem;
+  margin-bottom: 0;
+  z-index: 2;
+  position: relative;
+}
+
+.modal .row:first-of-type{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.modal .row:nth-child(2){
+  padding: 4rem 0;
+}
+
+.modal .row:last-of-type{
+  padding-bottom: 12rem;
+}
+
+
+
+@media (min-width: 768px){
+  .modal .row p{
+    font-size: 1.8rem;
+    line-height: 1.6;
+    margin: 3.2rem 0;
+  }
+  .modal .row:first-of-type img{
+    position: relative;
+    width: 100vw;
+    max-height: 75vh;
+    left: 50%;
+    display: block;
+    transform: translateX(-50%) translateY(-5rem);
+    overflow: hidden;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .modal h1{
+    font-size: 8rem;
+  }
+}
+
+
+
+
+@media (max-width: 767px){
+  
+  .modal .row:last-of-type{
+    padding: 4rem 0;
+  }
+
+  .modal .content-wrapper .row{
+    padding: 4rem 0;
+  }
+
+  .modal .row:nth-child(2){
+    padding: 0;
+  }
+
 }

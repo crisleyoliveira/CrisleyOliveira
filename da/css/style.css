@@ -1551,6 +1551,8 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 44.99%,
   background: #000;
   z-index: 99;
   padding-top: 140px;
+  padding-left: 48px;
+  padding-right: 48px;
 }
 
 .modal-content {

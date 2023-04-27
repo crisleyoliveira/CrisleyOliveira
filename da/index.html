@@ -218,12 +218,19 @@
 
         <div id="modal" class="modal">
             <div class="modal-content" id="chart">
-    
-              <span class="close" onclick="closeModal()">&times;</span>
+
+
+                <section class="header">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <a href="index.html#articles" class="btn back close" onclick="closeModal()">All articles</a>
+                        </div>
+                    </div>
+                </section>
+
     
               <div id="project1" class="project hidden top_games">
-                <h2>Project 1</h2>
-                <p>This is the description of Project 1.</p>
+
               </div>
               
               <div id="project2" class="row project hidden"></div>
@@ -483,6 +490,27 @@ window.addEventListener('resize', () => {
     }
   });
 });
+
+
+window.addEventListener('DOMContentLoaded', function() {
+  // Function to set the height of .chart-bubble elements based on their width
+  function setBubbleHeight() {
+    var bubbleElements = document.getElementsByClassName('chart-bubble');
+    for (var i = 0; i < bubbleElements.length; i++) {
+      var width = bubbleElements[i].offsetWidth;
+      bubbleElements[i].style.height = width + 'px';
+    }
+  }
+
+  // Initial setup
+  setBubbleHeight();
+
+  // Update on window resize
+  window.addEventListener('resize', function() {
+    setBubbleHeight();
+  });
+});
+
 
     </script>
 

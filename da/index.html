@@ -302,126 +302,13 @@
 
 
 
-        // Open Modals
-function openModal(projectId) {
-  var modal = document.getElementById('modal');
-  var project = document.getElementById(projectId);
-  var header = document.getElementById('header');
-  var html = document.querySelector('html');
-
-  project.classList.remove('hidden');
-  modal.style.display = 'block';
-
-  // Add the URL hash with the project ID
-  window.location.hash = projectId;
-
-  // Add the class 'modal_active' to the header
-  header.classList.add('modal_active');
-  html.classList.add('overflow_hidden');
-
-  setTimeout(function () {
-    modal.classList.add('fade-in');
-  }, 10);
-}
-
-function closeModal() {
-  var modal = document.getElementById('modal');
-  var projects = document.getElementsByClassName('project');
-  var header = document.getElementById('header');
-  var html = document.querySelector('html');
-
-  modal.classList.remove('fade-in');
-  modal.classList.add('fade-out');
-
-  setTimeout(function () {
-    for (var i = 0; i < projects.length; i++) {
-      projects[i].classList.add('hidden');
-    }
-    modal.classList.remove('fade-out');
-    header.classList.remove('modal_active');
-    modal.style.display = 'none';
-
-    // Remove the URL hash when the modal is closed
-    window.location.hash = '';
-
-    html.classList.remove('overflow_hidden');
-  }, 500); // Adjust the delay (in milliseconds) to match your CSS transition duration
-}
-
-// Check if the URL has a hash value on page load
-window.onload = function () {
-  var hash = window.location.hash.slice(1); // Remove the '#' character from the hash value
-  if (hash) {
-    openModal(hash);
-  }
-};
 
 
 
 
 
 
-
-
-        // Intro animaiton
-        window.addEventListener('load', function() {
-        var text = document.getElementById('animate-text').textContent.split('');
-        document.getElementById('animate-text').textContent = '';
-        text.forEach(function(char, index) {
-            char = char.replace(/\s+/, '\u00A0');
-            var span = document.createElement('span');
-            span.textContent = char;
-            span.classList.add('animate-initial');
-            document.getElementById('animate-text').appendChild(span);
-            if (index === 18) {
-            var lineBreak = document.createElement('br');
-            document.getElementById('animate-text').appendChild(lineBreak);
-            }
-            setTimeout(function() {
-            span.classList.remove('animate-initial');
-            span.classList.add('animate-final');
-            }, index * 50);
-        });
-        });
-
-
-        // Remove overflow hidden
-        setTimeout(function() {
-        var elements = document.querySelectorAll('.overflow_hidden');
-        for (var i = 0; i < elements.length; i++) {
-            elements[i].classList.remove('overflow_hidden');
-        }
-        }, 5000);
-
-
-        // Get all the buttons on the page
-        const buttons = document.querySelectorAll('button');
-
-        // Loop through each button
-        buttons.forEach(button => {
-        // Check if there's an element with the class "sr-only" inside the button
-        const srOnlyEl = button.querySelector('.sr-only');
-        if (srOnlyEl) {
-            // If there is, add the "empty" class to the button
-            button.classList.add('empty');
-        }
-        });
-
-
-        // Get current year
-        const date = new Date();
-        const year = date.getFullYear();
-        document.getElementById("current-year").innerHTML = year;
-
-
-        // Toggle class active in the burger icon
-        const menuButton = document.getElementById("menu_button");
-        menuButton.addEventListener("click", function() {
-        this.classList.toggle("active");
-        });
-
-
-        function setDimensions(element) {
+function setDimensions(element) {
   if (element.classList.contains('chart-bubble')) {
     const width = element.offsetWidth;
     element.style.height = `${width}px`;
@@ -492,24 +379,169 @@ window.addEventListener('resize', () => {
 });
 
 
-window.addEventListener('DOMContentLoaded', function() {
-  // Function to set the height of .chart-bubble elements based on their width
-  function setBubbleHeight() {
-    var bubbleElements = document.getElementsByClassName('chart-bubble');
-    for (var i = 0; i < bubbleElements.length; i++) {
-      var width = bubbleElements[i].offsetWidth;
-      bubbleElements[i].style.height = width + 'px';
+
+
+
+
+
+
+
+
+
+
+
+
+        // Open Modals
+        function openModal(projectId) {
+  var modal = document.getElementById('modal');
+  var project = document.getElementById(projectId);
+  var header = document.getElementById('header');
+  var html = document.querySelector('html');
+
+  project.classList.remove('hidden');
+  modal.style.display = 'block';
+
+  // Add the URL hash with the project ID
+  window.location.hash = projectId;
+
+  // Add the class 'modal_active' to the header
+  header.classList.add('modal_active');
+  html.classList.add('overflow_hidden');
+
+  setTimeout(function () {
+    modal.classList.add('fade-in');
+  }, 10);
+}
+
+function closeModal() {
+  var modal = document.getElementById('modal');
+  var projects = document.getElementsByClassName('project');
+  var header = document.getElementById('header');
+  var html = document.querySelector('html');
+
+  modal.classList.remove('fade-in');
+  modal.classList.add('fade-out');
+
+  setTimeout(function () {
+    for (var i = 0; i < projects.length; i++) {
+      projects[i].classList.add('hidden');
     }
+    modal.classList.remove('fade-out');
+    header.classList.remove('modal_active');
+    modal.style.display = 'none';
+
+    // Remove the URL hash when the modal is closed
+    window.location.hash = '';
+
+    html.classList.remove('overflow_hidden');
+  }, 500); // Adjust the delay (in milliseconds) to match your CSS transition duration
+}
+
+// Check if the URL has a hash value on page load
+window.onload = function () {
+  var hash = window.location.hash.slice(1); // Remove the '#' character from the hash value
+  if (hash) {
+    openModal(hash);
   }
+};
 
-  // Initial setup
-  setBubbleHeight();
 
-  // Update on window resize
-  window.addEventListener('resize', function() {
-    setBubbleHeight();
-  });
-});
+
+
+        // Intro animaiton
+        window.addEventListener('load', function() {
+        var text = document.getElementById('animate-text').textContent.split('');
+        document.getElementById('animate-text').textContent = '';
+        text.forEach(function(char, index) {
+            char = char.replace(/\s+/, '\u00A0');
+            var span = document.createElement('span');
+            span.textContent = char;
+            span.classList.add('animate-initial');
+            document.getElementById('animate-text').appendChild(span);
+            if (index === 18) {
+            var lineBreak = document.createElement('br');
+            document.getElementById('animate-text').appendChild(lineBreak);
+            }
+            setTimeout(function() {
+            span.classList.remove('animate-initial');
+            span.classList.add('animate-final');
+            }, index * 50);
+        });
+        });
+
+
+        // Remove overflow hidden
+        setTimeout(function() {
+        var elements = document.querySelectorAll('.overflow_hidden');
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].classList.remove('overflow_hidden');
+        }
+        }, 5000);
+
+
+        // Get all the buttons on the page
+        const buttons = document.querySelectorAll('button');
+
+        // Loop through each button
+        buttons.forEach(button => {
+        // Check if there's an element with the class "sr-only" inside the button
+        const srOnlyEl = button.querySelector('.sr-only');
+        if (srOnlyEl) {
+            // If there is, add the "empty" class to the button
+            button.classList.add('empty');
+        }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        // Get current year
+        const date = new Date();
+        const year = date.getFullYear();
+        document.getElementById("current-year").innerHTML = year;
+
+
+        // Toggle class active in the burger icon
+        const menuButton = document.getElementById("menu_button");
+        menuButton.addEventListener("click", function() {
+        this.classList.toggle("active");
+        });
+
+
 
 
     </script>

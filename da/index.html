@@ -569,10 +569,25 @@ function updateDimensions() {
   });
 }
 
+
+// Add an event listener to the window resize event
 window.addEventListener('resize', updateDimensions);
 
-// Initial dimensions setup
-updateDimensions();
+// Function to handle the update of dimensions
+function updateDimensions() {
+  // Your code to update dimensions goes here
+  // Replace this console.log statement with your desired code
+  console.log('Window dimensions updated');
+}
+
+// Function to run after all scripts have finished executing
+function afterScriptsRun() {
+  // Call the initial dimensions setup
+  updateDimensions();
+}
+
+// Add an event listener to the DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', afterScriptsRun);
 
 
 

@@ -265,15 +265,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 // IMPORT HTML from article pages
 document.addEventListener("DOMContentLoaded", function() {
       var mappings = [
@@ -309,80 +300,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
-function setDimensions(element) {
-  if (element.classList.contains('chart-bubble')) {
-    const width = element.offsetWidth;
-    element.style.height = `${width}px`;
-  } else if (element.classList.contains('reach_graph_circle')) {
-    const widthInPx = getComputedStyle(element).getPropertyValue('width');
-    const width = parseInt(widthInPx, 10);
-    element.style.width = `${width}px`;
-    element.style.height = `${width}px`;
-    
-    // Find the parent .card element
-    const card = element.closest('.card');
-    if (card) {
-      // Find all .reach_graph_circles_wrapper elements inside the parent .card
-      const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
-      if (wrappers.length > 0) {
-        // Get the biggest width among all .reach_graph_circles_wrapper elements
-        let biggestWidth = 0;
-        wrappers.forEach((wrapper) => {
-          const wrapperWidthInPx = getComputedStyle(wrapper).getPropertyValue('width');
-          const wrapperWidth = parseInt(wrapperWidthInPx, 10);
-          if (wrapperWidth > biggestWidth) {
-            biggestWidth = wrapperWidth;
-          }
-        });
-        // Set the height of all .reach_graph_circles_wrapper elements to the biggest width
-        wrappers.forEach((wrapper) => {
-          wrapper.style.height = `${biggestWidth}px`;
-        });
-      }
-    }
-  }
-}
-
-// Get all .chart-bubble and .reach_graph_circle elements
-const bubbles = document.querySelectorAll('.chart-bubble, .reach_graph_circle');
-
-// Set the height and width of all .chart-bubble and .reach_graph_circle elements initially
-bubbles.forEach((bubble) => {
-  setDimensions(bubble);
-});
-
-// Recalculate the height and width of all .chart-bubble and .reach_graph_circle elements whenever the window is resized
-window.addEventListener('resize', () => {
-  bubbles.forEach((bubble) => {
-    setDimensions(bubble);
-  });
-  
-  // Recalculate the height of all .reach_graph_circles_wrapper elements
-  const cards = document.querySelectorAll('.card');
-  cards.forEach((card) => {
-    const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
-    if (wrappers.length > 0) {
-      // Get the biggest width among all .reach_graph_circles_wrapper elements
-      let biggestWidth = 0;
-      wrappers.forEach((wrapper) => {
-        const wrapperWidthInPx = getComputedStyle(wrapper).getPropertyValue('width');
-        const wrapperWidth = parseInt(wrapperWidthInPx, 10);
-        if (wrapperWidth > biggestWidth) {
-          biggestWidth = wrapperWidth;
-        }
-      });
-      // Set the height of all .reach_graph_circles_wrapper elements to the biggest width
-      wrappers.forEach((wrapper) => {
-        wrapper.style.height = `${biggestWidth}px`;
-      });
-    }
-  });
-});
-
-
-
-
 // Open Modals
 function openModal(projectId) {
   var modal = document.getElementById('modal');
@@ -398,7 +315,7 @@ function openModal(projectId) {
 
   // Add the class 'modal_active' to the header
   header.classList.add('modal_active');
-  html.classList.add('overflow_hidden');
+  //html.classList.add('overflow_hidden');
 
   setTimeout(function () {
     modal.classList.add('fade-in');
@@ -419,7 +336,7 @@ function closeModal() {
       projects[i].classList.add('hidden');
     }
     modal.classList.remove('fade-out');
-    header.classList.remove('modal_active');
+    //header.classList.remove('modal_active');
     modal.style.display = 'none';
 
     // Remove the URL hash when the modal is closed
@@ -597,6 +514,67 @@ window.addEventListener('DOMContentLoaded', function() {
     setBubbleHeight();
   });
 });
+
+
+
+
+
+
+
+function setDimensions(element) {
+  if (element.classList.contains('chart-bubble')) {
+    const width = element.offsetWidth;
+    element.style.height = `${width}px`;
+  } else if (element.classList.contains('reach_graph_circle')) {
+    const width = element.offsetWidth;
+    element.style.width = `${width}px`;
+    element.style.height = `${width}px`;
+    
+    const card = element.closest('.card');
+    if (card) {
+      const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
+      if (wrappers.length > 0) {
+        let biggestWidth = 0;
+        wrappers.forEach((wrapper) => {
+          const wrapperWidth = wrapper.offsetWidth;
+          biggestWidth = Math.max(biggestWidth, wrapperWidth);
+        });
+        wrappers.forEach((wrapper) => {
+          wrapper.style.height = `${biggestWidth}px`;
+        });
+      }
+    }
+  }
+}
+
+function updateDimensions() {
+  const bubbles = document.querySelectorAll('.chart-bubble, .reach_graph_circle');
+  bubbles.forEach((bubble) => {
+    setDimensions(bubble);
+  });
+
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card) => {
+    const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
+    if (wrappers.length > 0) {
+      let biggestWidth = 0;
+      wrappers.forEach((wrapper) => {
+        const wrapperWidth = wrapper.offsetWidth;
+        biggestWidth = Math.max(biggestWidth, wrapperWidth);
+      });
+      wrappers.forEach((wrapper) => {
+        wrapper.style.height = `${biggestWidth}px`;
+      });
+    }
+  });
+}
+
+window.addEventListener('resize', updateDimensions);
+
+// Initial dimensions setup
+updateDimensions();
+
+
 
 
     </script>

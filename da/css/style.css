@@ -890,6 +890,7 @@ header .menu_button.active span::after{
 
 .has_visual_limit.chart_element{
   border-right: 1px solid #252525;
+  overflow: hidden;
 }
 
 .has_visual_limit.chart_element:first-of-type{
@@ -1218,7 +1219,7 @@ main ul.labels li > div > *{
 
 .title_and_description_wrapper h2{
   font-size: 3vh;
-  margin: 1em 0;
+  margin: .5em 0;
 }
 
 .title_and_description_wrapper h3{
@@ -1252,7 +1253,6 @@ p.jumbo{
 
 .reach_graph{
   height: 100%;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1264,7 +1264,7 @@ p.jumbo{
   flex-direction: column;
   justify-content: flex-start;
   align-items: baseline;
-  padding: 0 48px 48px;
+  padding: 24 px 32px 48px;
   position: relative;
 }
 
@@ -1279,9 +1279,10 @@ p.jumbo{
 }
 
 .reach_graph .reach_graph_circle{
-  width: calc(var(--reachGraphfill) - 96px);
-  height: calc(var(--reachGraphfill) - 96px);
+  width: var(--reachGraphfill);
+  height: var(--reachGraphfill);
   background: rgba(255, 255, 255, var(--reachGraphfill));
+  background-color: #fff;
   border-radius: 100%;
   margin: auto;
   position: absolute;
@@ -1290,10 +1291,11 @@ p.jumbo{
   transform: translateX(-50%) translateY(-50%);
 }
 
+
 .reach_graph .reach_graph_circle + .secondary_metric{
   content: "";
-  width: calc(var(--reachSecondaryGraphfill) - 96px);
-  height: calc(var(--reachSecondaryGraphfill) - 96px);
+  width: var(--reachSecondaryGraphfill);
+  height: var(--reachSecondaryGraphfill);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1301,6 +1303,19 @@ p.jumbo{
   border: 2px solid #232323;
   border-radius: 100%;
   background: transparent;
+}
+
+.reach_graph.half_circle .reach_graph_circles_wrapper{
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.reach_graph.half_circle .reach_graph_circle + .secondary_metric{
+  border: 1px solid #232323;
+}
+
+.reach_graph.half_circle .reach_graph_circle + .secondary_metric,
+.reach_graph.half_circle .reach_graph_circle{
+  transform: translateX(-50%) translateY(-50%) scale(2);
 }
 
 main .reach_graph ul.labels li::before{

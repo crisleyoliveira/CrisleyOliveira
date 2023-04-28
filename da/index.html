@@ -315,7 +315,7 @@ function openModal(projectId) {
 
   // Add the class 'modal_active' to the header
   header.classList.add('modal_active');
-  html.classList.add('overflow_hidden');
+  //html.classList.add('overflow_hidden');
 
   setTimeout(function () {
     modal.classList.add('fade-in');
@@ -336,7 +336,7 @@ function closeModal() {
       projects[i].classList.add('hidden');
     }
     modal.classList.remove('fade-out');
-    header.classList.remove('modal_active');
+    //header.classList.remove('modal_active');
     modal.style.display = 'none';
 
     // Remove the URL hash when the modal is closed

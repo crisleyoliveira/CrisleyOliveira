@@ -263,316 +263,257 @@
 
 
 
+document.addEventListener("DOMContentLoaded", function () {
+   var mappings = [{
+         file: "top_games.html",
+         class: ".top_games_page"
+      },
+      {
+         file: "article2.html",
+         class: ".article2"
+      }
+      // Add more mappings for additional pages
+   ];
 
-
-// IMPORT HTML from article pages
-document.addEventListener("DOMContentLoaded", function() {
-      var mappings = [
-        { file: "top_games.html", class: ".top_games_page" },
-        { file: "article2.html", class: ".article2" }
-        // Add more mappings for additional pages
-      ];
-
-      mappings.forEach(function(mapping) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState === 4 && xhr.status === 200) {
+   mappings.forEach(function (mapping) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+         if (xhr.readyState === 4 && xhr.status === 200) {
             var articleContent = xhr.responseText;
             document.querySelector(mapping.class).innerHTML = articleContent;
-            executeImportedScripts(mapping.class);
-          }
-        };
-        xhr.open("GET", mapping.file, true);
-        xhr.send();
+            executeImportedScripts(mapping.class, function () {
+               executeRemainingCode();
+               executeRemainingScripts();
+            });
+         }
+      };
+      xhr.open("GET", mapping.file, true);
+      xhr.send();
+   });
+
+   function executeImportedScripts(classSelector, callback) {
+      var scripts = document.querySelectorAll(classSelector + ' script');
+      var numScripts = scripts.length;
+      var numScriptsExecuted = 0;
+
+      for (var i = 0; i < numScripts; i++) {
+         var script = document.createElement('script');
+         script.textContent = scripts[i].textContent;
+
+         // Execute the callback after all scripts have been loaded and executed
+         script.onload = function () {
+            numScriptsExecuted++;
+            if (numScriptsExecuted === numScripts) {
+               callback();
+            }
+         };
+
+         document.head.appendChild(script).parentNode.removeChild(script);
+      }
+   }
+
+   function executeRemainingCode() {
+      // Place your remaining JavaScript code here
+      // This code will be executed after the imported scripts have been loaded and executed
+
+      // Open Modals
+      function openModal(projectId) {
+         // Your openModal function code here
+         var modal = document.getElementById('modal');
+         var project = document.getElementById(projectId);
+         var header = document.getElementById('header');
+         var html = document.querySelector('html');
+
+         project.classList.remove('hidden');
+         modal.style.display = 'block';
+
+         // Add the URL hash with the project ID
+         window.location.hash = projectId;
+
+         // Add the class 'modal_active' to the header
+         header.classList.add('modal_active');
+         //html.classList.add('overflow_hidden');
+
+         setTimeout(function () {
+            modal.classList.add('fade-in');
+         }, 10);
+      }
+
+      function closeModal() {
+         // Your closeModal function code here
+         var modal = document.getElementById('modal');
+         var projects = document.getElementsByClassName('project');
+         var header = document.getElementById('header');
+         var html = document.querySelector('html');
+
+         modal.classList.remove('fade-in');
+         modal.classList.add('fade-out');
+
+         setTimeout(function () {
+            for (var i = 0; i < projects.length; i++) {
+               projects[i].classList.add('hidden');
+            }
+            modal.classList.remove('fade-out');
+            //header.classList.remove('modal_active');
+            modal.style.display = 'none';
+
+            // Remove the URL hash when the modal is closed
+            window.location.hash = '';
+
+            // Check if any modal is still open
+            var isModalOpen = document.querySelector('.project:not(.hidden)') !== null;
+            if (!isModalOpen) {
+               html.classList.remove('overflow_hidden');
+            }
+         }, 500); // Adjust the delay (in milliseconds) to match your CSS transition duration
+      }
+
+      // Check if the URL has a hash value on page load
+      window.onload = function () {
+         // Your window.onload code here
+         var hash = window.location.hash.slice(1); // Remove the '#' character from the hash value
+         if (hash) {
+            openModal(hash);
+         }
+      }
+
+      // Close modal when the "Esc" key is pressed
+      document.addEventListener('keydown', function (event) {
+         // Your 'Esc' key event code here
+         if (event.key === 'Escape') {
+            closeModal();
+         }
       });
 
-      function executeImportedScripts(classSelector) {
-        var scripts = document.querySelectorAll(classSelector + ' script');
-        for (var i = 0; i < scripts.length; i++) {
-          var script = document.createElement('script');
-          script.textContent = scripts[i].textContent;
-          document.head.appendChild(script).parentNode.removeChild(script);
-        }
-      }
-    });
-
-
-
-
-
-// Open Modals
-function openModal(projectId) {
-  var modal = document.getElementById('modal');
-  var project = document.getElementById(projectId);
-  var header = document.getElementById('header');
-  var html = document.querySelector('html');
-
-  project.classList.remove('hidden');
-  modal.style.display = 'block';
-
-  // Add the URL hash with the project ID
-  window.location.hash = projectId;
-
-  // Add the class 'modal_active' to the header
-  header.classList.add('modal_active');
-  //html.classList.add('overflow_hidden');
-
-  setTimeout(function () {
-    modal.classList.add('fade-in');
-  }, 10);
-}
-
-function closeModal() {
-  var modal = document.getElementById('modal');
-  var projects = document.getElementsByClassName('project');
-  var header = document.getElementById('header');
-  var html = document.querySelector('html');
-
-  modal.classList.remove('fade-in');
-  modal.classList.add('fade-out');
-
-  setTimeout(function () {
-    for (var i = 0; i < projects.length; i++) {
-      projects[i].classList.add('hidden');
-    }
-    modal.classList.remove('fade-out');
-    //header.classList.remove('modal_active');
-    modal.style.display = 'none';
-
-    // Remove the URL hash when the modal is closed
-    window.location.hash = '';
-
-    // Check if any modal is still open
-    var isModalOpen = document.querySelector('.project:not(.hidden)') !== null;
-    if (!isModalOpen) {
-      html.classList.remove('overflow_hidden');
-    }
-  }, 500); // Adjust the delay (in milliseconds) to match your CSS transition duration
-}
-
-// Check if the URL has a hash value on page load
-window.onload = function () {
-  var hash = window.location.hash.slice(1); // Remove the '#' character from the hash value
-  if (hash) {
-    openModal(hash);
-  }
-};
-
-// Close modal when the "Esc" key is pressed
-document.addEventListener('keydown', function (event) {
-  if (event.key === 'Escape') {
-    closeModal();
-  }
-});
-
-
-
-
-
-
-
-
-
-        // Intro animaiton
-        window.addEventListener('load', function() {
-        var text = document.getElementById('animate-text').textContent.split('');
-        document.getElementById('animate-text').textContent = '';
-        text.forEach(function(char, index) {
+      // Intro animation
+      window.addEventListener('load', function () {
+         // Your intro animation code here
+         var text = document.getElementById('animate-text').textContent.split('');
+         document.getElementById('animate-text').textContent = '';
+         text.forEach(function (char, index) {
             char = char.replace(/\s+/, '\u00A0');
             var span = document.createElement('span');
             span.textContent = char;
             span.classList.add('animate-initial');
             document.getElementById('animate-text').appendChild(span);
             if (index === 18) {
-            var lineBreak = document.createElement('br');
-            document.getElementById('animate-text').appendChild(lineBreak);
+               var lineBreak = document.createElement('br');
+               document.getElementById('animate-text').appendChild(lineBreak);
             }
-            setTimeout(function() {
-            span.classList.remove('animate-initial');
-            span.classList.add('animate-final');
+            setTimeout(function () {
+               span.classList.remove('animate-initial');
+               span.classList.add('animate-final');
             }, index * 50);
-        });
-        });
+         });
+      });
 
-
- 
-
-
-        // Get all the buttons on the page
-        const buttons = document.querySelectorAll('button');
-
-        // Loop through each button
-        buttons.forEach(button => {
-        // Check if there's an element with the class "sr-only" inside the button
-        const srOnlyEl = button.querySelector('.sr-only');
-        if (srOnlyEl) {
+      // Add class "empty" to buttons with "sr-only" elements
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button => {
+         // Your buttons code here
+         const srOnlyEl = button.querySelector('.sr-only');
+         if (srOnlyEl) {
             // If there is, add the "empty" class to the button
             button.classList.add('empty');
-        }
-        });
+         }
+      });
 
+      // Get current year
+      const date = new Date();
+      const year = date.getFullYear();
+      document.getElementById("current-year").innerHTML = year;
 
-        // Get current year
-        const date = new Date();
-        const year = date.getFullYear();
-        document.getElementById("current-year").innerHTML = year;
+      // Toggle class "active" in the burger icon
+      const menuButton = document.getElementById("menu_button");
+      menuButton.addEventListener("click", function () {
+         // Your burger icon code here
+         this.classList.toggle("active");
+      });
+   }
 
-
-        // Toggle class active in the burger icon
-        const menuButton = document.getElementById("menu_button");
-        menuButton.addEventListener("click", function() {
-        this.classList.toggle("active");
-        });
-
-
-        function setDimensions(element) {
-  if (element.classList.contains('chart-bubble')) {
-    const width = element.offsetWidth;
-    element.style.height = `${width}px`;
-  } else if (element.classList.contains('reach_graph_circle')) {
-    const widthInPx = getComputedStyle(element).getPropertyValue('width');
-    const width = parseInt(widthInPx, 10);
-    element.style.width = `${width}px`;
-    element.style.height = `${width}px`;
-    
-    // Find the parent .card element
-    const card = element.closest('.card');
-    if (card) {
-      // Find all .reach_graph_circles_wrapper elements inside the parent .card
-      const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
-      if (wrappers.length > 0) {
-        // Get the biggest width among all .reach_graph_circles_wrapper elements
-        let biggestWidth = 0;
-        wrappers.forEach((wrapper) => {
-          const wrapperWidthInPx = getComputedStyle(wrapper).getPropertyValue('width');
-          const wrapperWidth = parseInt(wrapperWidthInPx, 10);
-          if (wrapperWidth > biggestWidth) {
-            biggestWidth = wrapperWidth;
-          }
-        });
-        // Set the height of all .reach_graph_circles_wrapper elements to the biggest width
-        wrappers.forEach((wrapper) => {
-          wrapper.style.height = `${biggestWidth}px`;
-        });
+   function executeRemainingScripts() {
+      // Function to set the height of .chart-bubble elements based on their width
+      function setBubbleHeight() {
+         // Your setBubbleHeight function code here
+         var bubbleElements = document.getElementsByClassName('chart-bubble');
+         for (var i = 0; i < bubbleElements.length; i++) {
+            var width = bubbleElements[i].offsetWidth;
+            bubbleElements[i].style.height = width + 'px';
+         }
       }
-    }
-  }
-}
 
-// Get all .chart-bubble and .reach_graph_circle elements
-const bubbles = document.querySelectorAll('.chart-bubble, .reach_graph_circle');
+      // Initial setup
+      setBubbleHeight();
 
-// Set the height and width of all .chart-bubble and .reach_graph_circle elements initially
-bubbles.forEach((bubble) => {
-  setDimensions(bubble);
-});
-
-// Recalculate the height and width of all .chart-bubble and .reach_graph_circle elements whenever the window is resized
-window.addEventListener('resize', () => {
-  bubbles.forEach((bubble) => {
-    setDimensions(bubble);
-  });
-  
-  // Recalculate the height of all .reach_graph_circles_wrapper elements
-  const cards = document.querySelectorAll('.card');
-  cards.forEach((card) => {
-    const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
-    if (wrappers.length > 0) {
-      // Get the biggest width among all .reach_graph_circles_wrapper elements
-      let biggestWidth = 0;
-      wrappers.forEach((wrapper) => {
-        const wrapperWidthInPx = getComputedStyle(wrapper).getPropertyValue('width');
-        const wrapperWidth = parseInt(wrapperWidthInPx, 10);
-        if (wrapperWidth > biggestWidth) {
-          biggestWidth = wrapperWidth;
-        }
+      // Update on window resize
+      window.addEventListener('resize', function () {
+         setBubbleHeight();
       });
-      // Set the height of all .reach_graph_circles_wrapper elements to the biggest width
-      wrappers.forEach((wrapper) => {
-        wrapper.style.height = `${biggestWidth}px`;
-      });
-    }
-  });
-});
 
+      function setDimensions(element) {
+         if (element.classList.contains('chart-bubble')) {
+            const width = element.offsetWidth;
+            element.style.height = `${width}px`;
+         } else if (element.classList.contains('reach_graph_circle')) {
+            const widthInPx = getComputedStyle(element).getPropertyValue('width');
+            const width = parseInt(widthInPx, 10);
+            element.style.width = `${width}px`;
+            element.style.height = `${width}px`;
 
-window.addEventListener('DOMContentLoaded', function() {
-  // Function to set the height of .chart-bubble elements based on their width
-  function setBubbleHeight() {
-    var bubbleElements = document.getElementsByClassName('chart-bubble');
-    for (var i = 0; i < bubbleElements.length; i++) {
-      var width = bubbleElements[i].offsetWidth;
-      bubbleElements[i].style.height = width + 'px';
-    }
-  }
-
-  // Initial setup
-  setBubbleHeight();
-
-  // Update on window resize
-  window.addEventListener('resize', function() {
-    setBubbleHeight();
-  });
-});
-
-
-
-
-
-
-
-function setDimensions(element) {
-  if (element.classList.contains('chart-bubble')) {
-    const width = element.offsetWidth;
-    element.style.height = `${width}px`;
-  } else if (element.classList.contains('reach_graph_circle')) {
-    const width = element.offsetWidth;
-    element.style.width = `${width}px`;
-    element.style.height = `${width}px`;
-    
-    const card = element.closest('.card');
-    if (card) {
-      const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
-      if (wrappers.length > 0) {
-        let biggestWidth = 0;
-        wrappers.forEach((wrapper) => {
-          const wrapperWidth = wrapper.offsetWidth;
-          biggestWidth = Math.max(biggestWidth, wrapperWidth);
-        });
-        wrappers.forEach((wrapper) => {
-          wrapper.style.height = `${biggestWidth}px`;
-        });
+            // Find the parent .card element
+            const card = element.closest('.card');
+            if (card) {
+               // Find all .reach_graph_circles_wrapper elements inside the parent .card
+               const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
+               if (wrappers.length > 0) {
+                  // Get the biggest width among all .reach_graph_circles_wrapper elements
+                  let biggestWidth = 0;
+                  wrappers.forEach((wrapper) => {
+                     const wrapperWidthInPx = getComputedStyle(wrapper).getPropertyValue('width');
+                     const wrapperWidth = parseInt(wrapperWidthInPx, 10);
+                     if (wrapperWidth > biggestWidth) {
+                        biggestWidth = wrapperWidth;
+                     }
+                  });
+                  // Set the height of all .reach_graph_circles_wrapper elements to the biggest width
+                  wrappers.forEach((wrapper) => {
+                     wrapper.style.height = `${biggestWidth}px`;
+                  });
+               }
+            }
+         }
       }
-    }
-  }
-}
 
-function updateDimensions() {
-  const bubbles = document.querySelectorAll('.chart-bubble, .reach_graph_circle');
-  bubbles.forEach((bubble) => {
-    setDimensions(bubble);
-  });
+      function updateDimensions() {
+         // Your updateDimensions function code here
+         const bubbles = document.querySelectorAll('.chart-bubble, .reach_graph_circle');
+         bubbles.forEach((bubble) => {
+            setDimensions(bubble);
+         });
 
-  const cards = document.querySelectorAll('.card');
-  cards.forEach((card) => {
-    const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
-    if (wrappers.length > 0) {
-      let biggestWidth = 0;
-      wrappers.forEach((wrapper) => {
-        const wrapperWidth = wrapper.offsetWidth;
-        biggestWidth = Math.max(biggestWidth, wrapperWidth);
-      });
-      wrappers.forEach((wrapper) => {
-        wrapper.style.height = `${biggestWidth}px`;
-      });
-    }
-  });
-}
+         const cards = document.querySelectorAll('.card');
+         cards.forEach((card) => {
+            const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
+            if (wrappers.length > 0) {
+               let biggestWidth = 0;
+               wrappers.forEach((wrapper) => {
+                  const wrapperWidth = wrapper.offsetWidth;
+                  biggestWidth = Math.max(biggestWidth, wrapperWidth);
+               });
+               wrappers.forEach((wrapper) => {
+                  wrapper.style.height = `${biggestWidth}px`;
+               });
+            }
+         });
+      }
 
-window.addEventListener('resize', updateDimensions);
+      window.addEventListener('resize', updateDimensions);
 
-// Initial dimensions setup
-updateDimensions();
+      // Initial dimensions setup
+      updateDimensions();
+   }
+});
+
 
 
 

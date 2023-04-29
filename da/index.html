@@ -490,16 +490,8 @@ window.addEventListener('resize', () => {
     setDimensions(bubble);
   });
 
-  function handleResize() {
-  bubbles.forEach((bubble) => {
-    setDimensions(bubble);
-  });
-}
-
-window.addEventListener('load', () => {
-  setTimeout(handleResize, 2000);
-  window.addEventListener('resize', handleResize);
-});
+  
+  
   
   // Recalculate the height of all .reach_graph_circles_wrapper elements
   const cards = document.querySelectorAll('.card');
@@ -647,6 +639,24 @@ function hasScrolled() {
 
 
     </script>
+
+
+
+<script>
+    window.addEventListener('load', () => {
+  setTimeout(() => {
+    bubbles.forEach((bubble) => {
+      setDimensions(bubble);
+    });
+  }, 2000);
+  
+  window.addEventListener('resize', () => {
+    bubbles.forEach((bubble) => {
+      setDimensions(bubble);
+    });
+  });
+});
+</script>
 
 
 </body>

@@ -31,7 +31,7 @@
                 <nav>
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="#/" onclick="scrollToTopAndCloseModal()">
                                 <h1>crisley oliveira</h1>
                             </a>
                         </li>
@@ -91,7 +91,7 @@
             </div>
 
             <div id="intro">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 716 301"><g stroke="#C3C7FE" stroke-width="4" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 716 301"><g stroke="#C3C7FE" stroke-width="3" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
   
                     <path vector-effect="non-scaling-stroke" class="wave" d="M566.780983,186.008 C552.048983,186.008 552.048983,169 537.316983,169 C522.584983,169 522.584983,186.008 507.852983,186.008 C493.122983,186.008 493.122983,169 478.391983,169 C463.661983,169 463.661983,186.008 448.930983,186.008 C434.200983,186.008 434.200983,169 419.471983,169 C404.741983,169 404.741983,186.008 390.011983,186.008 C375.283983,186.008 375.283983,169 360.556983,169 C345.828983,169 345.828983,186.008 331.101983,186.008 C316.375983,186.008 316.375983,169 301.649983,169 C286.920983,169 286.920983,186.008 272.190983,186.008 C257.462983,186.008 257.462983,169 242.734983,169 C228.006983,169 228.006983,186.008 213.278983,186.008 C198.550983,186.008 198.550983,169 183.823983,169 C169.094983,169 169.094983,186.008 154.366983,186.008 C139.639983,186.008 139.639983,169 124.911983,169 C110.182983,169 110.182983,186.008 95.4549829,186.008 C80.7269829,186.008 80.7269829,169 65.9999829,169" id="Shape"></path>
                                   <path vector-effect="non-scaling-stroke" class="mark" d="M27.3759829,254.229 C119.298983,280.717 236.948983,278.084 304.935983,278.084 C372.922983,278.084 575.242983,268.001 575.242983,218.436 C575.242983,188.078 433.496983,174.796 271.952983,177.665 C165.612983,179.553 -18.6270171,179.553 1.52598292,239.625 C21.6789829,299.696 444.947983,313.943 652.811983,280.717 C758.196672,258.416614 700.88428,209.890096 660,201.234207 C632.743813,195.463615 601.670808,190.388213 566.780983,186.008" id="Shape"></path>
@@ -306,6 +306,7 @@ function openModal(projectId) {
   var project = document.getElementById(projectId);
   var header = document.getElementById('header');
   var html = document.querySelector('html');
+  var anchor = document.querySelector('.card.project-link');
 
   project.classList.remove('hidden');
   modal.style.display = 'block';
@@ -320,6 +321,22 @@ function openModal(projectId) {
   setTimeout(function () {
     modal.classList.add('fade-in');
   }, 10);
+
+  // Update the href attribute of the anchor element
+  anchor.href = '#' + projectId;
+}
+
+// JavaScript code
+function scrollToTopAndCloseModal() {
+  scrollToTop();
+  closeModal();
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // Optional: Add smooth scrolling effect
+  });
 }
 
 function closeModal() {
@@ -336,7 +353,7 @@ function closeModal() {
       projects[i].classList.add('hidden');
     }
     modal.classList.remove('fade-out');
-    //header.classList.remove('modal_active');
+    header.classList.remove('modal_active');
     modal.style.display = 'none';
 
     // Remove the URL hash when the modal is closed
@@ -571,6 +588,49 @@ cards.forEach((card) => {
   });
 });
 
+
+
+
+// Hide Header on scroll down
+let didScroll;
+let lastScrollTop = 0;
+const delta = 1;
+const navbarHeight = document.querySelector('header').offsetHeight;
+
+window.addEventListener('scroll', function(event) {
+  didScroll = true;
+});
+
+setInterval(function() {
+  if (didScroll) {
+    hasScrolled();
+    didScroll = false;
+  }
+}, 150);
+
+function hasScrolled() {
+  const st = window.pageYOffset || document.documentElement.scrollTop;
+
+  // Make sure they scroll more than delta
+  if (Math.abs(lastScrollTop - st) <= delta)
+    return;
+
+  // If they scrolled down and are past the navbar, add class .nav-up.
+  // This is necessary so you never see what is "behind" the navbar.
+  if (st > lastScrollTop && st > navbarHeight) {
+    // Scroll Down
+    document.querySelector('header').classList.remove('nav-down');
+    document.querySelector('header').classList.add('nav-up');
+  } else {
+    // Scroll Up
+    if (st + window.innerHeight < document.documentElement.scrollHeight) {
+      document.querySelector('header').classList.remove('nav-up');
+      document.querySelector('header').classList.add('nav-down');
+    }
+  }
+
+  lastScrollTop = st;
+}
 
 
 

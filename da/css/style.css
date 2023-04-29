@@ -40,6 +40,10 @@ html, body {
   overflow-x: hidden;
 }
 
+main{
+  padding-top: 112px;
+}
+
 section{
   margin: 64px auto;
   overflow: auto;
@@ -426,13 +430,36 @@ footer{
 
 /* HEADER */
 
-header{
-  position: relative;
+
+header {
+  transform: translateY(0);
+  position: fixed;
+  width: 100vw;
   z-index: 999;
+  left: 0;
+  padding-left: 48px;
+  padding-right: 48px;
+  top: 0;
+  transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  width: 100%;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
+
+header.modal_active{
+  background: rgba(255, 255, 255, 0);
+}
+
+.nav-up {
+  transform: translateY(-100%);
+}
+
 
 header nav{
   margin-top: 36px;
+  margin-bottom: 36px;
 }
 
 header h1{
@@ -644,7 +671,7 @@ header .menu_button.active span::after{
   overflow-y: hidden;
 }
 
-.home section:not(#hero),
+.home main > section:not(#hero),
 .home #hero .row:nth-of-type(2){
   opacity: 0;
   animation: sections_intro 2s forwards;
@@ -887,9 +914,20 @@ header .menu_button.active span::after{
   position: relative;
 }
 
+.chart-bars{
+  background: rgba(255, 255, 255, 0);
+  transition: all 0.2s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.chart-bars:hover{
+  background: rgba(255, 255, 255, .3);
+}
 
 .has_visual_limit.chart_element{
   border-right: 1px solid #252525;
+}
+
+.chart_wrapper.overflow_hidden .chart_element{
   overflow: hidden;
 }
 
@@ -1372,7 +1410,7 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 
 
 #chart .card .vertical_text .title_and_description_wrapper + .chart-bars .chart-bar{
-  transform: scaleY(.75);
+  transform: scaleY(.75) translateY(1px);
   transform-origin: bottom;
 }
 
@@ -1575,10 +1613,6 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 44.99%,
 }
 
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
   cursor: pointer;
 }
 
@@ -1593,7 +1627,7 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 44.99%,
 .modal {
   /* ... */
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: all 0.5s;
 }
 
 .fade-in {

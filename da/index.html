@@ -324,9 +324,6 @@ function openModal(projectId) {
 
   // Update the href attribute of the anchor element
   anchor.href = '#' + projectId;
-
-  // Trigger the resize event handler
-  handleResize();
 }
 
 // JavaScript code
@@ -482,17 +479,28 @@ document.addEventListener('keydown', function (event) {
 // Get all .chart-bubble and .reach_graph_circle elements
 const bubbles = document.querySelectorAll('.chart-bubble, .reach_graph_circle');
 
-// Function to set dimensions of elements
-function setDimensions(element) {
-  // Your setDimensions logic here
-}
+// Set the height and width of all .chart-bubble and .reach_graph_circle elements initially
+bubbles.forEach((bubble) => {
+  setDimensions(bubble);
+});
 
-// Function to handle the resize event
-function handleResize() {
+// Recalculate the height and width of all .chart-bubble and .reach_graph_circle elements whenever the window is resized
+window.addEventListener('resize', () => {
   bubbles.forEach((bubble) => {
     setDimensions(bubble);
   });
 
+  function handleResize() {
+  bubbles.forEach((bubble) => {
+    setDimensions(bubble);
+  });
+}
+
+window.addEventListener('load', () => {
+  setTimeout(handleResize, 2000);
+  window.addEventListener('resize', handleResize);
+});
+  
   // Recalculate the height of all .reach_graph_circles_wrapper elements
   const cards = document.querySelectorAll('.card');
   cards.forEach((card) => {
@@ -513,15 +521,7 @@ function handleResize() {
       });
     }
   });
-}
-
-// Initial call to set dimensions
-bubbles.forEach((bubble) => {
-  setDimensions(bubble);
 });
-
-// Add event listener for resize
-window.addEventListener('resize', handleResize);
 
 
 window.addEventListener('DOMContentLoaded', function() {

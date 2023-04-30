@@ -567,6 +567,26 @@ function hasScrolled() {
 
 
 
+
+
+window.addEventListener('scroll', function() {
+  var header = document.querySelector('header');
+  var headerNav = document.querySelector('header nav');
+  var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (scrollPosition > 160) {
+    headerNav.style.marginTop = '8px';
+    headerNav.style.marginBottom = '8px';
+    header.classList.add('add_shadow'); // Add the class "add_shadow" to header
+  } else {
+    headerNav.style.marginTop = '36px';
+    headerNav.style.marginBottom = '36px';
+    header.classList.remove('add_shadow'); // Remove the class "add_shadow" from header
+  }
+});
+
+
+
     </script>
 
 

@@ -239,6 +239,7 @@ a.card:hover .btn.down_arrow::after{
   opacity: 0;
   -webkit-backface-visibility: hidden;
   border-color: rgba(255, 255, 255, .2);
+  transform: translateY(-4px);
 }
 
 .back.btn:hover{
@@ -465,16 +466,27 @@ header {
   padding-right: 48px;
   top: 0;
   width: 100%;
-  background: #fff;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, .8);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+header.add_shadow{
+  -webkit-box-shadow: 0 0 8px 0 rgba(0,0,0,.15);
+  box-shadow: 0 0 8px 0 rgba(0,0,0,.15);
 }
 
 header.modal_active{
-  background: rgba(255, 255, 255, 0);
+  background: rgba(0, 0, 0, .8);
 }
+
+
+header:not(.modal_active)::before,
+header.modal_active::after{
+  transform: translateY(0);
+}
+
 
 .nav-up {
   transform: translateY(-100%);
@@ -484,6 +496,7 @@ header.modal_active{
 header nav{
   margin-top: 36px;
   margin-bottom: 36px;
+  transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 header h1{
@@ -731,6 +744,7 @@ header .menu_button.active span::after{
 .home header nav li{
   opacity: 0;
   animation: header_intro 2s forwards;
+  max-height: 40px;
 }
 
 .home header nav li:nth-of-type(1){

@@ -1694,6 +1694,7 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 44.99%,
   opacity: 0;
   transition: all 1.5s cubic-bezier(0.76, 0, 0.24, 1);
   transform: scale(.9);
+  transform-origin: top;
   transition-delay: .5s;
 }
 

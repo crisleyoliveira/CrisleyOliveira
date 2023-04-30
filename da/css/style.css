@@ -226,6 +226,23 @@ a.card:hover .btn.down_arrow::after{
 .back.btn{
   padding-right: 32px;
   padding-left: 64px;
+  -webkit-background-clip: initial;
+  -moz-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  -moz-text-fill-color: initial;
+  text-fill-color: initial;
+  color: #fff;
+  /* Animation */
+  margin: 0;
+  margin-left: -191px;
+  opacity: 0;
+}
+
+.modal_active .back.btn{
+  margin-left: 0;
+  margin-right: 40px;
+  opacity: 1;
 }
 
 .back.btn::after{
@@ -1654,7 +1671,6 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 44.99%,
   opacity: 0;
   transition: all 1.5s cubic-bezier(0.76, 0, 0.24, 1);
   transform: scale(.9);
-  transform-origin: top;
   transition-delay: .5s;
 }
 

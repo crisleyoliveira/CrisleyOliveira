@@ -482,6 +482,8 @@ header.modal_active{
 }
 
 
+
+
 header:not(.modal_active)::before,
 header.modal_active::after{
   transform: translateY(0);
@@ -1686,6 +1688,7 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 44.99%,
 .fade-out {
   opacity: 0;
 }
+
 
 .modal > *{
   opacity: 0;

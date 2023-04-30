@@ -355,7 +355,6 @@ function closeModal() {
       projects[i].classList.add('hidden');
     }
     modal.classList.remove('fade-out');
-    header.classList.remove('modal_active');
     modal.style.display = 'none';
 
     // Remove the URL hash when the modal is closed
@@ -367,7 +366,12 @@ function closeModal() {
       html.classList.remove('overflow_hidden');
     }
   }, 500); // Adjust the delay (in milliseconds) to match your CSS transition duration
+
+  setTimeout(function () {
+    header.classList.remove('modal_active');
+  }, 0); // 5 seconds before the rest of the classes are removed
 }
+
 
 
 // Check if the URL has a hash value on page load
@@ -455,70 +459,60 @@ document.addEventListener('keydown', function (event) {
 
 
 
+// Function to set the height based on width
+function setHeight() {
+  // Get all .card elements
+  const cards = document.querySelectorAll('.card');
 
-        // Sets height
-        function updateHeight() {
-            var chartBubbles = document.querySelectorAll('.chart-bubble');
-            var reachGraphCircles = document.querySelectorAll('.reach_graph_circle');
+  cards.forEach((card) => {
+    // Get all .reach_graph_circle elements inside the current card
+    const circles = card.querySelectorAll('.reach_graph_circle');
 
-            for (var i = 0; i < chartBubbles.length; i++) {
-                var bubbleWidth = chartBubbles[i].offsetWidth;
-                chartBubbles[i].style.height = bubbleWidth + 'px';
-            }
+    // Initialize variable to store the largest width
+    let largestWidth = 0;
 
-            for (var j = 0; j < reachGraphCircles.length; j++) {
-                var circleWidth = reachGraphCircles[j].offsetWidth;
-                reachGraphCircles[j].style.height = circleWidth + 'px';
-            }
-        }
+    // Iterate over the .reach_graph_circle elements
+    circles.forEach((circle) => {
+      // Get the current width
+      const width = circle.offsetWidth;
 
-        // Initial update on page load
-        updateHeight();
+      // Check if the current width is larger than the largest width
+      if (width > largestWidth) {
+        largestWidth = width;
+      }
+    });
 
-        // Update on window resize
-        window.addEventListener('resize', updateHeight);
+    // Set the largest width as the height for all .reach_graph_circles_wrapper elements
+    const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
+    wrappers.forEach((wrapper) => {
+      wrapper.style.height = `${largestWidth}px`;
+    });
+  });
+}
 
-        // Update when header has the class .modal_active
-        var header = document.querySelector('header');
-        var observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.attributeName === 'class' && mutation.target.classList.contains('modal_active')) {
-                    updateHeight();
-                }
-            });
-        });
+// Function to update the height
+function updateHeight() {
+  setHeight();
+}
 
-        observer.observe(header, { attributes: true });
+// Initial update on page load
+updateHeight();
 
+// Update on window resize
+window.addEventListener('resize', updateHeight);
 
-
-// Get all .card elements
-const cards = document.querySelectorAll('.card');
-
-cards.forEach((card) => {
-  // Get all .reach_graph_circle elements inside the current card
-  const circles = card.querySelectorAll('.reach_graph_circle');
-
-  // Initialize variable to store the largest width
-  let largestWidth = 0;
-
-  // Iterate over the .reach_graph_circle elements
-  circles.forEach((circle) => {
-    // Get the current width
-    const width = circle.offsetWidth;
-
-    // Check if the current width is larger than the largest width
-    if (width > largestWidth) {
-      largestWidth = width;
+// Update when header has the class .modal_active
+var header = document.querySelector('header');
+var observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    if (mutation.attributeName === 'class' && mutation.target.classList.contains('modal_active')) {
+      updateHeight();
     }
   });
-
-  // Set the largest width as the height for all .reach_graph_circles_wrapper elements
-  const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
-  wrappers.forEach((wrapper) => {
-    wrapper.style.height = `${largestWidth}px`;
-  });
 });
+
+observer.observe(header, { attributes: true });
+
 
 
 

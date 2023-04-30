@@ -453,8 +453,7 @@ document.addEventListener('keydown', function (event) {
 
 
 
-
-        // Give the same height as width to circles
+        // Sets height
         function updateHeight() {
             var chartBubbles = document.querySelectorAll('.chart-bubble');
             var reachGraphCircles = document.querySelectorAll('.reach_graph_circle');
@@ -490,9 +489,7 @@ document.addEventListener('keydown', function (event) {
 
 
 
-
-
-        function setLargestWidth() {
+        function setReachGraphCirclesHeight() {
         // Get all .card elements
         const cards = document.querySelectorAll('.card');
 
@@ -522,19 +519,22 @@ document.addEventListener('keydown', function (event) {
         });
         }
 
-        function handleResize() {
+        // Call the function initially
+        setReachGraphCirclesHeight();
+
+        // Check if the header has the class "modal_active" whenever it changes
         const header = document.querySelector('header');
-        if (header.classList.contains('modal_active')) {
-            setLargestWidth();
+        const observer = new MutationObserver((mutationsList) => {
+        for (const mutation of mutationsList) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+            if (header.classList.contains('modal_active')) {
+                setReachGraphCirclesHeight();
+            }
+            }
         }
-        }
+        });
 
-        // Run the function initially
-        setLargestWidth();
-
-        // Run the function on window resize
-        window.addEventListener('resize', handleResize);
-
+        observer.observe(header, { attributes: true });
 
 
 

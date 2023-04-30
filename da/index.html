@@ -459,8 +459,8 @@ document.addEventListener('keydown', function (event) {
 
 
 
-// Function to set the height based on width
-function setHeight() {
+// Function to set the width and height
+function setWidthAndHeight() {
   // Get all .card elements
   const cards = document.querySelectorAll('.card');
 
@@ -482,32 +482,32 @@ function setHeight() {
       }
     });
 
-    // Set the largest width as the height for all .reach_graph_circles_wrapper elements
+    // Set the largest width as the width and height for all .reach_graph_circles_wrapper elements
     const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
     wrappers.forEach((wrapper) => {
-      wrapper.style.height = `${largestWidth}px`,
       wrapper.style.width = `${largestWidth}px`;
+      wrapper.style.height = `${largestWidth}px`;
     });
   });
 }
 
-// Function to update the height
-function updateHeight() {
-  setHeight();
+// Function to update the width and height
+function updateWidthAndHeight() {
+  setWidthAndHeight();
 }
 
 // Initial update on page load
-updateHeight();
+updateWidthAndHeight();
 
 // Update on window resize
-window.addEventListener('resize', updateHeight);
+window.addEventListener('resize', updateWidthAndHeight);
 
 // Update when header has the class .modal_active
 var header = document.querySelector('header');
 var observer = new MutationObserver(function(mutations) {
   mutations.forEach(function(mutation) {
     if (mutation.attributeName === 'class' && mutation.target.classList.contains('modal_active')) {
-      updateHeight();
+      updateWidthAndHeight();
     }
   });
 });

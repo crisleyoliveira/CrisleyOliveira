@@ -377,6 +377,7 @@ p.small{
   /* Stays above the intro animation */
   position: relative;
   z-index: 9;
+  color: #fff;
 }
 
 
@@ -589,17 +590,20 @@ header .menu_button.active span::after{
   animation: intro_spring 2.5s forwards;
   animation-delay: .5s;
   stroke: #FCD8E3;
+  opacity: 0;
 }
 
 @keyframes intro_spring {
   0% {
     stroke-dashoffset: 310px;
+    opacity: 1;
   }
   40%, 60%{
     stroke-dashoffset: 620px;
   }
   100% {
     stroke-dashoffset: 930px;
+    opacity: 1;
   }
 }
 
@@ -610,17 +614,20 @@ header .menu_button.active span::after{
   animation: intro_wave 2s forwards;
   animation-delay: .5s;
   stroke: #FCD8E3;
+  opacity: 0;
 }
 
 @keyframes intro_wave {
   0% {
     stroke-dashoffset: 610px;
+    opacity: 1;
   }
   40%, 60%{
     stroke-dashoffset: 1230px;
   }
   100% {
     stroke-dashoffset: 1830px;
+    opacity: 1;
   }
 }
 
@@ -630,6 +637,7 @@ header .menu_button.active span::after{
     stroke-dashoffset: 6354px;
   animation: intro_mark 3s forwards;
   animation-delay: 2s;
+  opacity: 0;
 }
 
 @keyframes intro_mark {
@@ -637,6 +645,7 @@ header .menu_button.active span::after{
     stroke-dasharray: 2118px;
     stroke-dashoffset: 6354px;
   stroke: #FCD8E3;
+  opacity: 1;
 }
 
   30%{
@@ -648,6 +657,7 @@ header .menu_button.active span::after{
     /*stroke-dashoffset: 8360px;*/
     stroke-dasharray: 1660px;
     stroke-dashoffset: 6650px;
+    opacity: 1;
   }
 }
 
@@ -658,12 +668,14 @@ header .menu_button.active span::after{
   filter: blur(2px);
   display: inline-block;
   text-align: center;
+  color: #232323;
 }
 
 .animate-final {
   opacity: 1;
   filter: blur(0px);
   transition: opacity 1s, filter 1s;
+  color: #232323;
 }
 
 

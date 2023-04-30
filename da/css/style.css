@@ -237,6 +237,8 @@ a.card:hover .btn.down_arrow::after{
   margin: 0;
   margin-left: -191px;
   opacity: 0;
+  -webkit-backface-visibility: hidden;
+  border-color: rgba(255, 255, 255, .2);
 }
 
 .modal_active .back.btn{

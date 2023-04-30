@@ -31,7 +31,7 @@
                 <nav>
                     <ul>
                         <li>
-                            <a href="#/" onclick="scrollToTopAndCloseModal()">
+                            <a href="" onclick="scrollToTopAndCloseModal()">
                                 <h1>crisley oliveira</h1>
                             </a>
                         </li>
@@ -111,7 +111,7 @@
 
         <section id="articles">
             <div class="col-md-3">
-                <a href="#" class="card yellow_bg has_illustration project-link" onclick="openModal('project1'); return false;">
+                <a href="" class="card yellow_bg has_illustration project-link" onclick="openModal('project1'); return false;">
                     <h2>Uncovering Hidden Insights</h2>
                     <p>Learn how data analysis can help your business make smarter decisions and drive growth</p>
                     <figure>
@@ -122,7 +122,7 @@
             </div>
 
             <div class="col-md-3">
-                <a href="#" class="card green_bg has_illustration project-link" onclick="openModal('project2'); return false;">
+                <a href="" class="card green_bg has_illustration project-link" onclick="openModal('project2'); return false;">
                     <h2>Uncovering Hidden Insights</h2>
                     <p>Learn how data analysis can help your business make smarter decisions and drive growth</p>
                     <button class="btn"><span class="sr-only">Read article</span></button>
@@ -130,7 +130,7 @@
             </div>
 
             <div class="col-md-3">
-                <a href="#" class="card blue_bg has_illustration project-link" onclick="openModal('project3'); return false;">
+                <a href="" class="card blue_bg has_illustration project-link" onclick="openModal('project3'); return false;">
                     <h2>Uncovering Hidden Insights</h2>
                     <p>Learn how data analysis can help your business make smarter decisions and drive growth</p>
                     <button class="btn"><span class="sr-only">Read article</span></button>
@@ -138,7 +138,7 @@
             </div>
 
             <div class="col-md-3">
-                <a href="#" class="card violet_bg has_illustration project-link" onclick="openModal('project4'); return false;">
+                <a href="" class="card violet_bg has_illustration project-link" onclick="openModal('project4'); return false;">
                     <h2>Uncovering Hidden Insights</h2>
                     <p>Learn how data analysis can help your business make smarter decisions and drive growth</p>
                     <button class="btn"><span class="sr-only">Read article</span></button>
@@ -223,7 +223,7 @@
                 <section class="header">
                     <div class="row">
                         <div class="col-md-10">
-                            <a href="#/" class="btn back close" onclick="closeModal()">All articles</a>
+                            <a href="" class="btn back close" onclick="closeModal()">All articles</a>
                         </div>
                     </div>
                 </section>
@@ -311,24 +311,35 @@ function openModal(projectId) {
   project.classList.remove('hidden');
   modal.style.display = 'block';
 
-  // Add the URL hash with the project ID
-  window.location.hash = projectId;
+  // Change the URL without causing window scroll
+  var urlWithoutHash = window.location.href.split('#')[0];
+  var newUrl = urlWithoutHash + '#' + projectId;
+  history.pushState(null, '', newUrl);
 
   // Add the class 'modal_active' to the header
   header.classList.add('modal_active');
-  //html.classList.add('overflow_hidden');
 
   setTimeout(function () {
     modal.classList.add('fade-in');
   }, 10);
 
+  // Scroll to the top of the page after 1 second
+  setTimeout(function () {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}, 1000);
+
   // Update the href attribute of the anchor element
   anchor.href = '#' + projectId;
 }
 
+
+
 // JavaScript code
 function scrollToTopAndCloseModal() {
-  scrollToTop();
+  //scrollToTop();
   closeModal();
 }
 
@@ -357,7 +368,7 @@ function closeModal() {
     modal.style.display = 'none';
 
     // Remove the URL hash when the modal is closed
-    window.location.hash = '';
+    history.replaceState(null, '', window.location.pathname);
 
     // Check if any modal is still open
     var isModalOpen = document.querySelector('.project:not(.hidden)') !== null;
@@ -366,6 +377,7 @@ function closeModal() {
     }
   }, 500); // Adjust the delay (in milliseconds) to match your CSS transition duration
 }
+
 
 // Check if the URL has a hash value on page load
 window.onload = function () {

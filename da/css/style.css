@@ -241,6 +241,10 @@ a.card:hover .btn.down_arrow::after{
   border-color: rgba(255, 255, 255, .2);
 }
 
+.back.btn:hover{
+  border-color: rgba(255, 255, 255, 0);
+}
+
 .modal_active .back.btn{
   margin-left: 0;
   margin-right: 40px;

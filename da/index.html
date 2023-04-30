@@ -459,60 +459,80 @@ document.addEventListener('keydown', function (event) {
 
 
 
-// Function to set the width and height
-function setWidthAndHeight() {
-  // Get all .card elements
-  const cards = document.querySelectorAll('.card');
 
-  cards.forEach((card) => {
-    // Get all .reach_graph_circle elements inside the current card
-    const circles = card.querySelectorAll('.reach_graph_circle');
+// Sets height and width
+function updateHeightAndWidth() {
+  var chartBubbles = document.querySelectorAll('.chart-bubble');
+  var reachGraphCircles = document.querySelectorAll('.reach_graph_circle');
 
-    // Initialize variable to store the largest width
-    let largestWidth = 0;
+  for (var i = 0; i < chartBubbles.length; i++) {
+    var bubbleWidth = chartBubbles[i].offsetWidth;
+    chartBubbles[i].style.height = bubbleWidth + 'px';
+    chartBubbles[i].style.width = bubbleWidth + 'px';
+  }
 
-    // Iterate over the .reach_graph_circle elements
-    circles.forEach((circle) => {
-      // Get the current width
-      const width = circle.offsetWidth;
+  for (var j = 0; j < reachGraphCircles.length; j++) {
+    var circleWidth = reachGraphCircles[j].offsetWidth;
+    reachGraphCircles[j].style.height = circleWidth + 'px';
+    reachGraphCircles[j].style.width = circleWidth + 'px';
 
-      // Check if the current width is larger than the largest width
-      if (width > largestWidth) {
-        largestWidth = width;
-      }
-    });
-
-    // Set the largest width as the width and height for all .reach_graph_circles_wrapper elements
-    const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
-    wrappers.forEach((wrapper) => {
-      wrapper.style.width = `${largestWidth}px`;
-      wrapper.style.height = `${largestWidth}px`;
-    });
-  });
-}
-
-// Function to update the width and height
-function updateWidthAndHeight() {
-  setWidthAndHeight();
+    var wrapper = reachGraphCircles[j].closest('.reach_graph_circles_wrapper');
+    if (wrapper) {
+      wrapper.style.height = circleWidth + 'px';
+      wrapper.style.width = circleWidth + 'px';
+    }
+  }
 }
 
 // Initial update on page load
-updateWidthAndHeight();
+updateHeightAndWidth();
 
 // Update on window resize
-window.addEventListener('resize', updateWidthAndHeight);
+window.addEventListener('resize', updateHeightAndWidth);
 
 // Update when header has the class .modal_active
 var header = document.querySelector('header');
-var observer = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-    if (mutation.attributeName === 'class' && mutation.target.classList.contains('modal_active')) {
-      updateWidthAndHeight();
+var observer = new MutationObserver(function (mutations) {
+  mutations.forEach(function (mutation) {
+    if (
+      mutation.attributeName === 'class' &&
+      mutation.target.classList.contains('modal_active')
+    ) {
+      updateHeightAndWidth();
     }
   });
 });
 
 observer.observe(header, { attributes: true });
+
+// Get all .card elements
+const cards = document.querySelectorAll('.card');
+
+cards.forEach((card) => {
+  // Get all .reach_graph_circle elements inside the current card
+  const circles = card.querySelectorAll('.reach_graph_circle');
+
+  // Initialize variable to store the largest width
+  let largestWidth = 0;
+
+  // Iterate over the .reach_graph_circle elements
+  circles.forEach((circle) => {
+    // Get the current width
+    const width = circle.offsetWidth;
+
+    // Check if the current width is larger than the largest width
+    if (width > largestWidth) {
+      largestWidth = width;
+    }
+  });
+
+  // Set the largest width as the height and width for all .reach_graph_circles_wrapper elements
+  const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
+  wrappers.forEach((wrapper) => {
+    wrapper.style.height = `${largestWidth}px`;
+    wrapper.style.width = `${largestWidth}px`;
+  });
+});
 
 
 

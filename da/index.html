@@ -471,17 +471,27 @@ function updateHeightAndWidth() {
     chartBubbles[i].style.width = bubbleWidth + 'px';
   }
 
+  var largestWidth = 0;
+
   for (var j = 0; j < reachGraphCircles.length; j++) {
     var circleWidth = reachGraphCircles[j].offsetWidth;
     reachGraphCircles[j].style.height = circleWidth + 'px';
     reachGraphCircles[j].style.width = circleWidth + 'px';
 
-    var wrapper = reachGraphCircles[j].closest('.reach_graph_circles_wrapper');
-    if (wrapper) {
-      wrapper.style.height = circleWidth + 'px';
-      wrapper.style.width = circleWidth + 'px';
+    if (circleWidth > largestWidth) {
+      largestWidth = circleWidth;
     }
   }
+
+  // Set the largest width as the height and width for all .reach_graph_circles_wrapper elements
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card) => {
+    const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
+    wrappers.forEach((wrapper) => {
+      wrapper.style.height = `${largestWidth}px`;
+      wrapper.style.width = `${largestWidth}px`;
+    });
+  });
 }
 
 // Initial update on page load
@@ -504,35 +514,6 @@ var observer = new MutationObserver(function (mutations) {
 });
 
 observer.observe(header, { attributes: true });
-
-// Get all .card elements
-const cards = document.querySelectorAll('.card');
-
-cards.forEach((card) => {
-  // Get all .reach_graph_circle elements inside the current card
-  const circles = card.querySelectorAll('.reach_graph_circle');
-
-  // Initialize variable to store the largest width
-  let largestWidth = 0;
-
-  // Iterate over the .reach_graph_circle elements
-  circles.forEach((circle) => {
-    // Get the current width
-    const width = circle.offsetWidth;
-
-    // Check if the current width is larger than the largest width
-    if (width > largestWidth) {
-      largestWidth = width;
-    }
-  });
-
-  // Set the largest width as the height and width for all .reach_graph_circles_wrapper elements
-  const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
-  wrappers.forEach((wrapper) => {
-    wrapper.style.height = `${largestWidth}px`;
-    wrapper.style.width = `${largestWidth}px`;
-  });
-});
 
 
 

@@ -485,57 +485,37 @@ document.addEventListener('keydown', function (event) {
             });
         });
 
+        observer.observe(header, { attributes: true });
 
 
 
+// Get all .card elements
+const cards = document.querySelectorAll('.card');
 
-function setReachGraphCirclesHeight() {
-  // Get all .card elements
-  const cards = document.querySelectorAll('.card');
+cards.forEach((card) => {
+  // Get all .reach_graph_circle elements inside the current card
+  const circles = card.querySelectorAll('.reach_graph_circle');
 
-  cards.forEach((card) => {
-    // Get all .reach_graph_circle elements inside the current card
-    const circles = card.querySelectorAll('.reach_graph_circle');
+  // Initialize variable to store the largest width
+  let largestWidth = 0;
 
-    // Initialize variable to store the largest width
-    let largestWidth = 0;
+  // Iterate over the .reach_graph_circle elements
+  circles.forEach((circle) => {
+    // Get the current width
+    const width = circle.offsetWidth;
 
-    // Iterate over the .reach_graph_circle elements
-    circles.forEach((circle) => {
-      // Get the current width
-      const width = circle.offsetWidth;
-
-      // Check if the current width is larger than the largest width
-      if (width > largestWidth) {
-        largestWidth = width;
-      }
-    });
-
-    // Set the largest width as the height for all .reach_graph_circles_wrapper elements
-    const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
-    wrappers.forEach((wrapper) => {
-      wrapper.style.height = `${largestWidth}px`;
-    });
-  });
-}
-
-// Call the function initially
-setReachGraphCirclesHeight();
-
-// Check if the header has the class "modal_active" whenever it changes
-const header = document.querySelector('header');
-const observer = new MutationObserver((mutationsList) => {
-  for (const mutation of mutationsList) {
-    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-      if (header.classList.contains('modal_active')) {
-        setReachGraphCirclesHeight();
-      }
+    // Check if the current width is larger than the largest width
+    if (width > largestWidth) {
+      largestWidth = width;
     }
-  }
+  });
+
+  // Set the largest width as the height for all .reach_graph_circles_wrapper elements
+  const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
+  wrappers.forEach((wrapper) => {
+    wrapper.style.height = `${largestWidth}px`;
+  });
 });
-
-observer.observe(header, { attributes: true });
-
 
 
 

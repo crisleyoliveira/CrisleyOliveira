@@ -522,11 +522,19 @@ document.addEventListener('keydown', function (event) {
         });
         }
 
+        function handleResize() {
+        const header = document.querySelector('header');
+        if (header.classList.contains('modal_active')) {
+            setLargestWidth();
+        }
+        }
+
         // Run the function initially
         setLargestWidth();
 
         // Run the function on window resize
-        window.addEventListener('resize', setLargestWidth);
+        window.addEventListener('resize', handleResize);
+
 
 
 

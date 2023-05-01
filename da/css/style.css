@@ -1178,9 +1178,12 @@ header .menu_button.active span::after{
 }
 
 #chart .card .flex_content.horizontally .chart-bar{
-  height: calc(100% - 48px);
-  width: calc(var(--chartPrimarybar) - 48px);
+  height: 100%;
+  width: var(--chartPrimarybar);
   z-index: 1;
+  position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 #chart .card .flex_content.horizontally .chart-bar + .chart-bar{

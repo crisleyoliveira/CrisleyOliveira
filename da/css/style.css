@@ -1681,7 +1681,7 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 
 
 .chart_wrapper.dual_lines_chart_vertical .has_visual_limit.chart_element{
-  padding-top: 33.33%;
+  padding-top: 22%;
 }
 
 .chart_wrapper.dual_lines_chart_vertical .title_and_description_wrapper{
@@ -1702,6 +1702,13 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
   justify-content: space-between;
 }
 
+.chart_wrapper.dual_lines_chart_vertical .title_and_description_wrapper .labels li{
+  padding: 0;
+}
+
+.chart_wrapper.dual_lines_chart_vertical .title_and_description_wrapper .labels li::before{
+  display: none;
+}
 
 
 

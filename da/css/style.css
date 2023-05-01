@@ -1206,7 +1206,7 @@ header .menu_button.active span::after{
   width: calc(50% - 24px) !important;
 }
 .chart_bars_side_by_side .title_and_description_wrapper{
-  top: 50%;
+  top: 65%;
   border-top: 1px solid #000;
 }
 
@@ -1229,7 +1229,7 @@ main .chart_bars_side_by_side ul.labels li:nth-of-type(2):before{
   padding: 24px 48px;
   width: 50%;
   text-align: right;
-  top: 50%;
+  top: 65%;
   transform: translateX(-100%) translateY(-50%);
 }
 

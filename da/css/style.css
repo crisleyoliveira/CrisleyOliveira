@@ -1101,6 +1101,8 @@ header .menu_button.active span::after{
   border-right: 1px solid #252525;
 }
 
+
+
 .chart_wrapper.overflow_hidden .chart_element{
   overflow: hidden;
 }
@@ -1672,6 +1674,45 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 .chart-bars:has(> *:nth-child(2)) {
   height: 50%;
 }
+
+.dual_lines_chart_vertical .chart-bars:has(> *:nth-child(2)){
+  height: 33.33%;
+}
+
+
+.chart_wrapper.dual_lines_chart_vertical .has_visual_limit.chart_element{
+  padding-top: 33.33%;
+}
+
+.chart_wrapper.dual_lines_chart_vertical .title_and_description_wrapper{
+  top: 0;
+  height: 100%;
+  z-index: 0;
+}
+
+.chart_wrapper.dual_lines_chart_vertical .title_and_description_wrapper .labels{
+  height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 12vh 24px 48px 24px;
+    display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+
+
+.chart_wrapper.dual_lines_chart_vertical .title_and_description_wrapper:not(.constrained_horizontally):nth-of-type(2){
+  top: auto;
+}
+
+.chart_wrapper.dual_lines_chart_vertical .title_and_description_wrapper:nth-of-type(3){
+
+}
+
 
 #chart .card .half_size{
   height: 50%;

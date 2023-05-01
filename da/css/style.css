@@ -842,7 +842,7 @@ header .menu_button.active span::after{
 }
 
 
-/* 
+
 .home main > section:not(#hero),
 .home #hero .row:nth-of-type(2){
   opacity: 0;
@@ -897,7 +897,7 @@ header .menu_button.active span::after{
 .home header:not(.modal_active) nav li:nth-of-type(4){
   animation-delay: 3.5s;
 }
-*/
+
 
 
 /* CASE STUDIES */
@@ -1206,6 +1206,13 @@ header .menu_button.active span::after{
 }
 
 
+#chart .card .flex_content.horizontally h1{
+  position: absolute;
+  right: 0;
+  transform: translateX(200%) translateY(-50%);
+  top: 50%;
+  color: #fff;
+}
 
 
 /* LABELS */

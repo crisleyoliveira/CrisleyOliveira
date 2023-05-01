@@ -1219,6 +1219,10 @@ main .chart_bars_side_by_side ul.labels li:nth-of-type(2):before{
   background-image: linear-gradient(135deg, #000000 8.33%, rgba(35, 35, 35, 0.2) 8.33%, rgba(35, 35, 35, 0.2) 50%, #000000 50%, #000000 58.33%, rgba(35, 35, 35, 0.2) 58.33%, rgba(35, 35, 35, 0.2) 100%);
   background-size: 16.97px 16.97px;
 }
+
+.chart_bars_side_by_side .chart-bars:has(> *:nth-child(2)){
+  height: 65%;
+}
 /**/
 
 #chart .card .flex_content.horizontally .chart-bar:nth-of-type(2){

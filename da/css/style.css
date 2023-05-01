@@ -1207,11 +1207,7 @@ header .menu_button.active span::after{
 
 
 #chart .card .flex_content.horizontally h1{
-  position: absolute;
-  right: 0;
-  transform: translateX(200%) translateY(-50%);
-  top: 50%;
-  color: #fff;
+  margin: 0;
 }
 
 

@@ -564,45 +564,43 @@ function hasScrolled() {
 
 
 
-
-window.addEventListener('scroll', function() {
-  var header = document.querySelector('header');
-  var headerNav = document.querySelector('header nav');
-  var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-
-  if (scrollPosition > 160) {
-    headerNav.style.marginTop = '8px';
-    headerNav.style.marginBottom = '8px';
-    header.classList.add('add_shadow'); // Add the class "add_shadow" to header
+window.addEventListener('resize', function() {
+  if (window.innerWidth < 992) {
+    movePhotoBelowAnchorPoint();
   } else {
-    headerNav.style.marginTop = '36px';
-    headerNav.style.marginBottom = '36px';
-    header.classList.remove('add_shadow'); // Remove the class "add_shadow" from header
+    movePhotoInsideCard();
   }
 });
 
+function movePhotoBelowAnchorPoint() {
+  var photo = document.querySelector('.photo');
+  var anchorPoint = document.querySelector('.photo_anchor_point');
+  var photoWrapper = document.querySelector('.photo_wrapper');
 
+  if (photo && anchorPoint && photoWrapper) {
+    photoWrapper.classList.add('below-anchor');
+    anchorPoint.parentNode.insertBefore(photo, anchorPoint.nextSibling);
+  }
+}
 
+function movePhotoInsideCard() {
+  var photo = document.querySelector('.photo');
+  var card = document.querySelector('.photo_wrapper .card');
+  var photoWrapper = document.querySelector('.photo_wrapper');
 
-function movePhoto() {
-    const windowWidth = window.innerWidth;
-    const photoWrapper = document.querySelector('.photo_wrapper');
-    const jumbo = document.querySelector('.photo_anchor_point');
-    const photo = document.querySelector('.photo');
-
-    if (windowWidth <= 991) {
-      jumbo.insertAdjacentElement('afterend', photo);
+  if (photo && card && photoWrapper) {
+    if (window.innerWidth >= 992) {
+      if (photoWrapper.classList.contains('below-anchor')) {
+        photoWrapper.classList.remove('below-anchor');
+        card.appendChild(photo); // Append to card element
+      }
     } else {
-      const parent = document.querySelector('#about_me .col-md-6');
-      parent.appendChild(photo);
+      photoWrapper.removeChild(photo);
+      photoWrapper.classList.add('below-anchor');
+      card.appendChild(photo); // Append to card element
     }
   }
-
-  // Initial positioning on page load
-  movePhoto();
-
-  // Re-position on window resize
-  window.addEventListener('resize', movePhoto);
+}
 
 
 

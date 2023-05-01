@@ -30,6 +30,13 @@ html {
   padding-right: 45px;
 }
 
+@media (max-width: 991px){
+  html{
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
 html, body {
 	min-height: 100%;
 	background: #fff;
@@ -60,6 +67,7 @@ figure img{
   padding: 0;
   mix-blend-mode: multiply;
   filter: contrast(110%);
+  max-width: 100%;
 }
 
 p{
@@ -172,7 +180,7 @@ nav h1{
 }
 
 .btn:not(:last-of-type){
-  margin: 40px 32px 40px 0;
+  margin: 24px 32px 24px 0;
 }
 
 .btn:not(.empty){
@@ -284,6 +292,12 @@ h1.jumbo{
   font-size: 4.4vw;
 }
 
+@media (max-width: 991px){
+  h1.jumbo{
+    font-size: 40px;
+  }
+}
+
 h2{
   font-size: 40px;
   line-height: 1;
@@ -391,6 +405,7 @@ p.small{
 
 #hero{
   position: relative;
+  overflow: hidden;
 }
 
 #hero p{
@@ -406,25 +421,57 @@ p.small{
 
 
 /* ABOUT ME */
+#about_me{
+  position: relative;
+}
 
-@media (min-width: 1024px){
+@media (min-width: 992px){
+  #about_me div:first-of-type .card:first-of-type{
+    border-radius: 0;
+  }
+  #about_me .card{
+    padding-bottom: 0;
+  }
+
+}
+
+@media (max-width: 991px){
+  #about_me div:first-of-type .card:first-of-type{
+    background-color: #FCD8E3;
+  }
+
+  #about_me div:first-of-type + div{
+    display: none;
+  }
+
+}
+
+@media (min-width: 1400px){
   #about_me p:first-of-type{
     width: 50%;
   }
 }
 
-
-
 #about_me .card{
-  padding-bottom: 0;
+  overflow: hidden;
 }
 
-@media (max-width: 1023px){
-  #about_me .card{
-    padding: 0;
-  }
+.photo_anchor_point + figure{
+  
+  background: #fff;
+  border-radius: 100%;
+  overflow: hidden;
+  
+  width: 50vw;
+  height: 50vw;
 }
 
+
+.photo_anchor_point + figure,
+.photo_anchor_point + figure img{
+  mix-blend-mode: normal;
+  filter: unset;
+}
 
 /* LINKS */
 
@@ -472,6 +519,13 @@ header {
   transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
+@media (max-width: 991px){
+  header{
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
 header.add_shadow{
   -webkit-box-shadow: 0 0 8px 0 rgba(0,0,0,.15);
   box-shadow: 0 0 8px 0 rgba(0,0,0,.15);
@@ -502,8 +556,14 @@ header nav{
 }
 
 header h1{
-  font-size: 32px;
+  font-size: 24px;
   line-height: initial;
+}
+
+@media (min-width: 992px){
+  header h1{
+    font-size: 32px;
+  }
 }
 
 header a{
@@ -532,16 +592,19 @@ header li:nth-of-type(2){
   margin-left: auto;
 }
 
-header li:nth-of-type(2)::after{
-  content: "";
-  width: 4px;
-  height: 4px;
-  border-radius: 100%;
-  background: #252525;
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 16px;
+@media (min-width: 992px){
+  header li:nth-of-type(2)::after{
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 100%;
+    background: #252525;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 16px;
+  }
 }
+
 
 header.modal_active li:nth-of-type(2)::after{
   background: #fff;
@@ -600,8 +663,25 @@ header .menu_button.active span::after{
 
 
 
+nav li .linkedin span,
+nav li .email span{
+  font-size: 0;
+}
+
+nav li .linkedin span::before{
+  content: "Linkedin";
+  font-size: initial;
+}
+
+nav li .email span::before{
+  content: "Contact";
+  font-size: initial;
+}
 
 
+
+
+/* INTRO */
 
 #intro *{
   transition: all 0.6s linear;
@@ -619,7 +699,13 @@ header .menu_button.active span::after{
   z-index: 0;
 }
 
-
+@media (max-width: 991px){
+  #intro svg{
+    width: 380px;
+    top: -15px;
+    left: 95px;
+  }
+}
 
 
 #intro svg .spring{
@@ -678,6 +764,13 @@ header .menu_button.active span::after{
   opacity: 0;
 }
 
+@media (max-width: 991px){
+  #intro svg .mark{
+    animation: intro_mark__m 3s forwards;
+    animation-delay: 2s;
+  }
+}
+
 @keyframes intro_mark {
   0% {
     stroke-dasharray: 2118px;
@@ -695,6 +788,28 @@ header .menu_button.active span::after{
     /*stroke-dashoffset: 8360px;*/
     stroke-dasharray: 1660px;
     stroke-dashoffset: 6650px;
+    opacity: 1;
+  }
+}
+
+
+@keyframes intro_mark__m {
+  0% {
+    stroke-dasharray: 2118px;
+    stroke-dashoffset: 6354px;
+  stroke: #FCD8E3;
+  opacity: 1;
+}
+
+  30%{
+    stroke-dasharray: 1660px;
+    stroke: #C3C7FE;
+  }
+
+  100% {
+    /*stroke-dashoffset: 8360px;*/
+    stroke-dasharray: 1660px;
+    stroke-dashoffset: 7500px;
     opacity: 1;
   }
 }
@@ -721,6 +836,8 @@ header .menu_button.active span::after{
   overflow-y: hidden;
 }
 
+
+/* 
 .home main > section:not(#hero),
 .home #hero .row:nth-of-type(2){
   opacity: 0;
@@ -775,7 +892,7 @@ header .menu_button.active span::after{
 .home header:not(.modal_active) nav li:nth-of-type(4){
   animation-delay: 3.5s;
 }
-
+*/
 
 
 /* CASE STUDIES */

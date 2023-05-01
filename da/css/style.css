@@ -1096,6 +1096,7 @@ header .menu_button.active span::after{
   background: rgba(255, 255, 255, .3);
 }
 
+
 .has_visual_limit.chart_element{
   border-right: 1px solid #252525;
 }
@@ -1195,6 +1196,16 @@ header .menu_button.active span::after{
 .chart-bar:nth-of-type(2){
   transform: translateY(100%);
 }
+
+
+/* */
+.chart_bars_side_by_side .chart-bar:nth-of-type(2){
+  transform: translateY(0) translateX(100%);
+}
+.chart_bars_side_by_side .chart-bar{
+  width: calc(50% - 24px) !important;
+}
+/**/
 
 #chart .card .flex_content.horizontally .chart-bar:nth-of-type(2){
   transform: translateY(0);

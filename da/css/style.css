@@ -1257,8 +1257,12 @@ header .menu_button.active span::after{
   height: var(--chartPrimarybar);
 }
 
-#chart .card .flex_content.horizontally .chart-bar{
-  bottom: 24px;
+
+
+@media (min-width: 992px){
+  #chart .card .flex_content.horizontally .chart-bar{
+    bottom: 24px;
+  }
 }
 
 .chart-bar + .chart-bar{
@@ -1673,7 +1677,14 @@ p.jumbo{
 
 .reach_graph.half_circle .reach_graph_circle + .secondary_metric,
 .reach_graph.half_circle .reach_graph_circle{
-  transform: translateX(-50%) translateY(-50%) scale(2);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+@media (min-width: 992px){
+  .reach_graph.half_circle .reach_graph_circle + .secondary_metric,
+  .reach_graph.half_circle .reach_graph_circle{
+    transform: translateX(-50%) translateY(-50%) scale(2);
+  }
 }
 
 main .reach_graph ul.labels li::before{

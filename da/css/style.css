@@ -1144,7 +1144,7 @@ header .menu_button.active span::after{
 @media (max-width: 991px){
 
   #chart .card{
-    height: a;
+    height: auto;
   }
 
   #chart .card *[class*='col-']{

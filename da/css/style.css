@@ -47,6 +47,12 @@ html, body {
   overflow-x: hidden;
 }
 
+@media (max-width: 991px){
+  html, body{
+    font-size: 14px;
+  }
+}
+
 main{
   padding-top: 80px;
 }
@@ -372,6 +378,13 @@ strong{
   font-size: 18px;
   font-family: 'nhg_bold';
   font-weight: initial;
+}
+
+
+@media (max-width: 991px){
+  h4{
+    font-size: 2.5vw;
+  }
 }
 
 p.small{
@@ -1156,8 +1169,14 @@ header .menu_button.active span::after{
 
 .chart_element,
 .chart-bars{
-  height: 100%;
+  min-height: 120px;
   position: relative;
+}
+
+@media (min-width:992px){
+  .chart-bars{
+    height: 100%;
+  }
 }
 
 .chart-bars{
@@ -1312,6 +1331,17 @@ main .chart_bars_side_by_side ul.labels li:nth-of-type(2):before{
   transform: translateX(-100%) translateY(-50%);
 }
 
+@media (max-width: 991px){
+  #chart .card .flex_content.horizontally .title_and_description_wrapper{
+    transform: none;
+    width: 35%;
+    right: 0;
+    top: 0;
+    padding: 16px;
+    border-left: 1px solid #000;
+  }
+}
+
 
 #chart .card .flex_content.horizontally h1{
   margin: 0;
@@ -1335,6 +1365,13 @@ main ul.labels li::before{
   display: inline-block;
   border-radius: 0;
   margin-right: 1.5vh;
+}
+
+@media (max-width: 991px){
+  main ul.labels li::before{
+    width: 3.5vh;
+    height: 3.5vh;
+  }
 }
 
 main ul.labels li:nth-of-type(1):before{
@@ -1669,6 +1706,12 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 
 .flex_content.horizontally .chart-bars.has_padding{
   padding: 24px 24px 24px 0;
+}
+
+@media (max-width: 991px){
+  .flex_content.horizontally .chart-bars.has_padding{
+    padding: 24px 35% 24px 0;
+  }
 }
 
 .chart-bars.has_padding > div{

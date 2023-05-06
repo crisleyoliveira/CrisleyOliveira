@@ -1214,6 +1214,9 @@ header .menu_button.active span::after{
 
 @media (max-width: 991px){
   .has_visual_limit.chart_element:first-of-type{
+    border-top: 1px solid #252525;
+  }
+  .has_visual_limit.chart_element{
     border-left: 0;
     border-bottom: 1px oslid #252525;
   }
@@ -1497,7 +1500,7 @@ main ul.labels li > div > *{
 
 
 @media (max-width: 991px){
-  .chart_bubbles_wrapper .title_and_description_wrapper{
+  #chart .card.chart_bubbles_wrapper .title_and_description_wrapper{
     width: 100%;
     position: relative;
     text-align: left;
@@ -1808,6 +1811,7 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 }
 
 @media (max-width: 991px){
+  #chart .card .vertical_text .title_and_description_wrapper,
   #chart .card .title_and_description_wrapper{
     width: 25%;
     position: absolute;

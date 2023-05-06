@@ -1791,14 +1791,18 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 }
 
 
-
+#chart .card .flex_content{
+  display: flex;
+}
 
 @media (min-width: 992px){
-  #chart .card .flex_content{
-    display: flex;
-  }
-  
   #chart .card .flex_content.horizontally{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 991px){
+  #chart .card .flex_content{
     flex-direction: column;
   }
 }

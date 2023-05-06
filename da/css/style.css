@@ -1212,6 +1212,13 @@ header .menu_button.active span::after{
   border-left: 1px solid #252525;
 }
 
+@media (max-width: 991px){
+  .has_visual_limit.chart_element:first-of-type{
+    border-left: 0;
+    border-bottom: 1px oslid #252525;
+  }
+}
+
 .half_size .has_visual_limit.chart_element:first-of-type{
   border-left: 0;
 }
@@ -1347,7 +1354,7 @@ main .chart_bars_side_by_side ul.labels li:nth-of-type(2):before{
 @media (max-width: 991px){
   #chart .card .flex_content.horizontally .title_and_description_wrapper{
     transform: none;
-    width: 35%;
+    width: 25%;
     right: 0;
     top: 0;
     padding: 16px;
@@ -1440,7 +1447,7 @@ main ul.labels li > div > *{
 
 @media (max-width: 991px){
   .chart-bubbles .chart-bubble{
-    width: 24.6%;
+    width: 24.6% !important;
     height: 24.6%;
   }
 }
@@ -1486,6 +1493,16 @@ main ul.labels li > div > *{
 
 .gradient-text h1{
   font-size: 18vw;
+}
+
+
+@media (max-width: 991px){
+  .chart_bubbles_wrapper .title_and_description_wrapper{
+    width: 100%;
+    position: relative;
+    text-align: left;
+    margin-top: 48px;
+  }
 }
 
 
@@ -1770,6 +1787,7 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 @media (max-width: 991px){
   .flex_content.horizontally .chart-bars.has_padding{
     padding: 24px 35% 24px 0;
+    height: 100%;
   }
 }
 
@@ -1789,6 +1807,21 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
   padding: 0;
 }
 
+@media (max-width: 991px){
+  #chart .card .title_and_description_wrapper{
+    width: 25%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    text-align: right;
+    writing-mode: initial;
+    text-orientation: initial;
+    display: block;
+    padding: 24px;
+  }
+}
+
 #chart .card .vertical_text .title_and_description_wrapper h2{
   margin-bottom: 16px;
 }
@@ -1799,17 +1832,12 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
   transform-origin: bottom;
 }
 
-
 @media (max-width: 991px){
-  .vertical_text .title_and_description_wrapper{
-    width: 25%;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 0;
-    text-align: right;
+  #chart .card .chart-bars{
+    width: 75% !important;
   }
 }
+
 
 
 #chart .card .flex_content{
@@ -1964,7 +1992,7 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 44.99%,
 .has_visual_limit .chart-bubbles .chart-bubble{
   width: 50%;
   width: 46%;
-  margin: 2%;
+  margin: ,2%;
 }
 
 @media (max-width: 991px){

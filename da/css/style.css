@@ -1179,6 +1179,15 @@ header .menu_button.active span::after{
   }
 }
 
+@media (max-width: 991px){
+  .chart-bars .chart-bar.black_bg{
+    width: var(--chartPrimarybar);
+    height: 100%;
+    transform: none !important;
+  }
+}
+
+
 .chart-bars{
   background: rgba(255, 255, 255, 0);
   transition: all 0.2s cubic-bezier(0.76, 0, 0.24, 1);
@@ -1788,6 +1797,18 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 #chart .card .vertical_text .title_and_description_wrapper + .chart-bars .chart-bar{
   transform: scaleY(.75) translateY(1px);
   transform-origin: bottom;
+}
+
+
+@media (max-width: 991px){
+  .vertical_text .title_and_description_wrapper{
+    width: 25%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    text-align: right;
+  }
 }
 
 

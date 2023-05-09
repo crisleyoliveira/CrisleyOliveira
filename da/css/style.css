@@ -2205,3 +2205,14 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 }
 
 /* ... */
+
+
+@media (max-width: 991px){
+  #chart p,
+  #chart h4,
+  #chart h2{
+    font-size: 3.5vw;
+  }
+}
+
+

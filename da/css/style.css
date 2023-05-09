@@ -1279,6 +1279,10 @@ header .menu_button.active span::after{
     padding: 0;
   }
 
+  .level_bar_wrapper .has_visual_limit__top.chart_element{
+    padding: 0;
+  }
+
   .level_bar_wrapper .has_visual_limit__top.chart_element .chart-bars.level_bar{
     height: 100%;
     width: 75%;
@@ -1288,7 +1292,9 @@ header .menu_button.active span::after{
   .level_bar_wrapper .has_visual_limit__top.chart_element .chart-bars.level_bar .chart-bar{
     height: 100% !important;
     width: var(--ChartTitlePosition) !important;
+    border-top: 0;
   }
+
 
   .chart-bars.level_bar .chart-bar{
     border-top: 0;
@@ -1707,12 +1713,16 @@ main ul.labels li > div > *{
   margin: .25em 0;
 }
 
-.chart-title.fluid{
-  bottom: var(--ChartTitlePosition);
-  margin-bottom: 0;
-  position: absolute;
-  transform: translateY(4.5em);
+
+@media (min-width: 992px){
+  .chart-title.fluid{
+    bottom: var(--ChartTitlePosition);
+    margin-bottom: 0;
+    position: absolute;
+    transform: translateY(4.5em);
+  }
 }
+
 
 .mega-jumbo{
   font-size: 12vw;

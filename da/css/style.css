@@ -1286,8 +1286,8 @@ header .menu_button.active span::after{
   }
 
   .level_bar_wrapper .has_visual_limit__top.chart_element .chart-bars.level_bar .chart-bar{
-    height: 100%;
-    width: var(--chartPrimarybar);
+    height: 100% !important;
+    width: var(--chartPrimarybar) !important;
   }
 
   .chart-bars.level_bar .chart-bar{
@@ -1681,7 +1681,6 @@ main ul.labels li > div > *{
   .title_and_description_wrapper{
     margin-top: 48px;
     position: relative;
-    padding: 0;
   }
   .chart_bars_side_by_side .title_and_description_wrapper{
     padding: 48px 24px;

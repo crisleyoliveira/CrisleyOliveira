@@ -1267,6 +1267,47 @@ header .menu_button.active span::after{
   padding-right: 96px;
 }
 
+@media (max-width: 991px){
+
+  #chart .card .flex_content .level_bar_wrapper{
+    display: block;
+    padding: 0;
+  }
+
+  .level_bar_wrapper .has_visual_limit__top.chart_element .chart-bars.level_bar{
+    height: 100%;
+    width: 75%;
+    margin: 0;
+  }
+
+  .level_bar_wrapper .has_visual_limit__top.chart_element .chart-bars.level_bar .chart-bar{
+    height: 100%;
+    width: var(--chartPrimarybar);
+  }
+
+  .chart-bars.level_bar .chart-bar{
+    border-top: 0;
+    border-right: 4px solid #232323;
+  }
+  
+  #chart .card .flex_content .level_bar_wrapper .chart-title.fluid{
+    position: relative;
+    transform: none;
+    margin: 0;
+  }
+
+  .half_size.level_bar_wrapper .chart_element.has_visual_limit.has_visual_limit__top .title_and_description_wrapper{
+    margin: 0;
+    height: auto;
+    width: 25%;
+    position: absolute;
+    right: 0;
+    padding: 24px;
+    text-align: right;
+  }
+
+}
+
 
 /* Chart Bars */
 
@@ -1985,7 +2026,7 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 
 .chart-lines.filled .chart-line.half_filled_bg{
   background: rgb(35,35,35);
-background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 44.99%, rgba(35,35,35,1) 45%, rgba(35,35,35,1) 55%, rgba(35,35,35,0) 55.01%, rgba(35,35,35,0) 100%);
+  background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 44.99%, rgba(35,35,35,1) 45%, rgba(35,35,35,1) 55%, rgba(35,35,35,0) 55.01%, rgba(35,35,35,0) 100%);
 }
 
 .has_visual_limit .chart-bubbles{
@@ -2002,6 +2043,10 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 44.99%,
 @media (max-width: 991px){
   .has_visual_limit .chart-bubbles .chart-bubble{
     width: 24.6%
+  }
+  .chart-lines.filled .chart-line.half_filled_bg{
+    background: #232323;
+    opacity: .2;
   }
 }
 

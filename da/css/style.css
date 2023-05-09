@@ -1853,7 +1853,7 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 
 @media (max-width: 991px){
   #chart .card .vertical_text .title_and_description_wrapper,
-  #chart .card div:not(.chart_bars_side_by_side):not(.chart_bubbles_wrapper) .title_and_description_wrapper{
+  #chart .card div.constrain_on_mobile .title_and_description_wrapper{
     width: 25%;
     position: absolute;
     bottom: 0;
@@ -1878,8 +1878,8 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 }
 
 @media (max-width: 991px){
-  #chart .card div:not(.chart_bars_side_by_side):not(.chart_bubbles_wrapper) .chart-bars{
-    width: 75% !important;
+  #chart .card div.constrain_on_mobile .chart-bars{
+    width: 75%;
   }
 }
 

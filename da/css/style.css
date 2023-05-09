@@ -1287,7 +1287,7 @@ header .menu_button.active span::after{
 
   .level_bar_wrapper .has_visual_limit__top.chart_element .chart-bars.level_bar .chart-bar{
     height: 100% !important;
-    width: var(--chartPrimarybar) !important;
+    width: var(--ChartTitlePosition) !important;
   }
 
   .chart-bars.level_bar .chart-bar{

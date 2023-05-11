@@ -1180,13 +1180,7 @@ header .menu_button.active span::after{
   }
 }
 
-@media (max-width: 991px){
-  .chart-bars .chart-bar.black_bg{
-    width: var(--chartPrimarybar);
-    height: 100%;
-    transform: none !important;
-  }
-}
+
 
 
 .chart-bars{
@@ -1213,20 +1207,7 @@ header .menu_button.active span::after{
   border-left: 1px solid #252525;
 }
 
-@media (max-width: 991px){
-  .has_visual_limit.chart_element:first-of-type{
-    border-top: 1px solid #252525;
-  }
-  .has_visual_limit.chart_element{
-    border-right: 0;
-    border-left: 0;
-    border-bottom: 1px solid #252525;
-  }
-  .has_visual_limit.chart_element:first-of-type{
-    border-right: 0;
-    border-left: 0;
-  }
-}
+
 
 .half_size .has_visual_limit.chart_element:first-of-type{
   border-left: 0;
@@ -1272,52 +1253,6 @@ header .menu_button.active span::after{
   padding-right: 96px;
 }
 
-@media (max-width: 991px){
-
-  #chart .card .flex_content .level_bar_wrapper{
-    display: block;
-    padding: 0;
-  }
-
-  .level_bar_wrapper .has_visual_limit__top.chart_element{
-    padding: 0;
-  }
-
-  .level_bar_wrapper .has_visual_limit__top.chart_element .chart-bars.level_bar{
-    height: 100%;
-    width: 75%;
-    margin: 0;
-  }
-
-  .level_bar_wrapper .has_visual_limit__top.chart_element .chart-bars.level_bar .chart-bar{
-    height: 100% !important;
-    width: var(--ChartTitlePosition) !important;
-    border-top: 0;
-  }
-
-
-  .chart-bars.level_bar .chart-bar{
-    border-top: 0;
-    border-right: 4px solid #232323;
-  }
-  
-  #chart .card .flex_content .level_bar_wrapper .chart-title.fluid{
-    position: relative;
-    transform: none;
-    margin: 0;
-  }
-
-  .half_size.level_bar_wrapper .chart_element.has_visual_limit.has_visual_limit__top .title_and_description_wrapper{
-    margin: 0;
-    height: auto;
-    width: 25%;
-    position: absolute;
-    right: 0;
-    padding: 24px;
-    text-align: right;
-  }
-
-}
 
 
 /* Chart Bars */
@@ -1378,19 +1313,6 @@ header .menu_button.active span::after{
 }
 
 
-@media (max-width: 991px){
-  .dual_lines_chart_vertical .chart-bar:first-of-type{
-    height: var(--dual_lines_chart_vertical_primary);
-    width: 100%;
-    position: relative;
-  }
-  
-  .dual_lines_chart_vertical .chart-bar:nth-of-type(2){
-    height: var(--dual_lines_chart_vertical_secundary);
-    width: 100%;
-    position: relative;
-  }
-}
 
 
 /* */
@@ -1432,17 +1354,6 @@ main .chart_bars_side_by_side ul.labels li:nth-of-type(2):before{
   transform: translateX(-100%) translateY(-50%);
 }
 
-@media (max-width: 991px){
-  #chart .card .flex_content.horizontally .title_and_description_wrapper{
-    transform: none;
-    width: 25%;
-    right: 0;
-    top: 0;
-    padding: 16px;
-    border-left: 1px solid #000;
-  }
-}
-
 
 #chart .card .flex_content.horizontally h1{
   margin: 0;
@@ -1466,13 +1377,6 @@ main ul.labels li::before{
   display: inline-block;
   border-radius: 0;
   margin-right: 1.5vh;
-}
-
-@media (max-width: 991px){
-  main ul.labels li::before{
-    width: 3.5vh;
-    height: 3.5vh;
-  }
 }
 
 main ul.labels li:nth-of-type(1):before{
@@ -1526,12 +1430,6 @@ main ul.labels li > div > *{
   overflow: hidden;
 }
 
-@media (max-width: 991px){
-  .chart-bubbles .chart-bubble{
-    width: 24.6% !important;
-    height: 24.6%;
-  }
-}
 
 .chart-bubbles .chart-bubble::after{
   content: "";
@@ -1577,15 +1475,6 @@ main ul.labels li > div > *{
 }
 
 
-@media (max-width: 991px){
-  #chart .card.chart_bubbles_wrapper .title_and_description_wrapper{
-    width: 100%;
-    position: relative;
-    text-align: left;
-    margin-top: 48px;
-  }
-}
-
 
 /* Chart pie line filled */
 
@@ -1593,11 +1482,6 @@ main ul.labels li > div > *{
   padding: 96px;
 }
 
-@media (max-width: 991px){
-  .donut_chart{
-    min-height: 70vw;
-  }
-}
 
 .donut_chart h1{
   font-size: 8vw;
@@ -1685,17 +1569,6 @@ main ul.labels li > div > *{
   background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 29.99%, rgba(35,35,35,.25) 30%, rgba(35,35,35,.25) 60%, rgba(35,35,35,0) 60.01%, rgba(35,35,35,0) 100%);
 }
 
-@media (max-width: 991px){
-  .chart-line.black_bg{
-    background: #232323;
-  }
-
-  .chart-line.half_filled_bg{
-    background: #232323;
-    opacity: .2;
-  }
-}
-
 
 
 /* TEXT inside charts */
@@ -1707,26 +1580,6 @@ main ul.labels li > div > *{
   z-index: 9;
 }
 
-
-@media (max-width: 991px){
-  .title_and_description_wrapper{
-    margin-top: 48px;
-    position: relative;
-  }
-
-  .chart_bubbles_wrapper .title_and_description_wrapper{
-    padding: 48px 24px 24px;
-  }
-
-  .chart_bubbles_wrapper .chart-bubbles{
-    padding: 0 24px 24px 24px;
-  }
-
-  .chart_bars_side_by_side .title_and_description_wrapper{
-    padding: 48px 24px;
-    border-top: 0;
-  }
-}
 
 .title_and_description_wrapper:not(.constrained_horizontally):nth-of-type(2){
   bottom: 0;
@@ -1876,12 +1729,6 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
   padding: 24px 24px 24px 0;
 }
 
-@media (max-width: 991px){
-  .flex_content.horizontally .chart-bars.has_padding{
-    padding: 24px 35% 24px 0;
-    height: 100%;
-  }
-}
 
 .chart-bars.has_padding > div{
   width: calc(100% - 48px);
@@ -1900,22 +1747,6 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 }
 
 
-@media (max-width: 991px){
-  #chart .card .vertical_text .title_and_description_wrapper,
-  #chart .card div.constrain_on_mobile .title_and_description_wrapper{
-    width: 25%;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 0;
-    text-align: right;
-    writing-mode: initial;
-    text-orientation: initial;
-    display: block;
-    padding: 24px;
-  }
-}
-
 #chart .card .vertical_text .title_and_description_wrapper h2{
   margin-bottom: 16px;
 }
@@ -1926,11 +1757,6 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
   transform-origin: bottom;
 }
 
-@media (max-width: 991px){
-  #chart .card div.constrain_on_mobile .chart-bars{
-    width: 75%;
-  }
-}
 
 
 
@@ -1940,12 +1766,6 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 
 @media (min-width: 992px){
   #chart .card .flex_content.horizontally{
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 991px){
-  #chart .card .flex_content{
     flex-direction: column;
   }
 }
@@ -2087,16 +1907,6 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
   width: 50%;
   width: 46%;
   margin: ,2%;
-}
-
-@media (max-width: 991px){
-  .has_visual_limit .chart-bubbles .chart-bubble{
-    width: 24.6%
-  }
-  .chart-lines.filled .chart-line.half_filled_bg{
-    background: #232323;
-    opacity: .2;
-  }
 }
 
 

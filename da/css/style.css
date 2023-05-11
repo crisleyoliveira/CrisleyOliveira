@@ -1170,13 +1170,13 @@ header .menu_button.active span::after{
 .chart_element,
 .chart-bars{
   min-height: 120px;
-  position: relative;
   height: 100%;
 }
 
 @media (min-width:992px){
   .chart-bars{
     height: 100%;
+    position: relative;
   }
 }
 

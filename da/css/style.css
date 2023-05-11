@@ -62,12 +62,12 @@ section{
   overflow: auto;
 }
 
-@media (min-width: 992px){
+
   section{
     margin: 64px auto;
     overflow: auto;
   }
-}
+
 
 main section:last-of-type{
   margin-bottom: 0;
@@ -210,7 +210,7 @@ nav h1{
 
 
 
-@media (min-width: 992px){
+
 
   .btn{
     padding: 8px 32px;
@@ -227,7 +227,7 @@ nav h1{
   .btn.down_arrow{
     padding-right: 56px;
   }
-}
+
 
 
 @media (max-width: 991px){
@@ -496,7 +496,7 @@ p.small{
   position: relative;
 }
 
-@media (min-width: 992px){
+
   #about_me div:first-of-type .card:first-of-type{
     border-radius: 0;
   }
@@ -504,7 +504,7 @@ p.small{
     padding-bottom: 0;
   }
 
-}
+
 
 @media (max-width: 991px){
   #about_me div:first-of-type .card:first-of-type{
@@ -1266,11 +1266,11 @@ header .menu_button.active span::after{
 
 
 
-@media (min-width: 992px){
+
   #chart .card .flex_content.horizontally .chart-bar{
     bottom: 24px;
   }
-}
+
 
 .chart-bar + .chart-bar{
   height: var(--chartSecondarybar);
@@ -1601,14 +1601,14 @@ main ul.labels li > div > *{
 }
 
 
-@media (min-width: 992px){
+
   .chart-title.fluid{
     bottom: var(--ChartTitlePosition);
     margin-bottom: 0;
     position: absolute;
     transform: translateY(4.5em);
   }
-}
+
 
 
 .mega-jumbo{
@@ -1690,12 +1690,12 @@ p.jumbo{
   transform: translateX(-50%) translateY(-50%);
 }
 
-@media (min-width: 992px){
+
   .reach_graph.half_circle .reach_graph_circle + .secondary_metric,
   .reach_graph.half_circle .reach_graph_circle{
     transform: translateX(-50%) translateY(-50%) scale(2);
   }
-}
+
 
 main .reach_graph ul.labels li::before{
   border-radius: 100%;
@@ -1764,16 +1764,16 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
   display: flex;
 }
 
-@media (min-width: 992px){
+
   #chart .card .flex_content.horizontally{
     flex-direction: column;
   }
-}
 
 
 
 
-@media (min-width: 992px){
+
+
   .flex_content__side_by_side {
     display: flex;
     justify-content: space-between;
@@ -1862,7 +1862,7 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
     height: 50%;
   }
 
-}
+
 
 .half_size .title_and_description_wrapper{
   padding-left: 16px;

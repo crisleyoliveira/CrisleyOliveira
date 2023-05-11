@@ -2075,3 +2075,15 @@ main .reach_graph ul.labels li:nth-of-type(2):before{
 }
 
 
+
+
+
+
+@media (max-width: 1339px){
+  #chart .card{
+    height: initial;
+  }
+  #chart .card *[class*='col-']{
+    width: 100%;
+  }
+}

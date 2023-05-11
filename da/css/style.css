@@ -1368,6 +1368,29 @@ header .menu_button.active span::after{
 }
 
 
+
+.dual_lines_chart_vertical .chart-bar:first-of-type{
+  height: var(--dual_lines_chart_vertical_primary);
+}
+
+.dual_lines_chart_vertical .chart-bar:nth-of-type(2){
+  height: var(--dual_lines_chart_vertical_secundary);
+}
+
+
+@media (max-width: 991px){
+  .dual_lines_chart_vertical .chart-bar:first-of-type{
+    width: var(--dual_lines_chart_vertical_primary);
+    height: auto;
+  }
+  
+  .dual_lines_chart_vertical .chart-bar:nth-of-type(2){
+    width: var(--dual_lines_chart_vertical_secundary);
+    height: auto;
+  }
+}
+
+
 /* */
 .chart_bars_side_by_side .chart-bar:nth-of-type(2){
   transform: translateY(0) translateX(100%);

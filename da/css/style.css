@@ -1382,11 +1382,13 @@ header .menu_button.active span::after{
   .dual_lines_chart_vertical .chart-bar:first-of-type{
     height: var(--dual_lines_chart_vertical_primary);
     width: 100%;
+    position: relative;
   }
   
   .dual_lines_chart_vertical .chart-bar:nth-of-type(2){
     height: var(--dual_lines_chart_vertical_secundary);
     width: 100%;
+    position: relative;
   }
 }
 

@@ -1380,13 +1380,13 @@ header .menu_button.active span::after{
 
 @media (max-width: 991px){
   .dual_lines_chart_vertical .chart-bar:first-of-type{
-    width: var(--dual_lines_chart_vertical_primary);
-    height: auto;
+    height: var(--dual_lines_chart_vertical_primary);
+    width: 100%;
   }
   
   .dual_lines_chart_vertical .chart-bar:nth-of-type(2){
-    width: var(--dual_lines_chart_vertical_secundary);
-    height: auto;
+    height: var(--dual_lines_chart_vertical_secundary);
+    width: 100%;
   }
 }
 

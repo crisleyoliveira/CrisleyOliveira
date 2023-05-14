@@ -310,33 +310,19 @@ function openModal(projectId) {
 
   setTimeout(function () {
     modal.classList.add('fade-in');
+    project.classList.add('zoom_window'); // add the class here
   }, 10);
 
   // Scroll to the top of the page after 1 second
   setTimeout(function () {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-}, 1000);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, 1000);
 
   // Update the href attribute of the anchor element
   anchor.href = '#' + projectId;
-}
-
-
-
-// JavaScript code
-function scrollToTopAndCloseModal() {
-  //scrollToTop();
-  closeModal();
-}
-
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth' // Optional: Add smooth scrolling effect
-  });
 }
 
 function closeModal() {
@@ -366,6 +352,7 @@ function closeModal() {
   }, 500); // Adjust the delay (in milliseconds) to match your CSS transition duration
 
   setTimeout(function () {
+    project.classList.remove('zoom_window'); // remove the class here
     header.classList.remove('modal_active');
   }, 0); // 5 seconds before the rest of the classes are removed
 }
@@ -624,6 +611,20 @@ function movePhotoInsideCard() {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Mobile zoom
 
 
 document.addEventListener("DOMContentLoaded", function() {

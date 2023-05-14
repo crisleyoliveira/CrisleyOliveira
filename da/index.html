@@ -220,13 +220,17 @@
             <div class="modal-content" id="chart">
 
     
-                <div id="project1" class="project top_games_page">
-
-                  </div>
+              <div id="project1" class="project top_games_page"></div>
               
               <div id="project2" class="row project hidden article"></div>
     
               <div id="project3" class="row project hidden"></div>
+
+
+              <button id="zoom-btn" class="btn toggle">
+                <span>1x</span>
+                <span>2x</span>
+              </button>
               
             </div>
           </div>
@@ -638,7 +642,7 @@ function movePhotoInsideCard() {
 <script>
 // Get references to the relevant HTML elements
 const zoomButton = document.getElementById("zoom-btn");
-const zoomContainer = document.getElementById("zoom-container");
+const zoomContainer = document.getElementById("chart");
 
 // Set up initial zoom level and coordinates
 let zoomLevel = 1;

@@ -225,12 +225,12 @@
                 <div id="project2" class="project another_article"></div>
               </div>
     
-              <button id="zoom-btn" class="btn toggle">
-                <span>1x</span>
-                <span>2x</span>
-              </button>
-              
+
             </div>
+            <button id="zoom-btn" class="btn toggle">
+              <span>1x</span>
+              <span>2x</span>
+            </button>
         </div>
 
     </main>
@@ -655,6 +655,10 @@ zoomButton.addEventListener("click", () => {
     yPos = 0;
   }
 
+  // Add class "zoomed-in" to zoomContainer if zoomed
+  const isZoomedIn = zoomLevel > 1;
+  zoomContainer.classList.toggle("zoomed-in", isZoomedIn);
+
   // Apply the zoom level and position to the container
   zoomContainer.style.transform = `scale(${zoomLevel}) translate(${xPos}px, ${yPos}px)`;
 
@@ -663,10 +667,8 @@ zoomButton.addEventListener("click", () => {
   setTimeout(() => {
     zoomContainer.style.transition = "";
   }, 1000);
-
-  // Add class "zoomed-in" to zoomContainer if zoomed
-  zoomContainer.classList.toggle("zoomed-in", zoomLevel > 1);
 });
+
 
 // Add event listeners to track finger movements on the container
 zoomContainer.addEventListener("pointerdown", startPan);

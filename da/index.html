@@ -221,8 +221,9 @@
     
               <div id="project1" class="project top_games_page zoom_window"></div>
               
-              <div id="project2" class="project another_article zoom_window"></div>
+              <div id="project2" class="row project hidden article"></div>
     
+              <div id="project3" class="row project hidden"></div>
 
             </div>
             <button id="zoom-btn" class="btn toggle">
@@ -259,7 +260,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   var mappings = [
     { file: "top_games.html", class: ".top_games_page" },
-    { file: "another_article.html", class: ".another_article" }
+    { file: "article2.html", class: ".article2" }
     // Add more mappings for additional pages
   ];
 
@@ -626,62 +627,52 @@ function movePhotoInsideCard() {
 
 
 
+    </script>
 
 
-// Get references to the relevant HTML elements
 
-document.addEventListener("DOMContentLoaded", function() {
 
+
+
+<script>
 // Get references to the relevant HTML elements
 const zoomButton = document.getElementById("zoom-btn");
 const zoomContainers = document.querySelectorAll(".zoom_window");
 
-// Set up initial zoom level and coordinates for each container
-const zoomLevels = new Map();
-const xPositions = new Map();
-const yPositions = new Map();
 
-zoomContainers.forEach(container => {
-  zoomLevels.set(container, 1);
-  xPositions.set(container, 0);
-  yPositions.set(container, 0);
-});
+// Set up initial zoom level and coordinates
+let zoomLevel = 1;
+let xPos = 0;
+let yPos = 0;
 
 // Add event listener to the zoom button
 zoomButton.addEventListener("click", () => {
-  zoomContainers.forEach(container => {
-    // Toggle zoom level between 1 and 2 for each container
-    const zoomLevel = zoomLevels.get(container) === 1 ? 2 : 1;
+  // Toggle zoom level between 1 and 2
+  zoomLevel = zoomLevel === 1 ? 2 : 1;
 
-    // Reset the container position to (0, 0) when zooming out
-    if (zoomLevel === 1) {
-      xPositions.set(container, 0);
-      yPositions.set(container, 0);
-    }
+  // Reset the container position to (0, 0) when zooming out
+  if (zoomLevel === 1) {
+    xPos = 0;
+    yPos = 0;
+  }
 
-    // Apply the zoom level and position to the container
-    container.style.transform = `scale(${zoomLevel}) translate(${xPositions.get(container)}px, ${yPositions.get(container)}px)`;
+  // Apply the zoom level and position to the container
+  zoomContainer.style.transform = `scale(${zoomLevel}) translate(${xPos}px, ${yPos}px)`;
 
-    // Add the transition property to the container for 1 second
-    container.style.transition = "transform 0.6s cubic-bezier(0.76, 0, 0.24, 1)";
-    setTimeout(() => {
-      container.style.transition = "";
-    }, 1000);
+  // Add the transition property to the container for 1 second
+  zoomContainer.style.transition = "transform 0.6s cubic-bezier(0.76, 0, 0.24, 1)";
+  setTimeout(() => {
+    zoomContainer.style.transition = "";
+  }, 1000);
 
-    // Add class "zoomed-in" to container if zoomed
-    container.classList.toggle("zoomed-in", zoomLevel > 1);
-
-    // Update the zoom level for the container
-    zoomLevels.set(container, zoomLevel);
-  });
+  // Add class "zoomed-in" to zoomContainer if zoomed
+  zoomContainer.classList.toggle("zoomed-in", zoomLevel > 1);
 });
 
-// Add event listeners to track finger movements on each container
-zoomContainers.forEach(container => {
-  container.addEventListener("pointerdown", startPan);
-  container.addEventListener("pointermove", doPan);
-  container.addEventListener("pointerup", endPan);
-});
+// Add event listeners to track finger movements on the container
+zoomContainer.addEventListener("pointerdown", startPan);
+zoomContainer.addEventListener("pointermove", doPan);
+zoomContainer.addEventListener("pointerup", endPan);
 
 // Set up variables to track pointer movements
 let isPanning = false;
@@ -693,14 +684,12 @@ let startContainerY;
 // Function to begin tracking pointer movements
 function startPan(event) {
   // Only track movements if the zoom level is greater than 1
-  const container = event.currentTarget;
-  const zoomLevel = zoomLevels.get(container);
   if (zoomLevel > 1) {
     isPanning = true;
     startPointerX = event.pageX;
     startPointerY = event.pageY;
-    startContainerX = xPositions.get(container);
-    startContainerY = yPositions.get(container);
+    startContainerX = xPos;
+    startContainerY = yPos;
   }
 }
 
@@ -729,7 +718,7 @@ window.addEventListener("resize", () => {
 function endPan() {
   isPanning = false;
 }
-});
+
 
 </script>
 

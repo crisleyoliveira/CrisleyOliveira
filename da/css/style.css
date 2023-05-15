@@ -252,17 +252,17 @@ nav h1{
 }
 
 
-.zoomed-in.btn.toggle::after{
+.is_zoomed_in.btn.toggle::after{
   transform: translateX(calc(100% + 1.5vw));
 }
 
 
 .btn.toggle span:first-child,
-.zoomed-in.btn.toggle span:last-of-type{
+.is_zoomed_in.btn.toggle span:last-of-type{
   color: #252525;
 }
 
-.zoomed-in.btn.toggle span:first-child,
+.is_zoomed_in.btn.toggle span:first-child,
 .btn.toggle span:last-of-type{
   color: #fff;
 }

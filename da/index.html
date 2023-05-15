@@ -630,6 +630,9 @@ function movePhotoInsideCard() {
 
 
 
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
 
 // Get references to the relevant HTML elements
@@ -644,8 +647,8 @@ let zoomLevel = 1;
 let xPos = 0;
 let yPos = 0;
 
-// Add event listener to the zoom button
-zoomButton.addEventListener("click", () => {
+
+zoomContainer.addEventListener("click", () => {
   // Toggle zoom level between 1 and 2
   zoomLevel = zoomLevel === 1 ? 2 : 1;
 
@@ -658,6 +661,13 @@ zoomButton.addEventListener("click", () => {
   // Add class "zoomed-in" to zoomContainer if zoomed
   const isZoomedIn = zoomLevel > 1;
   zoomContainer.classList.toggle("zoomed-in", isZoomedIn);
+  if (isZoomedIn) {
+    // Add class "is_zoomed_in" to the button with class "tuca"
+    document.querySelector(".btn.toggle").classList.add("is_zoomed_in");
+  } else {
+    // Remove class "is_zoomed_in" from the button with class "tuca"
+    document.querySelector(".btn.toggle").classList.remove("is_zoomed_in");
+  }
 
   // Apply the zoom level and position to the container
   zoomContainer.style.transform = `scale(${zoomLevel}) translate(${xPos}px, ${yPos}px)`;
@@ -668,6 +678,7 @@ zoomButton.addEventListener("click", () => {
     zoomContainer.style.transition = "";
   }, 1000);
 });
+
 
 
 // Add event listeners to track finger movements on the container

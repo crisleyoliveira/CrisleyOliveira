@@ -333,7 +333,7 @@ a.card:hover .btn{
   transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.btn:not(.toggle)::after,
+.btn:not(.toggle):hover::after,
 a.card:hover .btn:not(.toggle)::after{
   width: 28px;
   transform: translateY(-50%) translateX(-22px);
@@ -351,15 +351,6 @@ a.card:hover .btn.down_arrow::after{
 }
 
 
-@media (max-width: 991px){
-  .btn:not(.toggle):after{
-    transform: translateY(-50%) translateX(-16px);
-  }
-
-  .btn.down_arrow::after {
-    transform: translateY(-50%) translateX(-16px) rotate(90deg);
-  }
-}
 
 /* Back */
 
@@ -449,12 +440,6 @@ strong{
   font-weight: initial;
 }
 
-
-@media (max-width: 991px){
-  h4{
-    font-size: 2.5vw;
-  }
-}
 
 p.small{
   font-size: 14px;
@@ -565,13 +550,17 @@ p.small{
   position: relative;
 }
 
-
+@media (min-width: 992px){
   #about_me div:first-of-type .card:first-of-type{
     border-radius: 0;
   }
   #about_me .card{
     padding-bottom: 0;
   }
+}
+
+
+  
 
 
 

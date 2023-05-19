@@ -2326,7 +2326,8 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 39.99%,
   counter-reset: section;
 }
 
-#chart .separator .card p{
+#chart .separator .card p,
+#chart .separator .card li{
   font-family: "Space Grotesk", sans-serif;
   font-size: 1.5vw;
   margin: 0 0 2vw 0;
@@ -2343,7 +2344,8 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 39.99%,
     column-count: 2;
     column-gap: 2.6vw;
   }
-  #chart .separator .card p{
+  #chart .separator .card p,
+  #chart .separator .card li{
     font-size: 1.1vw;
   }
 }

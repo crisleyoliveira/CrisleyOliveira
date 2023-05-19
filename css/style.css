@@ -310,6 +310,21 @@ nav h1{
   }
 }
 
+.separator .btn{
+  margin-top: 4vw;
+  border-color: #A1A1A6;
+  color: #A1A1A6;
+  font-size: 1.5vw;
+  padding-top: 0.75vw;
+  padding-bottom: 0.75vw;
+  padding-left: 2.5vw;
+  min-height: auto;
+  border-radius: 5vw;
+}
+
+.separator .btn::after{
+  background-image: url(data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 18'%3E%3Cg stroke='%23FFF' stroke-width='2' fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 9h34M26 1l8 8-8 8'/%3E%3C/g%3E%3C/svg%3E);
+}
 
 
 .btn:hover,
@@ -2375,6 +2390,3 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 39.99%,
   margin-bottom: 0.66em;
 }
 
-#chart .separator .btn{
-  
-}

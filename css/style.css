@@ -2323,6 +2323,7 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 39.99%,
   background: #151515;
   color: #A1A1A6;
   height: auto !important;
+  counter-reset: section;
 }
 
 #chart .separator .card p{
@@ -2354,8 +2355,8 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 39.99%,
 }
 
 #chart ol li:before {
-  content: counter(item) ". ";
-  counter-increment: item;
+  counter-increment: section;
+  content: counter(section) ": ";
   color: #C3C7FE;
   margin-right: 0.5vw;
 }

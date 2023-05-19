@@ -482,12 +482,12 @@ p.small{
 
 .card.has_illustration figure{
   position: absolute;
-  width: 66.66%;
-  height: 100%;
+  width: 75%;
+  height: auto;
   bottom: 0;
   right: 0;
   margin: 0;
-  padding: 0;
+  padding: 24px;
 }
 
 .card h1:first-of-type{

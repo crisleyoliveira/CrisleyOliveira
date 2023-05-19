@@ -2182,7 +2182,7 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 39.99%,
   overflow-x: hidden;
   background: #000;
   z-index: 99;
-  padding-top: 140px;
+  padding-top: 3vw;
   padding-left: 48px;
   padding-right: 48px;
 }
@@ -2347,3 +2347,27 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 39.99%,
   }
 }
 
+
+#chart ol{
+  padding-left: 0;
+  list-style-type: none;
+}
+
+#chart ol li:before {
+  content: counter(item) ". ";
+  counter-increment: item;
+  color: #C3C7FE;
+  margin-right: 0.5vw;
+}
+
+#chart .header h1{
+  max-inline-size: 50ch;
+  text-wrap: balance;
+  line-height: 1.2;
+}
+
+#chart .header .pretitle{
+  display: block;
+  font-size: .66em;
+  margin-bottom: 0.66em;
+}

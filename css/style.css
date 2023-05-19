@@ -69,7 +69,7 @@ section{
   }
 
   #chart section{
-    margin: 6vw auto;
+    margin: 6vw auto 2vw;
   }
 
 main section:last-of-type{
@@ -2316,7 +2316,7 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 39.99%,
 
 
 #chart .separator{
-
+  margin: 2vw auto 6vw auto;
 }
 
 #chart .separator .card{
@@ -2327,11 +2327,23 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 39.99%,
 
 #chart .separator .card p{
   font-family: "Space Grotesk", sans-serif;
-  font-size: 1.1vw;
-  margin: 0 1vw 0 1vw;
+  font-size: 1.5vw;
+  margin: 0 0 2vw 0;
   font-weight: 500;
 }
 
-#chart .separator .card .text_column{
-  column-count: 2;
+#chart .separator .card h2{
+  margin-bottom: 3vw;
+  color: #fff;
 }
+
+@media (min-width: 1150px){
+  #chart .separator .card .text_column{
+    column-count: 2;
+    column-gap: 2.6vw;
+  }
+  #chart .separator .card p{
+    font-size: 1.1vw;
+  }
+}
+

@@ -2341,6 +2341,17 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 39.99%,
   counter-reset: section;
 }
 
+#chart .separator:last-of-type .card{
+  background: linear-gradient(-45deg, #66d0fd, #fb95b3, #252525, #252525);
+  background-size: 400% 400%;
+  background-position: 100% 50%;
+  color: #000;
+}
+
+#chart .separator:last-of-type .card svg path{
+  fill: #000;
+}
+
 #chart .separator .card p,
 #chart .separator .card li{
   font-family: "Space Grotesk", sans-serif;
@@ -2355,7 +2366,7 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 39.99%,
 }
 
 @media (min-width: 1150px){
-  #chart .separator:not(:last-child) .card .text_column{
+  #chart .separator .card .text_column{
     column-count: 2;
     column-gap: 2.6vw;
   }

@@ -2348,6 +2348,10 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 39.99%,
   color: #000;
 }
 
+#chart .separator:last-of-type .card svg{
+  width: 33.33%;
+}
+
 #chart .separator:last-of-type .card svg path{
   fill: #000;
 }

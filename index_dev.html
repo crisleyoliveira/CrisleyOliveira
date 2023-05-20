@@ -765,11 +765,11 @@ function endPan() {
 
 
 
-window.addEventListener('DOMContentLoaded', function() {
+window.onload = function() {
   setMaxHeight();
 
   window.addEventListener('resize', setMaxHeight);
-});
+};
 
 function setMaxHeight() {
   var cards = document.querySelectorAll('#articles .card');
@@ -791,6 +791,7 @@ function setMaxHeight() {
     card.style.height = maxHeight + 'px';
   });
 }
+
 
 </script>
 

@@ -328,7 +328,8 @@ nav h1{
 
 
 .btn:hover,
-a.card:hover .btn{
+a.card:hover .btn,
+.links .card:hover .btn{
   background: #252525;
   color: white;
 }
@@ -349,7 +350,8 @@ a.card:hover .btn{
 }
 
 .btn:not(.toggle):hover::after,
-a.card:hover .btn:not(.toggle)::after{
+a.card:hover .btn:not(.toggle)::after,
+.links .card:hover .btn:not(.toggle)::after{
   width: 28px;
   transform: translateY(-50%) translateX(-22px);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 18'%3E%3Cg stroke='%23FFF' stroke-width='2' fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 9h34M26 1l8 8-8 8'/%3E%3C/g%3E%3C/svg%3E");

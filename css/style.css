@@ -2135,3 +2135,12 @@
   #articles h2 {
   margin-top:.25em
   }
+
+  #articles p{
+    padding-bottom: 70%;
+  }
+
+  #articles .btn{
+    position: absolute;
+    bottom: 32px;
+  }

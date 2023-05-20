@@ -754,6 +754,44 @@ function endPan() {
 }
 });
 
+
+
+
+
+
+
+
+
+
+
+
+window.addEventListener('DOMContentLoaded', function() {
+  setMaxHeight();
+
+  window.addEventListener('resize', setMaxHeight);
+});
+
+function setMaxHeight() {
+  var cards = document.querySelectorAll('#articles .card');
+  var maxHeight = 0;
+
+  // Reset the height of all cards to 'auto' before calculating
+  cards.forEach(function(card) {
+    card.style.height = 'auto';
+  });
+
+  // Find the maximum height value
+  cards.forEach(function(card) {
+    var cardHeight = card.offsetHeight;
+    maxHeight = Math.max(maxHeight, cardHeight);
+  });
+
+  // Apply the maximum height value to all cards
+  cards.forEach(function(card) {
+    card.style.height = maxHeight + 'px';
+  });
+}
+
 </script>
 
 

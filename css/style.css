@@ -2355,7 +2355,7 @@ background: linear-gradient(90deg, rgba(35,35,35,0) 0%, rgba(35,35,35,0) 39.99%,
 }
 
 @media (min-width: 1150px){
-  #chart .separator .card .text_column{
+  #chart .separator:not(:last-child) .card .text_column{
     column-count: 2;
     column-gap: 2.6vw;
   }

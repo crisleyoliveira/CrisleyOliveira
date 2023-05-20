@@ -1213,7 +1213,8 @@ header .menu_button.active span::after{
   color: #fff;
 }
 
-#chart .card{
+#chart .visualisation_section .card,
+#chart .separator .card{
   height: calc(100vh - 96px);
   height: 50vw !important;
   padding: 0;

@@ -498,60 +498,48 @@ function updateHeightAndWidth() {
   for (var i = 0; i < chartBubbles.length; i++) {
     chartBubbles[i].style.height = '';
     chartBubbles[i].style.width = '';
-
-    var bubbleWidth = chartBubbles[i].offsetWidth;
-    chartBubbles[i].style.height = bubbleWidth + 'px';
-    chartBubbles[i].style.width = bubbleWidth + 'px';
   }
-
-  var largestWidth = 0;
 
   for (var j = 0; j < reachGraphCircles.length; j++) {
     reachGraphCircles[j].style.height = '';
     reachGraphCircles[j].style.width = '';
+  }
 
-    var circleWidth = reachGraphCircles[j].offsetWidth;
-    reachGraphCircles[j].style.height = circleWidth + 'px';
-    reachGraphCircles[j].style.width = circleWidth + 'px';
+  const wrappers = document.querySelectorAll('.reach_graph_circles_wrapper');
+  wrappers.forEach((wrapper) => {
+    wrapper.style.height = '';
+    wrapper.style.width = '';
+  });
+
+  var largestWidth = 0;
+
+  for (var k = 0; k < reachGraphCircles.length; k++) {
+    var circleWidth = reachGraphCircles[k].offsetWidth;
+    reachGraphCircles[k].style.height = circleWidth + 'px';
+    reachGraphCircles[k].style.width = circleWidth + 'px';
 
     if (circleWidth > largestWidth) {
       largestWidth = circleWidth;
     }
   }
 
-  // Set the largest width as the height and width for all .reach_graph_circles_wrapper elements
-  const cards = document.querySelectorAll('.card');
-  cards.forEach((card) => {
-    const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
-    wrappers.forEach((wrapper) => {
-      wrapper.style.height = '';
-      wrapper.style.width = '';
-      wrapper.style.height = `${largestWidth}px`;
-      wrapper.style.width = `${largestWidth}px`;
-    });
+  wrappers.forEach((wrapper) => {
+    wrapper.style.height = `${largestWidth}px`;
+    wrapper.style.width = `${largestWidth}px`;
   });
+
+  for (var l = 0; l < chartBubbles.length; l++) {
+    var bubbleWidth = chartBubbles[l].offsetWidth;
+    chartBubbles[l].style.height = bubbleWidth + 'px';
+    chartBubbles[l].style.width = bubbleWidth + 'px';
+  }
 }
 
 // Initial update on page load
 window.addEventListener('load', updateHeightAndWidth);
 
 // Update on window resize
-window.addEventListener('resize', function() {
-  var chartBubbles = document.querySelectorAll('.chart-bubble');
-  var reachGraphCircles = document.querySelectorAll('.reach_graph_circle');
-
-  for (var i = 0; i < chartBubbles.length; i++) {
-    chartBubbles[i].style.height = '';
-    chartBubbles[i].style.width = '';
-  }
-
-  for (var j = 0; j < reachGraphCircles.length; j++) {
-    reachGraphCircles[j].style.height = '';
-    reachGraphCircles[j].style.width = '';
-  }
-
-  updateHeightAndWidth();
-});
+window.addEventListener('resize', updateHeightAndWidth);
 
 // Update when header has the class .modal_active
 var header = document.querySelector('header');

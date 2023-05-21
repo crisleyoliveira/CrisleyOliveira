@@ -496,9 +496,6 @@ function updateHeightAndWidth() {
   var reachGraphCircles = document.querySelectorAll('.reach_graph_circle');
 
   for (var i = 0; i < chartBubbles.length; i++) {
-    chartBubbles[i].style.height = '';
-    chartBubbles[i].style.width = '';
-
     var bubbleWidth = chartBubbles[i].offsetWidth;
     chartBubbles[i].style.height = bubbleWidth + 'px';
     chartBubbles[i].style.width = bubbleWidth + 'px';
@@ -507,9 +504,6 @@ function updateHeightAndWidth() {
   var largestWidth = 0;
 
   for (var j = 0; j < reachGraphCircles.length; j++) {
-    reachGraphCircles[j].style.height = '';
-    reachGraphCircles[j].style.width = '';
-
     var circleWidth = reachGraphCircles[j].offsetWidth;
     reachGraphCircles[j].style.height = circleWidth + 'px';
     reachGraphCircles[j].style.width = circleWidth + 'px';
@@ -524,8 +518,6 @@ function updateHeightAndWidth() {
   cards.forEach((card) => {
     const wrappers = card.querySelectorAll('.reach_graph_circles_wrapper');
     wrappers.forEach((wrapper) => {
-      wrapper.style.height = '';
-      wrapper.style.width = '';
       wrapper.style.height = `${largestWidth}px`;
       wrapper.style.width = `${largestWidth}px`;
     });
@@ -533,7 +525,7 @@ function updateHeightAndWidth() {
 }
 
 // Initial update on page load
-window.addEventListener('load', updateHeightAndWidth);
+updateHeightAndWidth();
 
 // Update on window resize
 window.addEventListener('resize', updateHeightAndWidth);
@@ -552,7 +544,6 @@ var observer = new MutationObserver(function (mutations) {
 });
 
 observer.observe(header, { attributes: true });
-
 
 
 

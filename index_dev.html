@@ -491,7 +491,8 @@ document.addEventListener('keydown', function (event) {
 
 
 // Sets height and width
-function updateHeightAndWidth() {
+window.onload = function() {
+  updateHeightAndWidth();
   var chartBubbles = document.querySelectorAll('.chart-bubble');
   var reachGraphCircles = document.querySelectorAll('.reach_graph_circle');
 

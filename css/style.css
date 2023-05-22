@@ -2087,7 +2087,7 @@
   #chart .separator .card p,#chart .separator .card li {
   font-family:"Space Grotesk",sans-serif;
   font-size:1.5vw;
-  margin:0 0 2vw;
+  margin:0 0 2vw !important;
   font-weight:500
   }
   

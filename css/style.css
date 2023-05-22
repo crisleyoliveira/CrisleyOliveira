@@ -2138,14 +2138,19 @@
   
   #articles h2 {
   margin-top:.25em;
-  -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
+  }
+
+  @media (max-width: 991px){
+    #articles h2 {
+      -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+      }
   }
 
   #articles p{
-    padding-bottom: 70%;
+    padding-bottom: 60%;
   }
 
   #articles .btn{

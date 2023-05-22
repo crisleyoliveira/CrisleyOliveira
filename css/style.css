@@ -1143,7 +1143,7 @@
   font-size:1.6vw
   }
   
-  #chart section:not(.header) h3 {
+  #chart section:not(.header):not(.links) h3 {
   font-size:1.4vw
   }
   
@@ -1163,7 +1163,7 @@
   #chart .card [class*='col-'] {
   height:100%;
   padding:48px;
-  padding:3vw
+  padding:2vw
   }
   
   @media (max-width: 991px) {
@@ -1172,9 +1172,6 @@
   border-radius: 4vw;
   }
   
-  #chart .card [class*='col-'] {
-  padding:24px
-  }
   }
   
   .chart_element,.chart-bars {
@@ -1637,7 +1634,7 @@
   top:50%;
   left:50%;
   transform:translateX(-50%) translateY(-50%);
-  border:2px solid #232323;
+  border: .2vw solid #232323;
   border-radius:100%;
   background:transparent
   }
@@ -1874,7 +1871,7 @@
   
   .chart-bars.level_bar .chart-bar {
   background:transparent;
-  border-top:4px solid #232323;
+  border-top: .4vw solid #232323;
   height:var(--ChartTitlePosition)
   }
   
@@ -1970,8 +1967,8 @@
   position:fixed;
   width:12vw;
   height:12vw;
-  left:calc(88vw - 70px);
-  top:16vw;
+  right: 8vw;
+  top: 30vw;
   font-size:0;
   background:#fff;
   margin:0!important;
@@ -2012,7 +2009,8 @@
   
   .modal {
   opacity:0;
-  transition:all .5s cubic-bezier(0.76,0,0.24,1)
+  transition:all .5s cubic-bezier(0.76,0,0.24,1);
+  padding-top: 40px;
   }
   
   .fade-in {
@@ -2056,9 +2054,9 @@
   
   #zoom-btn {
   position:fixed;
-  bottom:2vw;
+  bottom:8vw;
   left:50%;
-  transform:translateX(-50%)
+  transform: translateX(-50%) scale(1.25);
   }
   
   .zoom_window.zoomed-in {

@@ -2157,3 +2157,28 @@
     position: absolute;
     bottom: 32px;
   }
+
+
+  .card.disable,
+  .card.disable:hover{
+    background: #ededed;
+    color: #a1a1a1;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .card.disable svg path{
+    fill: #a1a1a1;
+  }
+
+  .card.disable .btn:not(.toggle):after,
+  .card.disable:hover .btn:not(.toggle):after,
+  .card.disable .btn:not(.toggle):hover:after{
+    content: "Coming soon";
+    width: auto;
+    height: auto;
+    position: relative;
+    transform: none;
+    background: initial;
+    color: #000;
+  }

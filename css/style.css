@@ -2171,6 +2171,10 @@
     fill: #a1a1a1;
   }
 
+  .card.disable .btn{
+    background: #ededed;
+  }
+
   .card.disable .btn:not(.toggle):after,
   .card.disable:hover .btn:not(.toggle):after,
   .card.disable .btn:not(.toggle):hover:after{
@@ -2179,6 +2183,6 @@
     height: auto;
     position: relative;
     transform: none;
-    background: #ededed;
+    background: initial;
     color: #000;
   }

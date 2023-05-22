@@ -827,12 +827,7 @@
   opacity:0
   }
   
-  @media (max-width: 991px) {
-  #intro svg .mark {
-  animation:intro_mark__m 3s forwards;
-  animation-delay:2s
-  }
-  }
+
   
   @keyframes intro_mark {
   0% {
@@ -2142,7 +2137,11 @@
   
   
   #articles h2 {
-  margin-top:.25em
+  margin-top:.25em;
+  -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
   }
 
   #articles p{

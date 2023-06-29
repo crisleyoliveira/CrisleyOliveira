@@ -475,6 +475,11 @@
   .black_bg {
   background-color:#252525
   }
+
+  .deep_black_bg{
+    background: #151515;
+    color: #fff;
+  }
   
   .black_bg > * {
   color:white
@@ -1137,6 +1142,10 @@
   #chart section:not(.header) h2 {
   font-size:1.6vw
   }
+
+  #chart section:not(.header) h2.jumbo {
+  font-size:2vw
+  }
   
   #chart section:not(.header):not(.links) h3 {
   font-size:1.4vw
@@ -1159,6 +1168,12 @@
   height:100%;
   padding:48px;
   padding:2vw
+  }
+
+  #chart .card.natural,
+  #chart .card.natural [class*='col-'],
+  #chart .visualisation_section .card.natural{
+    height: auto !important;
   }
   
   @media (max-width: 991px) {

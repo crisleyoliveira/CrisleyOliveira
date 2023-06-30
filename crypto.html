@@ -416,100 +416,89 @@
 
     
 
-<!-- Crypto adoption script -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-    // Function to retrieve and process the data
-    function loadData() {
-      // Retrieve the necessary HTML elements
-      const usaDropdown = document.getElementById('usa_dropdown');
-      const brazilDropdown = document.getElementById('brazil_dropdown');
-      const usaCountryName = document.querySelector('.card.purple .country_name');
-      const brazilCountryName = document.querySelector('.card.orange .country_name');
-      const usaCountryPopulation = document.querySelector('.card.purple .country_population');
-      const brazilCountryPopulation = document.querySelector('.card.orange .country_population');
-      const usaOwnsCrypto = document.querySelector('.card.purple .country_population_owns_crypto');
-      const brazilOwnsCrypto = document.querySelector('.card.orange .country_population_owns_crypto');
-      const usaOwnsCryptoAndAreWomen = document.querySelector('.card.purple .country_population_owns_crypto_and_are_women');
-      const brazilOwnsCryptoAndAreWomen = document.querySelector('.card.orange .country_population_owns_crypto_and_are_women');
-      const usaOwnsCryptoCircle = document.querySelector('.card.purple .own_crypto.circle');
-      const brazilOwnsCryptoCircle = document.querySelector('.card.orange .own_crypto.circle');
-      const usaWomenWhoOwnCryptoCircle = document.querySelector('.card.purple .women_who_own_crypto.circle');
-      const brazilWomenWhoOwnCryptoCircle = document.querySelector('.card.orange .women_who_own_crypto.circle');
-  
-      // Define the JSON object
-      const data = {
-        "usa21": {
-          "countryName": "USA '21",
-          "countryPopulation": "329.5 M",
-          "ownsCrypto": "8.3%",
-          "ownsCryptoAndAreWomen": "12%"
-        },
-        "usa22": {
-          "countryName": "USA '22",
-          "countryPopulation": "331.9 M",
-          "ownsCrypto": "13.7%",
-          "ownsCryptoAndAreWomen": "32%"
-        },
-        "brazil21": {
-          "countryName": "Brazil '21",
-          "countryPopulation": "214.3 M",
-          "ownsCrypto": "4.9%",
-          "ownsCryptoAndAreWomen": "8%"
-        },
-        "brazil22": {
-          "countryName": "Brazil '22",
-          "countryPopulation": "216.4 M",
-          "ownsCrypto": "7.8%",
-          "ownsCryptoAndAreWomen": "45%"
-        }
-      };
-  
-      // Function to update the HTML elements with the selected data
-      function updateElements(selectedOption, dropdownId) {
-        const countryData = data[selectedOption];
-        if (countryData) {
-          const countryNameElement = (dropdownId === 'usa_dropdown') ? usaCountryName : brazilCountryName;
-          const countryPopulationElement = (dropdownId === 'usa_dropdown') ? usaCountryPopulation : brazilCountryPopulation;
-          const ownsCryptoElement = (dropdownId === 'usa_dropdown') ? usaOwnsCrypto : brazilOwnsCrypto;
-          const ownsCryptoAndAreWomenElement = (dropdownId === 'usa_dropdown') ? usaOwnsCryptoAndAreWomen : brazilOwnsCryptoAndAreWomen;
-          const ownsCryptoCircleElement = (dropdownId === 'usa_dropdown') ? usaOwnsCryptoCircle : brazilOwnsCryptoCircle;
-          const womenWhoOwnCryptoCircleElement = (dropdownId === 'usa_dropdown') ? usaWomenWhoOwnCryptoCircle : brazilWomenWhoOwnCryptoCircle;
-  
-          countryNameElement.textContent = countryData.countryName;
-          countryPopulationElement.textContent = countryData.countryPopulation;
-          ownsCryptoElement.textContent = countryData.ownsCrypto;
-          ownsCryptoAndAreWomenElement.textContent = countryData.ownsCryptoAndAreWomen || "";
-  
-          ownsCryptoCircleElement.style.setProperty('--own_crypto', countryData.ownsCrypto);
-          womenWhoOwnCryptoCircleElement.style.setProperty('--women_who_own_crypto', countryData.ownsCryptoAndAreWomen || "0");
-        }
-      }
-  
-      // Event listener for USA dropdown change
-      usaDropdown.addEventListener('change', function() {
-        const selectedOption = usaDropdown.value;
-        updateElements(selectedOption, 'usa_dropdown');
-      });
-  
-      // Event listener for Brazil dropdown change
-      brazilDropdown.addEventListener('change', function() {
-        const selectedOption = brazilDropdown.value;
-        updateElements(selectedOption, 'brazil_dropdown');
-      });
-  
-      // Initialize the elements with the default selected options
-      updateElements(usaDropdown.value, 'usa_dropdown');
-      updateElements(brazilDropdown.value, 'brazil_dropdown');
-    }
-  
-    loadData(); // Load the data when the script is run
-  
-    // Re-run the script when crypto.html is loaded
-    if (window.location.href.includes('crypto.html')) {
-      loadData();
-    }
-  });
-  
-  </script>
-  
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              var data = JSON.parse(localStorage.getItem("cryptoData"));
+        
+              // Retrieve the necessary HTML elements
+              const usaDropdown = document.getElementById('usa_dropdown');
+              const brazilDropdown = document.getElementById('brazil_dropdown');
+              const usaCountryName = document.querySelector('.card.purple .country_name');
+              const brazilCountryName = document.querySelector('.card.orange .country_name');
+              const usaCountryPopulation = document.querySelector('.card.purple .country_population');
+              const brazilCountryPopulation = document.querySelector('.card.orange .country_population');
+              const usaOwnsCrypto = document.querySelector('.card.purple .country_population_owns_crypto');
+              const brazilOwnsCrypto = document.querySelector('.card.orange .country_population_owns_crypto');
+              const usaOwnsCryptoAndAreWomen = document.querySelector('.card.purple .country_population_owns_crypto_and_are_women');
+              const brazilOwnsCryptoAndAreWomen = document.querySelector('.card.orange .country_population_owns_crypto_and_are_women');
+              const usaOwnsCryptoCircle = document.querySelector('.card.purple .own_crypto.circle');
+              const brazilOwnsCryptoCircle = document.querySelector('.card.orange .own_crypto.circle');
+              const usaWomenWhoOwnCryptoCircle = document.querySelector('.card.purple .women_who_own_crypto.circle');
+              const brazilWomenWhoOwnCryptoCircle = document.querySelector('.card.orange .women_who_own_crypto.circle');
+        
+              // Define the JSON object
+              const dataObject = {
+                "usa21": {
+                  "countryName": "USA '21",
+                  "countryPopulation": "329.5 M",
+                  "ownsCrypto": "8.3%",
+                  "ownsCryptoAndAreWomen": "12%"
+                },
+                "usa22": {
+                  "countryName": "USA '22",
+                  "countryPopulation": "331.9 M",
+                  "ownsCrypto": "13.7%",
+                  "ownsCryptoAndAreWomen": "32%"
+                },
+                "brazil21": {
+                  "countryName": "Brazil '21",
+                  "countryPopulation": "214.3 M",
+                  "ownsCrypto": "4.9%",
+                  "ownsCryptoAndAreWomen": "8%"
+                },
+                "brazil22": {
+                  "countryName": "Brazil '22",
+                  "countryPopulation": "216.4 M",
+                  "ownsCrypto": "7.8%",
+                  "ownsCryptoAndAreWomen": "45%"
+                }
+              };
+        
+              // Function to update the HTML elements with the selected data
+              function updateElements(selectedOption, dropdownId) {
+                const countryData = dataObject[selectedOption];
+                if (countryData) {
+                  const countryNameElement = (dropdownId === 'usa_dropdown') ? usaCountryName : brazilCountryName;
+                  const countryPopulationElement = (dropdownId === 'usa_dropdown') ? usaCountryPopulation : brazilCountryPopulation;
+                  const ownsCryptoElement = (dropdownId === 'usa_dropdown') ? usaOwnsCrypto : brazilOwnsCrypto;
+                  const ownsCryptoAndAreWomenElement = (dropdownId === 'usa_dropdown') ? usaOwnsCryptoAndAreWomen : brazilOwnsCryptoAndAreWomen;
+                  const ownsCryptoCircleElement = (dropdownId === 'usa_dropdown') ? usaOwnsCryptoCircle : brazilOwnsCryptoCircle;
+                  const womenWhoOwnCryptoCircleElement = (dropdownId === 'usa_dropdown') ? usaWomenWhoOwnCryptoCircle : brazilWomenWhoOwnCryptoCircle;
+        
+                  countryNameElement.textContent = countryData.countryName;
+                  countryPopulationElement.textContent = countryData.countryPopulation;
+                  ownsCryptoElement.textContent = countryData.ownsCrypto;
+                  ownsCryptoAndAreWomenElement.textContent = countryData.ownsCryptoAndAreWomen || "";
+        
+                  ownsCryptoCircleElement.style.setProperty('--own_crypto', countryData.ownsCrypto);
+                  womenWhoOwnCryptoCircleElement.style.setProperty('--women_who_own_crypto', countryData.ownsCryptoAndAreWomen || "0");
+                }
+              }
+        
+              // Event listener for USA dropdown change
+              usaDropdown.addEventListener('change', function() {
+                const selectedOption = usaDropdown.value;
+                updateElements(selectedOption, 'usa_dropdown');
+              });
+        
+              // Event listener for Brazil dropdown change
+              brazilDropdown.addEventListener('change', function() {
+                const selectedOption = brazilDropdown.value;
+                updateElements(selectedOption, 'brazil_dropdown');
+              });
+        
+              // Initialize the elements with the default selected options
+              updateElements(usaDropdown.value, 'usa_dropdown');
+              updateElements(brazilDropdown.value, 'brazil_dropdown');
+            });
+          </script>

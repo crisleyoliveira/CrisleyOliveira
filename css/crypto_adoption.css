@@ -57,9 +57,10 @@
 
 .cryptocurrency_adoption_chart .circles{
     position: relative;
-    width: 20vw;
-    height: 20vw;
+    width: 50vw;
+    height: 50vw;
 }
+
 
 .cryptocurrency_adoption_chart .circle{
     position: absolute;
@@ -107,13 +108,18 @@
 
 
 .cryptocurrency_adoption_chart .data{
-    position: absolute;
-    right: 0;
-    top: 50%;
-    padding: 3rem;
-    transform: translateY(-50%);
     text-align: center;
-    padding-top: 10vw;
+}
+
+@media (min-width: 1400px){
+    .cryptocurrency_adoption_chart .data{
+        position: absolute;
+        right: 0;
+        top: 50%;
+        padding: 3rem;
+        transform: translateY(-50%);
+        padding-top: 10vw;
+    }
 }
 
 .cryptocurrency_adoption_chart .data > div{
@@ -169,4 +175,54 @@ select:hover + .title_wrapper svg circle{
 
 .title_wrapper svg{
     margin-left: 1vw;
+}
+
+
+#chart .card [class*='col-']{
+    height: auto !important;
+}
+
+
+
+@media (max-width: 1399px){
+    #chart section:not(.header) h1.jumbo{
+        font-size: 54px;
+    }
+    #chart section:not(.header):not(.links) p{
+        font-size: 18px !important;
+    }
+    #chart section:not(.header) h2.jumbo{
+        font-size: 40px;
+    }
+    .cryptocurrency_adoption_chart .circles{
+        margin: auto;
+    }
+    .cryptocurrency_adoption_chart .circles .population h2{
+        font-size: 38px !important;
+    }
+    .cryptocurrency_adoption_chart .data h2{
+        font-size: 36px !important;
+    }
+
+    #chart .separator .card h2{
+        font-size: 38px;
+    }
+    #chart .separator .card .text_column{
+        column-count: initial !important;
+    }
+
+    .separator .btn{
+        font-size: 18px !important;
+    margin-top: 40px;
+    padding: 8px 64px 8px 24px!important;
+    margin-bottom: 40px;
+    }
+    .separator .btn::after{
+        width: 18px !important;
+        height: 16px !important;
+    }
+
+    select{
+        height: 48px;
+    }
 }

@@ -57,8 +57,8 @@
 
 .cryptocurrency_adoption_chart .circles{
     position: relative;
-    width: 50vw;
-    height: 50vw;
+    width: 20vw;
+    height: 20vw;
 }
 
 
@@ -196,6 +196,8 @@ select:hover + .title_wrapper svg circle{
     }
     .cryptocurrency_adoption_chart .circles{
         margin: auto;
+        width: 50vw;
+        height: 50vw;
     }
     .cryptocurrency_adoption_chart .circles .population h2{
         font-size: 38px !important;

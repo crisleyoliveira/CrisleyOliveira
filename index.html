@@ -312,22 +312,36 @@ document.addEventListener("DOMContentLoaded", function() {
         var container = document.querySelector(mapping.class);
         container.innerHTML = articleContent;
 
-        // Extract and inject scripts asynchronously
+        // Extract and load scripts sequentially
         var scripts = container.getElementsByTagName("script");
-        for (var i = 0; i < scripts.length; i++) {
-          var script = document.createElement("script");
-          script.src = scripts[i].src;
-          script.async = true; // Set async attribute to load the script asynchronously
-          container.appendChild(script);
-        }
-
-        container.dispatchEvent(new Event("load"));
+        loadScriptsSequentially(scripts)
+          .then(function() {
+            container.dispatchEvent(new Event("load"));
+          })
+          .catch(function(error) {
+            console.error("Error loading scripts:", error);
+          });
       }
     };
     xhr.open("GET", mapping.file, true);
     xhr.send();
   });
+
+  function loadScriptsSequentially(scripts) {
+    return Array.from(scripts).reduce(function(prevPromise, script) {
+      return prevPromise.then(function() {
+        return new Promise(function(resolve, reject) {
+          var newScript = document.createElement("script");
+          newScript.src = script.src;
+          newScript.onload = resolve;
+          newScript.onerror = reject;
+          document.head.appendChild(newScript);
+        });
+      });
+    }, Promise.resolve());
+  }
 });
+
 
 
 

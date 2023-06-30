@@ -305,48 +305,37 @@ document.addEventListener("DOMContentLoaded", function() {
   ];
 
   mappings.forEach(function(mapping) {
-    fetch(mapping.file)
-      .then(function(response) {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.text();
-      })
-      .then(function(htmlContent) {
-        var container = document.querySelector(mapping.class);
-        container.innerHTML = htmlContent;
-        var scripts = container.getElementsByTagName("script");
-        executeScriptsSequentially(scripts, container)
-          .then(function() {
-            container.dispatchEvent(new Event("load"));
-          })
-          .catch(function(error) {
-            console.error("Error executing scripts:", error);
-          });
-      })
-      .catch(function(error) {
-        console.error("Error fetching file:", error);
-      });
+    var container = document.querySelector(mapping.class);
+    if (container) {
+      fetch(mapping.file)
+        .then(function(response) {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.text();
+        })
+        .then(function(htmlContent) {
+          container.innerHTML = htmlContent;
+          var scripts = container.getElementsByTagName("script");
+          executeScripts(scripts);
+        })
+        .catch(function(error) {
+          console.error("Error fetching file:", error);
+        });
+    }
   });
 
-  function executeScriptsSequentially(scripts, container) {
-    return Array.from(scripts).reduce(function(prevPromise, script) {
-      return prevPromise.then(function() {
-        return new Promise(function(resolve, reject) {
-          var newScript = document.createElement("script");
-          if (script.src) {
-            newScript.src = script.src;
-            newScript.onload = resolve;
-            newScript.onerror = reject;
-            container.appendChild(newScript);
-          } else {
-            newScript.textContent = script.textContent;
-            container.appendChild(newScript);
-            resolve();
-          }
-        });
-      });
-    }, Promise.resolve());
+  function executeScripts(scripts) {
+    for (var i = 0; i < scripts.length; i++) {
+      var script = scripts[i];
+      var newScript = document.createElement("script");
+      if (script.src) {
+        newScript.src = script.src;
+      } else {
+        newScript.textContent = script.textContent;
+      }
+      document.head.appendChild(newScript);
+    }
   }
 });
 

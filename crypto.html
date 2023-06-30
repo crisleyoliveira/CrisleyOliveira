@@ -43,16 +43,16 @@
 }
 
 
-#chart section:not(.header) h2.jumbo{
+#chart .cryptocurrency_adoption_chart section:not(.header) h2.jumbo{
     margin: 0 0 0 0;
 }
 
 
-.card.purple{
+.cryptocurrency_adoption_chart .card.purple{
     background-image: linear-gradient(132deg, #AF8EFF 0%, #7755FF 100%);
 }
 
-.card.orange{
+.cryptocurrency_adoption_chart .card.orange{
     background-image: linear-gradient(132deg, #F38B4F 0%, #E35327 100%);
 }
 
@@ -64,7 +64,7 @@
     width: 2rem;
 }
 
-#chart section:not(.header) h2.jumbo{
+#chart .cryptocurrency_adoption_chart section:not(.header) h2.jumbo{
     font-size: 2.5rem;
 }
 
@@ -153,7 +153,7 @@
 }
 
 
-select{
+.cryptocurrency_adoption_chart select{
     position: absolute;
     top: 2vw;
     width: calc(100% - 6vw);
@@ -162,49 +162,49 @@ select{
     cursor: pointer;
 }
 
-.title_wrapper svg circle,
-.title_wrapper svg path{
+.cryptocurrency_adoption_chart .title_wrapper svg circle,
+.cryptocurrency_adoption_chart .title_wrapper svg path{
     transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-.title_wrapper svg circle{
+.cryptocurrency_adoption_chart .title_wrapper svg circle{
     fill: transparent;
 }
 
-select:hover + .title_wrapper svg path{
+.cryptocurrency_adoption_chart select:hover + .title_wrapper svg path{
     fill: #000;
 }
 
-select:hover + .title_wrapper svg circle{
+.cryptocurrency_adoption_chart select:hover + .title_wrapper svg circle{
     fill: #fff;
 }
 
 
 
-.title_wrapper{
+.cryptocurrency_adoption_chart .title_wrapper{
     display: flex;
     margin: 0 0 4vw 0;
 }
 
-.title_wrapper svg{
+.cryptocurrency_adoption_chart .title_wrapper svg{
     margin-left: 1vw;
 }
 
 
-#chart .card [class*='col-']{
+#chart .cryptocurrency_adoption_chart .card [class*='col-']{
     height: auto !important;
 }
 
 
 
 @media (max-width: 1399px){
-    #chart section:not(.header) h1.jumbo{
+    #chart .cryptocurrency_adoption_chart section:not(.header) h1.jumbo{
         font-size: 54px;
     }
-    #chart section:not(.header):not(.links) p{
+    #chart .cryptocurrency_adoption_chart section:not(.header):not(.links) p{
         font-size: 18px !important;
     }
-    #chart section:not(.header) h2.jumbo{
+    #chart .cryptocurrency_adoption_chart section:not(.header) h2.jumbo{
         font-size: 40px;
     }
     .cryptocurrency_adoption_chart .circles{
@@ -219,25 +219,25 @@ select:hover + .title_wrapper svg circle{
         font-size: 36px !important;
     }
 
-    #chart .separator .card h2{
+    #chart .cryptocurrency_adoption_chart .separator .card h2{
         font-size: 38px;
     }
-    #chart .separator .card .text_column{
+    #chart .cryptocurrency_adoption_chart .separator .card .text_column{
         column-count: initial !important;
     }
 
-    .separator .btn{
+    .cryptocurrency_adoption_chart .separator .btn{
         font-size: 18px !important;
     margin-top: 40px;
     padding: 8px 64px 8px 24px!important;
     margin-bottom: 40px;
     }
-    .separator .btn::after{
+    .cryptocurrency_adoption_chart .separator .btn::after{
         width: 18px !important;
         height: 16px !important;
     }
 
-    select{
+    .cryptocurrency_adoption_chart select{
         height: 48px;
     }
 }
@@ -249,9 +249,9 @@ select:hover + .title_wrapper svg circle{
 
 
         <!-- Normalized mean Metascore and User Score by brand -->
-        <section class="visualisation_section">
+        <section class="visualisation_section cryptocurrency_adoption_chart">
             <div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card deep_black_bg natural cryptocurrency_adoption_chart">
+                <div class="card deep_black_bg natural">
 
                     <div class="col-lg-12">
                         <h1 class="jumbo"><span>Cryptocurrency Adoption</span></h1>
@@ -326,7 +326,7 @@ select:hover + .title_wrapper svg circle{
             </div></div>
         </section>
 
-        <section class="separator">
+        <section class="separator cryptocurrency_adoption_chart">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">

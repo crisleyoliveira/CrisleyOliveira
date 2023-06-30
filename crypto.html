@@ -10,7 +10,238 @@
 
 
         
+<style>
 
+
+
+
+
+.cryptocurrency_adoption_chart h1{
+    margin-top: 2vw !important;
+    background-image: linear-gradient(-84deg, #EB6F3B 0%, #916FFF 100%);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    text-fill-color: transparent;
+    display: inline-block;
+    margin-bottom: 2vw;
+}
+
+.cryptocurrency_adoption_chart h1 + p{
+    margin-bottom: 2vw !important;
+}
+
+.cryptocurrency_adoption_chart h1 span{
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    border: 0;
+    background: transparent;
+}
+
+
+#chart section:not(.header) h2.jumbo{
+    margin: 0 0 0 0;
+}
+
+
+.card.purple{
+    background-image: linear-gradient(132deg, #AF8EFF 0%, #7755FF 100%);
+}
+
+.card.orange{
+    background-image: linear-gradient(132deg, #F38B4F 0%, #E35327 100%);
+}
+
+.cryptocurrency_adoption_chart .card{
+    padding: 3vw 3vw 4vw 3vw !important;
+}
+
+.cryptocurrency_adoption_chart svg{
+    width: 2rem;
+}
+
+#chart section:not(.header) h2.jumbo{
+    font-size: 2.5rem;
+}
+
+.cryptocurrency_adoption_chart .circles{
+    position: relative;
+    width: 20vw;
+    height: 20vw;
+}
+
+
+.cryptocurrency_adoption_chart .circle{
+    position: absolute;
+    border-radius: 100%;
+}
+
+.cryptocurrency_adoption_chart .circles .population{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: initial;
+    color: #000;
+}
+
+
+.cryptocurrency_adoption_chart .circles .population h2{
+    font-size: 2.5vw !important;
+    margin: .5vw 0;
+}
+
+.cryptocurrency_adoption_chart .circles .population p{
+    font-size: 1vw !important
+}
+
+.cryptocurrency_adoption_chart .circles .own_crypto{
+    background: #000;
+    right: 0;
+    transform: translateX(50%);
+    width: var(--own_crypto);
+    height:var(--own_crypto)
+}
+
+.cryptocurrency_adoption_chart .circles .women_who_own_crypto{
+    background: #fff;
+    right: 0;
+    top: 50%;
+    transform: translateX(50%) translateY(-50%);
+    width: var(--women_who_own_crypto);
+    height:var(--women_who_own_crypto)
+}
+
+
+.cryptocurrency_adoption_chart .data{
+    text-align: center;
+}
+
+@media (min-width: 1400px){
+    .cryptocurrency_adoption_chart .data{
+        position: absolute;
+        right: 0;
+        top: 50%;
+        padding: 3rem;
+        transform: translateY(-50%);
+        padding-top: 10vw;
+    }
+}
+
+.cryptocurrency_adoption_chart .data > div{
+    margin: 3vw 0;
+}
+
+.cryptocurrency_adoption_chart .data p{
+    font-size: 1vw !important;
+}
+
+.cryptocurrency_adoption_chart .data h2{
+    font-size: 2.2vw !important;
+    margin: .5vw;
+}
+
+.cryptocurrency_adoption_chart .data .owns_crypto{
+    color: #000;
+}
+
+
+select{
+    position: absolute;
+    top: 2vw;
+    width: calc(100% - 6vw);
+    height: 4vw;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.title_wrapper svg circle,
+.title_wrapper svg path{
+    transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.title_wrapper svg circle{
+    fill: transparent;
+}
+
+select:hover + .title_wrapper svg path{
+    fill: #000;
+}
+
+select:hover + .title_wrapper svg circle{
+    fill: #fff;
+}
+
+
+
+.title_wrapper{
+    display: flex;
+    margin: 0 0 4vw 0;
+}
+
+.title_wrapper svg{
+    margin-left: 1vw;
+}
+
+
+#chart .card [class*='col-']{
+    height: auto !important;
+}
+
+
+
+@media (max-width: 1399px){
+    #chart section:not(.header) h1.jumbo{
+        font-size: 54px;
+    }
+    #chart section:not(.header):not(.links) p{
+        font-size: 18px !important;
+    }
+    #chart section:not(.header) h2.jumbo{
+        font-size: 40px;
+    }
+    .cryptocurrency_adoption_chart .circles{
+        margin: auto;
+        width: 50vw;
+        height: 50vw;
+    }
+    .cryptocurrency_adoption_chart .circles .population h2{
+        font-size: 38px !important;
+    }
+    .cryptocurrency_adoption_chart .data h2{
+        font-size: 36px !important;
+    }
+
+    #chart .separator .card h2{
+        font-size: 38px;
+    }
+    #chart .separator .card .text_column{
+        column-count: initial !important;
+    }
+
+    .separator .btn{
+        font-size: 18px !important;
+    margin-top: 40px;
+    padding: 8px 64px 8px 24px!important;
+    margin-bottom: 40px;
+    }
+    .separator .btn::after{
+        width: 18px !important;
+        height: 16px !important;
+    }
+
+    select{
+        height: 48px;
+    }
+}
+</style>
 
 
 
@@ -172,89 +403,7 @@
         </section>
         
 
-<script>
-    // Retrieve the necessary HTML elements
-const usaDropdown = document.getElementById('usa_dropdown');
-const brazilDropdown = document.getElementById('brazil_dropdown');
-const usaCountryName = document.querySelector('.card.purple .country_name');
-const brazilCountryName = document.querySelector('.card.orange .country_name');
-const usaCountryPopulation = document.querySelector('.card.purple .country_population');
-const brazilCountryPopulation = document.querySelector('.card.orange .country_population');
-const usaOwnsCrypto = document.querySelector('.card.purple .country_population_owns_crypto');
-const brazilOwnsCrypto = document.querySelector('.card.orange .country_population_owns_crypto');
-const usaOwnsCryptoAndAreWomen = document.querySelector('.card.purple .country_population_owns_crypto_and_are_women');
-const brazilOwnsCryptoAndAreWomen = document.querySelector('.card.orange .country_population_owns_crypto_and_are_women');
-const usaOwnsCryptoCircle = document.querySelector('.card.purple .own_crypto.circle');
-const brazilOwnsCryptoCircle = document.querySelector('.card.orange .own_crypto.circle');
-const usaWomenWhoOwnCryptoCircle = document.querySelector('.card.purple .women_who_own_crypto.circle');
-const brazilWomenWhoOwnCryptoCircle = document.querySelector('.card.orange .women_who_own_crypto.circle');
 
-// Define the JSON object
-const data = {
-  "usa21": {
-    "countryName": "USA '21",
-    "countryPopulation": "329.5 M",
-    "ownsCrypto": "8.3%",
-    "ownsCryptoAndAreWomen": "12%"
-  },
-  "usa22": {
-    "countryName": "USA '22",
-    "countryPopulation": "331.9 M",
-    "ownsCrypto": "13.7%",
-    "ownsCryptoAndAreWomen": "32%"
-  },
-  "brazil21": {
-    "countryName": "Brazil '21",
-    "countryPopulation": "214.3 M",
-    "ownsCrypto": "4.9%",
-    "ownsCryptoAndAreWomen": "8%"
-  },
-  "brazil22": {
-    "countryName": "Brazil '22",
-    "countryPopulation": "216.4 M",
-    "ownsCrypto": "7.8%",
-    "ownsCryptoAndAreWomen": "45%"
-  }
-};
-
-// Function to update the HTML elements with the selected data
-function updateElements(selectedOption, dropdownId) {
-  const countryData = data[selectedOption];
-  if (countryData) {
-    const countryNameElement = (dropdownId === 'usa_dropdown') ? usaCountryName : brazilCountryName;
-    const countryPopulationElement = (dropdownId === 'usa_dropdown') ? usaCountryPopulation : brazilCountryPopulation;
-    const ownsCryptoElement = (dropdownId === 'usa_dropdown') ? usaOwnsCrypto : brazilOwnsCrypto;
-    const ownsCryptoAndAreWomenElement = (dropdownId === 'usa_dropdown') ? usaOwnsCryptoAndAreWomen : brazilOwnsCryptoAndAreWomen;
-    const ownsCryptoCircleElement = (dropdownId === 'usa_dropdown') ? usaOwnsCryptoCircle : brazilOwnsCryptoCircle;
-    const womenWhoOwnCryptoCircleElement = (dropdownId === 'usa_dropdown') ? usaWomenWhoOwnCryptoCircle : brazilWomenWhoOwnCryptoCircle;
-
-    countryNameElement.textContent = countryData.countryName;
-    countryPopulationElement.textContent = countryData.countryPopulation;
-    ownsCryptoElement.textContent = countryData.ownsCrypto;
-    ownsCryptoAndAreWomenElement.textContent = countryData.ownsCryptoAndAreWomen || "";
-
-    ownsCryptoCircleElement.style.setProperty('--own_crypto', countryData.ownsCrypto);
-    womenWhoOwnCryptoCircleElement.style.setProperty('--women_who_own_crypto', countryData.ownsCryptoAndAreWomen || "0");
-  }
-}
-
-// Event listener for USA dropdown change
-usaDropdown.addEventListener('change', function() {
-  const selectedOption = usaDropdown.value;
-  updateElements(selectedOption, 'usa_dropdown');
-});
-
-// Event listener for Brazil dropdown change
-brazilDropdown.addEventListener('change', function() {
-  const selectedOption = brazilDropdown.value;
-  updateElements(selectedOption, 'brazil_dropdown');
-});
-
-// Initialize the elements with the default selected options
-updateElements(usaDropdown.value, 'usa_dropdown');
-updateElements(brazilDropdown.value, 'brazil_dropdown');
-
-</script>
 
 
 

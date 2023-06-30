@@ -298,42 +298,37 @@
 
 
 document.addEventListener("DOMContentLoaded", function() {
-      var mappings = [
-        { file: "top_games.html", class: ".top_games_page" },
-        { file: "crypto.html", class: ".crypto_page" }
-        // Add more mappings for additional pages
-      ];
+  var mappings = [
+    { file: "top_games.html", class: ".top_games_page" },
+    { file: "crypto.html", class: ".crypto_page" }
+    // Add more mappings for additional pages
+  ];
 
-      mappings.forEach(function(mapping) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            var articleContent = xhr.responseText;
-            var container = document.querySelector(mapping.class);
-            container.innerHTML = articleContent;
-            var scripts = container.getElementsByTagName("script");
-            for (var i = 0; i < scripts.length; i++) {
-              var script = document.createElement("script");
-              script.textContent = scripts[i].textContent;
-              container.appendChild(script);
-            }
-            container.dispatchEvent(new Event("load"));
-          }
-        };
-        xhr.open("GET", mapping.file, true);
-        xhr.send();
-      });
-    });
+  mappings.forEach(function(mapping) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var articleContent = xhr.responseText;
+        var container = document.querySelector(mapping.class);
+        container.innerHTML = articleContent;
 
-    function sendDataToCryptoPage() {
-      var data = {
-        // Define your data object here
-        // Example: usaDropdownValue: document.getElementById('usa_dropdown').value
-      };
+        // Extract and inject scripts asynchronously
+        var scripts = container.getElementsByTagName("script");
+        for (var i = 0; i < scripts.length; i++) {
+          var script = document.createElement("script");
+          script.src = scripts[i].src;
+          script.async = true; // Set async attribute to load the script asynchronously
+          container.appendChild(script);
+        }
 
-      localStorage.setItem("cryptoData", JSON.stringify(data));
-      window.location.href = "crypto.html";
-    }
+        container.dispatchEvent(new Event("load"));
+      }
+    };
+    xhr.open("GET", mapping.file, true);
+    xhr.send();
+  });
+});
+
 
 
 

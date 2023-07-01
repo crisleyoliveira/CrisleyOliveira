@@ -318,8 +318,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(function(htmlContent) {
           container.innerHTML = htmlContent;
-          var scripts = container.getElementsByTagName("script");
-          executeScripts(scripts);
+          executeScripts(container);
         })
         .catch(function(error) {
           console.error("Error fetching file:", error);
@@ -327,31 +326,21 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  function executeScripts(scripts) {
-    var scriptsLoaded = 0;
-
-    function scriptLoaded() {
-      scriptsLoaded++;
-      if (scriptsLoaded === scripts.length) {
-        loadCryptoScript();
-      }
-    }
-
+  function executeScripts(container) {
+    var scripts = container.getElementsByTagName("script");
     for (var i = 0; i < scripts.length; i++) {
       var script = scripts[i];
       var newScript = document.createElement("script");
       if (script.src) {
         newScript.src = script.src;
-        newScript.onload = scriptLoaded;
-        newScript.onerror = scriptLoaded; // Handle script loading errors
       } else {
         newScript.textContent = script.textContent;
-        scriptLoaded();
       }
       document.head.appendChild(newScript);
     }
   }
 });
+
 
 
 

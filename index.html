@@ -358,7 +358,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-// Open Modals
 function openModal(projectId) {
   var modal = document.getElementById('modal');
   var project = document.getElementById(projectId);
@@ -383,15 +382,19 @@ function openModal(projectId) {
 
   // Scroll to the top of the page after 1 second
   setTimeout(function () {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-}, 1000);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, 1000);
 
   // Update the href attribute of the anchor element
   anchor.href = '#' + projectId;
+
+  // Add projectId to the modal class
+  modal.classList.add(projectId + '_is_active');
 }
+
 
 
 
@@ -858,37 +861,6 @@ function setMaxHeight() {
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
-  // Array of div classes that don't need the zoom button
-  var excludedClasses = ["crypto_page"];
-
-  // Function to check if a class is present in an element
-  function hasClass(element, className) {
-    return element.classList.contains(className);
-  }
-
-  // Function to update the visibility of the zoom button based on modal classes
-  function updateZoomButton() {
-    var modals = document.querySelectorAll(".modal");
-    modals.forEach(function(modal) {
-      var showZoomButton = true;
-      excludedClasses.forEach(function(className) {
-        if (hasClass(modal, className) && !hasClass(modal, "hidden")) {
-          showZoomButton = false;
-        }
-      });
-      var zoomButton = modal.querySelector("#zoom-btn");
-      if (showZoomButton) {
-        zoomButton.style.display = "block";
-      } else {
-        zoomButton.style.display = "none";
-      }
-    });
-  }
-
-  // Call the function when the page is loaded
-  updateZoomButton();
-});
 
 
 

@@ -484,7 +484,24 @@
 
 
 
+<script>
+    // Check if .project.crypto_page class hidden is removed
+function checkHiddenClass() {
+  var cryptoPageElement = document.querySelector('.project.crypto_page');
 
+  if (cryptoPageElement && !cryptoPageElement.classList.contains('hidden')) {
+    var modalElement = document.querySelector('#modal');
+
+    if (modalElement) {
+      modalElement.classList.add('hide_zoom_buttons');
+    }
+  }
+}
+
+// Execute the checkHiddenClass function on page load
+document.addEventListener('DOMContentLoaded', checkHiddenClass);
+
+</script>
 
 
     

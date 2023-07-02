@@ -854,6 +854,11 @@ function setMaxHeight() {
 
 
 
+
+
+
+
+
 // Array of div classes that don't need the zoom button
 var excludedClasses = ["crypto_page"];
 //var excludedClasses = ["crypto_page", "modal-class-2", "modal-class-3"];
@@ -863,25 +868,27 @@ function hasClass(element, className) {
   return element.classList.contains(className);
 }
 
-// Function to add the hide_zoom_btn class to the modal if needed
-function checkZoomButton() {
+// Function to update the visibility of the zoom button based on modal classes
+function updateZoomButton() {
   var modals = document.querySelectorAll(".modal");
   modals.forEach(function(modal) {
-    var shouldHideZoomButton = true;
+    var showZoomButton = true;
     excludedClasses.forEach(function(className) {
-      if (hasClass(modal, className)) {
-        shouldHideZoomButton = false;
+      if (hasClass(modal, className) && !hasClass(modal, "hidden")) {
+        showZoomButton = false;
       }
     });
-    if (shouldHideZoomButton && !hasClass(modal, "hidden")) {
-      modal.querySelector("#zoom-btn").classList.add("hide_zoom_btn");
+    var zoomButton = modal.querySelector("#zoom-btn");
+    if (showZoomButton) {
+      zoomButton.style.display = "block";
+    } else {
+      zoomButton.style.display = "none";
     }
   });
 }
 
 // Call the function when the page is loaded
-window.addEventListener("DOMContentLoaded", checkZoomButton);
-
+window.addEventListener("DOMContentLoaded", updateZoomButton);
 
 
 

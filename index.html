@@ -851,6 +851,39 @@ function setMaxHeight() {
 
 
 
+// Array of div classes that don't need the zoom button
+var excludedClasses = ["crypto_page"];
+//var excludedClasses = ["crypto_page", "modal-class-2", "modal-class-3"];
+
+// Function to check if a class is present in an element
+function hasClass(element, className) {
+  return element.classList.contains(className);
+}
+
+// Function to add the hide_zoom_btn class to the modal if needed
+function checkZoomButton() {
+  var modals = document.querySelectorAll(".modal");
+  modals.forEach(function(modal) {
+    var shouldHideZoomButton = true;
+    excludedClasses.forEach(function(className) {
+      if (hasClass(modal, className) && !hasClass(modal, "hidden")) {
+        shouldHideZoomButton = false;
+      }
+    });
+    if (shouldHideZoomButton) {
+      modal.querySelector("#zoom-btn").classList.add("hide_zoom_btn");
+    }
+  });
+}
+
+// Call the function when the page is loaded
+window.addEventListener("DOMContentLoaded", checkZoomButton);
+
+
+
+
+
+
 </script>
 
 

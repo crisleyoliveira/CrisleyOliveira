@@ -858,37 +858,37 @@ function setMaxHeight() {
 
 
 
+document.addEventListener("DOMContentLoaded", function() {
+  // Array of div classes that don't need the zoom button
+  var excludedClasses = ["crypto_page"];
 
-// Array of div classes that don't need the zoom button
-var excludedClasses = ["crypto_page"];
-//var excludedClasses = ["crypto_page", "modal-class-2", "modal-class-3"];
+  // Function to check if a class is present in an element
+  function hasClass(element, className) {
+    return element.classList.contains(className);
+  }
 
-// Function to check if a class is present in an element
-function hasClass(element, className) {
-  return element.classList.contains(className);
-}
-
-// Function to update the visibility of the zoom button based on modal classes
-function updateZoomButton() {
-  var modals = document.querySelectorAll(".modal");
-  modals.forEach(function(modal) {
-    var showZoomButton = true;
-    excludedClasses.forEach(function(className) {
-      if (hasClass(modal, className) && !hasClass(modal, "hidden")) {
-        showZoomButton = false;
+  // Function to update the visibility of the zoom button based on modal classes
+  function updateZoomButton() {
+    var modals = document.querySelectorAll(".modal");
+    modals.forEach(function(modal) {
+      var showZoomButton = true;
+      excludedClasses.forEach(function(className) {
+        if (hasClass(modal, className) && !hasClass(modal, "hidden")) {
+          showZoomButton = false;
+        }
+      });
+      var zoomButton = modal.querySelector("#zoom-btn");
+      if (showZoomButton) {
+        zoomButton.style.display = "block";
+      } else {
+        zoomButton.style.display = "none";
       }
     });
-    var zoomButton = modal.querySelector("#zoom-btn");
-    if (showZoomButton) {
-      zoomButton.style.display = "block";
-    } else {
-      zoomButton.style.display = "none";
-    }
-  });
-}
+  }
 
-// Call the function when the page is loaded
-window.addEventListener("DOMContentLoaded", updateZoomButton);
+  // Call the function when the page is loaded
+  updateZoomButton();
+});
 
 
 

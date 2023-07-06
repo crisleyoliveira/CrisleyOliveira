@@ -2160,7 +2160,8 @@
   }
 
   @media (max-width: 991px){
-    #articles h2 {
+    #articles h2,
+    #chart section.cryptocurrency_adoption_chart:not(.header) h1.jumbo {
       -webkit-hyphens: auto;
         -moz-hyphens: auto;
         -ms-hyphens: auto;

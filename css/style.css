@@ -2116,6 +2116,10 @@
   column-count:2;
   column-gap:2.6vw
   }
+
+  #chart .separator .card .text_column + h2{
+    margin-top: 6vw;
+  }
   
   #chart .separator .card p,#chart .separator .card li {
   font-size:1.1vw

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang='en'>
-
 <head>
     <!-- META -->
     <meta charset='utf-8' />
@@ -15,10 +14,10 @@
     <link rel='stylesheet' href='style.css' type='text/css' />
     <link rel='stylesheet' href='d3.slider.css' type='text/css' />
 
- 
-
+    <!-- MapBox GL JS -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
 </head>
-
 <body>
     <!-- HEADER -->
     <div id='header'>
@@ -30,65 +29,51 @@
 
     <!-- MB Map -->
     <div id='map'></div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiY3Jpc2xleW5vIiwiYSI6ImNsanZqc3V5czE3emYzdG4wdnl5emRkOGsifQ.1npueBKtBTbhxx7Wyko1Mw';
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/dark-v10',
+            center: [-9.1393, 38.7223], // Coordenadas de Lisboa
+            zoom: 12,
+            pitch: 60, // Ajuste o valor para definir a inclinação 3D adequada
+            bearing: 20,
+            antialias: true
+        });
+
+        // Function to load and process the GeoJSON data
+        function loadData() {
+            fetch('lisboa.geojson')
+                .then(response => response.json())
+                .then(data => addLayerToMap(data));
+        }
+
+        // Function to add the GeoJSON data as a layer to the map
+        function addLayerToMap(data) {
+            map.on('load', function () {
+                map.addSource('airbnbData', {
+                    type: 'geojson',
+                    data: data
+                });
+
+                map.addLayer({
+                    id: 'extrusion',
+                    type: 'fill-extrusion',
+                    source: 'airbnbData',
+                    paint: {
+                        'fill-extrusion-color': ['interpolate', ['linear'], ['get', 'price'], 0, 'rgb(0, 255, 0)', 1000, 'rgb(255, 0, 0)'],
+                        'fill-extrusion-height': ['get', 'price'],
+                        'fill-extrusion-base': 0,
+                        'fill-extrusion-opacity': 0.8,
+                        'fill-extrusion-vertical-gradient': true
+                    }
+                });
+            });
+        }
+
+        loadData();
+    </script>
 </body>
-
-
-
-
-
-   <!-- D3 -->
-
-
-   <!-- MapBox GL JS -->
-   <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
-   <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
-
-   <!-- Turf.js -->
-
-
-   <script>
-       mapboxgl.accessToken = 'pk.eyJ1IjoiY3Jpc2xleW5vIiwiYSI6ImNsanZqc3V5czE3emYzdG4wdnl5emRkOGsifQ.1npueBKtBTbhxx7Wyko1Mw';
-
-       var map = new mapboxgl.Map({
-           container: 'map',
-           style: 'mapbox://styles/mapbox/dark-v10',
-           center: [-9.1393, 38.7223], // Coordenadas de Lisboa
-           zoom: 12,
-           pitch: 60, // Ajuste o valor para definir a inclinação 3D adequada
-           bearing: 20,
-           antialias: true
-       });
-
-       // Função para carregar e processar o GeoJSON
-       function loadData() {
-           fetch('lisboa.geojson')
-               .then(response => response.json())
-               .then(data => addLayerToMap(data));
-       }
-
-       // Função para adicionar a camada ao mapa
-       function addLayerToMap(data) {
-           map.on('load', function () {
-               map.addSource('airbnbData', {
-                   type: 'geojson',
-                   data: data
-               });
-
-               map.addLayer({
-                   id: 'extrusion',
-                   type: 'fill-extrusion',
-                   source: 'airbnbData',
-                   paint: {
-                       'fill-extrusion-color': ['interpolate', ['linear'], ['get', 'price'], 0, 'rgb(0, 255, 0)', 1000, 'rgb(255, 0, 0)'],
-                       'fill-extrusion-height': ['get', 'price'],
-                       'fill-extrusion-base': 0,
-                       'fill-extrusion-opacity': 0.8,
-                       'fill-extrusion-vertical-gradient': true
-                   }
-               });
-           });
-       }
-
-       loadData();
-   </script>
 </html>

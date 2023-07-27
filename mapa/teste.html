@@ -12,14 +12,10 @@
     <!-- STYLE SHEETS -->
     <link href='https://fonts.googleapis.com/css?family=Space+Grotesk:300,400,600' rel='stylesheet'>
     <link rel='stylesheet' href='style.css' type='text/css' />
-    <link rel='stylesheet' href='d3.slider.css' type='text/css' />
 
     <!-- MapBox GL JS -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
-
-    <!-- Turf.js -->
-    <script src='https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js'></script>
 </head>
 <body>
     <!-- HEADER -->
@@ -50,21 +46,44 @@
         function loadData() {
             fetch('lisboa.geojson')
                 .then(response => response.json())
-                .then(data => clusterLocations(data))
+                .then(data => drawChartBars(data))
                 .catch(error => {
                     console.error('Error loading GeoJSON data:', error);
                 });
         }
 
-        // Function to perform spatial clustering using Turf.js
-        function clusterLocations(data) {
-            if (data && data.features && data.features.length > 0) {
-                var clustered = turf.clustersDbscan(data, { distance: 0.1, minPoints: 2 });
-                var clusteredData = turf.collect(clustered, 'cluster', 'clusterId', 'features');
-                addBarsToMap(clusteredData);
-            } else {
-                console.warn('GeoJSON data contains no valid points or is empty.');
-            }
+        // Function to group locations based on proximity
+        function groupLocations(data) {
+            var grouped = new Map();
+            var groupDistance = 0.0005; // Adjust this value to control clustering density
+            data.features.forEach(feature => {
+                var latLng = feature.geometry.coordinates;
+                var key = latLng.join(',');
+                if (grouped.has(key)) {
+                    var group = grouped.get(key);
+                    group.count++;
+                    grouped.set(key, group);
+                } else {
+                    grouped.set(key, { coordinates: latLng, count: 1 });
+                }
+            });
+
+            var clusteredData = [];
+            grouped.forEach(group => {
+                clusteredData.push({
+                    type: 'Feature',
+                    properties: { count: group.count },
+                    geometry: { type: 'Point', coordinates: group.coordinates }
+                });
+            });
+
+            return { type: 'FeatureCollection', features: clusteredData };
+        }
+
+        // Function to draw chart bars on the map
+        function drawChartBars(data) {
+            var groupedData = groupLocations(data);
+            addBarsToMap(groupedData);
         }
 
         // Function to add chart bars to the map
@@ -82,7 +101,7 @@
                     source: 'airbnbData',
                     paint: {
                         'fill-extrusion-color': 'green',
-                        'fill-extrusion-height': ['*', 5, ['length', ['get', 'features']]],
+                        'fill-extrusion-height': ['*', 5, ['get', 'count']],
                         'fill-extrusion-base': 0,
                         'fill-extrusion-opacity': 0.8,
                         'fill-extrusion-vertical-gradient': true

@@ -47,27 +47,25 @@
         function loadData() {
             fetch('lisboa.geojson')
                 .then(response => response.json())
-                .then(data => addLayerToMap(data));
+                .then(data => addDotsToMap(data));
         }
 
-        // Function to add the GeoJSON data as a layer to the map
-        function addLayerToMap(data) {
+        // Function to add green dots to the map
+        function addDotsToMap(data) {
             map.on('load', function () {
                 map.addSource('airbnbData', {
                     type: 'geojson',
                     data: data
                 });
 
+                // Add a new layer for the green dots
                 map.addLayer({
-                    id: 'extrusion',
-                    type: 'fill-extrusion',
+                    id: 'dots',
+                    type: 'circle',
                     source: 'airbnbData',
                     paint: {
-                        'fill-extrusion-color': ['interpolate', ['linear'], ['get', 'price'], 0, 'rgb(0, 255, 0)', 1000, 'rgb(255, 0, 0)'],
-                        'fill-extrusion-height': ['get', 'price'],
-                        'fill-extrusion-base': 0,
-                        'fill-extrusion-opacity': 0.8,
-                        'fill-extrusion-vertical-gradient': true
+                        'circle-color': 'green',
+                        'circle-radius': 5
                     }
                 });
             });

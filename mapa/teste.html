@@ -17,6 +17,9 @@
     <!-- MapBox GL JS -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- Turf.js -->
+    <script src='https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js'></script>
 </head>
 <body>
     <!-- HEADER -->
@@ -29,10 +32,6 @@
 
     <!-- MB Map -->
     <div id='map'></div>
-
-    <!-- Turf.js -->
-<script src='https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js'></script>
-
 
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiY3Jpc2xleW5vIiwiYSI6ImNsanZqc3V5czE3emYzdG4wdnl5emRkOGsifQ.1npueBKtBTbhxx7Wyko1Mw';
@@ -51,14 +50,21 @@
         function loadData() {
             fetch('lisboa.geojson')
                 .then(response => response.json())
-                .then(data => clusterLocations(data));
+                .then(data => clusterLocations(data))
+                .catch(error => {
+                    console.error('Error loading GeoJSON data:', error);
+                });
         }
 
         // Function to perform spatial clustering using Turf.js
         function clusterLocations(data) {
-            var clustered = turf.clustersDbscan(data, { distance: 0.1, minPoints: 2 });
-            var clusteredData = turf.collect(clustered, 'cluster', 'clusterId', 'features');
-            addBarsToMap(clusteredData);
+            if (data && data.features && data.features.length > 0) {
+                var clustered = turf.clustersDbscan(data, { distance: 0.1, minPoints: 2 });
+                var clusteredData = turf.collect(clustered, 'cluster', 'clusterId', 'features');
+                addBarsToMap(clusteredData);
+            } else {
+                console.warn('GeoJSON data contains no valid points or is empty.');
+            }
         }
 
         // Function to add chart bars to the map

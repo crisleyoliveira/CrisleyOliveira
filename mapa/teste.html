@@ -30,6 +30,10 @@
     <!-- MB Map -->
     <div id='map'></div>
 
+    <!-- Turf.js -->
+<script src='https://unpkg.com/turf@6.5.0/turf.min.js'></script>
+
+
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiY3Jpc2xleW5vIiwiYSI6ImNsanZqc3V5czE3emYzdG4wdnl5emRkOGsifQ.1npueBKtBTbhxx7Wyko1Mw';
 
@@ -47,25 +51,35 @@
         function loadData() {
             fetch('lisboa.geojson')
                 .then(response => response.json())
-                .then(data => addDotsToMap(data));
+                .then(data => clusterLocations(data));
         }
 
-        // Function to add green dots to the map
-        function addDotsToMap(data) {
+        // Function to perform spatial clustering using Turf.js
+        function clusterLocations(data) {
+            var clustered = turf.clustersDbscan(data, { distance: 0.1, minPoints: 2 });
+            var clusteredData = turf.collect(clustered, 'cluster', 'clusterId', 'features');
+            addBarsToMap(clusteredData);
+        }
+
+        // Function to add chart bars to the map
+        function addBarsToMap(data) {
             map.on('load', function () {
+                // Add a new layer for the chart bars
                 map.addSource('airbnbData', {
                     type: 'geojson',
                     data: data
                 });
 
-                // Add a new layer for the green dots
                 map.addLayer({
-                    id: 'dots',
-                    type: 'circle',
+                    id: 'bars',
+                    type: 'fill-extrusion',
                     source: 'airbnbData',
                     paint: {
-                        'circle-color': 'green',
-                        'circle-radius': 5
+                        'fill-extrusion-color': 'green',
+                        'fill-extrusion-height': ['*', 5, ['length', ['get', 'features']]],
+                        'fill-extrusion-base': 0,
+                        'fill-extrusion-opacity': 0.8,
+                        'fill-extrusion-vertical-gradient': true
                     }
                 });
             });

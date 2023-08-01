@@ -93,6 +93,16 @@ body {
     font-size: 24px;
   }
   
+  /* Estilos do tooltip */
+  .tooltip {
+    position: absolute;
+    display: none;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    z-index: 999;
+  }
   
   /******************** ABOUT *************************/
   

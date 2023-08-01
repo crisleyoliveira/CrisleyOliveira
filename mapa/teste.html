@@ -12,10 +12,14 @@
     <!-- STYLE SHEETS -->
     <link href='https://fonts.googleapis.com/css?family=Space+Grotesk:300,400,600' rel='stylesheet'>
     <link rel='stylesheet' href='style.css' type='text/css' />
+    <link rel='stylesheet' href='d3.slider.css' type='text/css' />
 
     <!-- MapBox GL JS -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- Three.js -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>
 </head>
 <body>
     <!-- HEADER -->
@@ -46,66 +50,32 @@
         function loadData() {
             fetch('lisboa.geojson')
                 .then(response => response.json())
-                .then(data => drawChartBars(data))
-                .catch(error => {
-                    console.error('Error loading GeoJSON data:', error);
-                });
+                .then(data => addCubesToMap(data));
         }
 
-        // Function to group locations based on proximity
-        function groupLocations(data) {
-            var grouped = new Map();
-            var groupDistance = 0.0005; // Adjust this value to control clustering density
-            data.features.forEach(feature => {
-                var latLng = feature.geometry.coordinates;
-                var key = latLng.join(',');
-                if (grouped.has(key)) {
-                    var group = grouped.get(key);
-                    group.count++;
-                    grouped.set(key, group);
-                } else {
-                    grouped.set(key, { coordinates: latLng, count: 1 });
-                }
-            });
-
-            var clusteredData = [];
-            grouped.forEach(group => {
-                clusteredData.push({
-                    type: 'Feature',
-                    properties: { count: group.count },
-                    geometry: { type: 'Point', coordinates: group.coordinates }
-                });
-            });
-
-            return { type: 'FeatureCollection', features: clusteredData };
-        }
-
-        // Function to draw chart bars on the map
-        function drawChartBars(data) {
-            var groupedData = groupLocations(data);
-            addBarsToMap(groupedData);
-        }
-
-        // Function to add chart bars to the map
-        function addBarsToMap(data) {
+        // Function to add 3D cubes to the map
+        function addCubesToMap(data) {
             map.on('load', function () {
-                // Add a new layer for the chart bars
+                // Create a source to hold the grouped data
                 map.addSource('airbnbData', {
                     type: 'geojson',
-                    data: data
+                    data: data,
+                    cluster: true,
+                    clusterMaxZoom: 14, // Max zoom to cluster points
+                    clusterRadius: 50 // Radius of each cluster when clustering points (in pixels)
                 });
 
-                map.addLayer({
-                    id: 'bars',
-                    type: 'fill-extrusion',
-                    source: 'airbnbData',
-                    paint: {
-                        'fill-extrusion-color': 'green',
-                        'fill-extrusion-height': ['*', 5, ['get', 'count']],
-                        'fill-extrusion-base': 0,
-                        'fill-extrusion-opacity': 0.8,
-                        'fill-extrusion-vertical-gradient': true
-                    }
+                // Create custom Three.js objects for each location
+                map.on('render', function () {
+                    var cubeGeo = new THREE.BoxGeometry(10, 10, 10);
+                    var cubeMat = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+                    
+                    data.features.forEach(function (feature) {
+                        var coordinates = feature.geometry.coordinates;
+                        var cube = new THREE.Mesh(cubeGeo, cubeMat);
+                        cube.position.set(coordinates[0], coordinates[1], 10); // Add a height of 10 to represent the cube above the map surface
+                        map.getCanvasContainer().appendChild(cube);
+                    });
                 });
             });
         }

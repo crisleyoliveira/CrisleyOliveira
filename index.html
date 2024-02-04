@@ -877,58 +877,7 @@ function setMaxHeight() {
 </script>
 
 
-<!-- Load pre-built PDF.js library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.js"></script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const pdfContainer = document.getElementById("pdf-container");
-
-    // Replace 'https://crisleyoliveira.com/Impact_of_Airbnb_and_Real_Estate_Speculation.pdf' with the path to your PDF file.
-    const pdfUrl = 'https://crisleyoliveira.com/Impact_of_Airbnb_and_Real_Estate_Speculation.pdf';
-
-    // Fetch PDF document
-    pdfjsLib.getDocument({ url: pdfUrl }).promise.then(function (pdf) {
-      // Initialize the first page
-      pdf.getPage(1).then(function (page) {
-        const canvas = document.createElement('canvas');
-        pdfContainer.appendChild(canvas);
-
-        const context = canvas.getContext('2d');
-        const viewport = page.getViewport({ scale: 1.5 });
-
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-
-        // Render PDF page to canvas
-        page.render({ canvasContext: context, viewport: viewport }).promise.then(function () {
-          // Get the text content of the page
-          page.getTextContent().then(function (textContent) {
-            // Create a div element to hold the text layer
-            const textLayer = document.createElement('div');
-            // Set the same dimensions and position as the canvas
-            textLayer.style.position = 'absolute';
-            textLayer.style.top = canvas.offsetTop + 'px';
-            textLayer.style.left = canvas.offsetLeft + 'px';
-            textLayer.style.width = canvas.offsetWidth + 'px';
-            textLayer.style.height = canvas.offsetHeight + 'px';
-            // Append the text layer div to the container
-            pdfContainer.appendChild(textLayer);
-
-            // Render the text layer using PDF.js
-            pdfjsLib.renderTextLayer({
-              textContent: textContent,
-              container: textLayer,
-              viewport: viewport,
-              textDivs: []
-            });
-          });
-        });
-      });
-    }).catch(error => console.error('Error loading PDF:', error));
-  });
-</script>
 
 
 

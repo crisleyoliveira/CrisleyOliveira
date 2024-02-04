@@ -54,7 +54,19 @@ h3{
               <div class="col-lg-12">
                 
 
-                <div id="pdf-container"></div>
+                <div class="powr-pdf-embed" id="powr-pdf-embed"></div>
+<script src="https://www.powr.io/powr.js?platform=html"></script>
+<script>
+  powr.pdfEmbed("#powr-pdf-embed", {
+    url: "https://crisleyoliveira.com/Impact_of_Airbnb_and_Real_Estate_Speculation.pdf", // URL do teu pdf
+    width: "100%", // Largura do pdf
+    height: "600px", // Altura do pdf
+    zoom: "auto", // Zoom inicial do pdf
+    scroll: "auto", // Modo de rolagem do pdf
+    // Outras opções disponíveis no site do plugin
+  });
+</script>
+
 
                 
                 

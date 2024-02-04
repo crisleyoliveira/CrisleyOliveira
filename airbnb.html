@@ -52,7 +52,42 @@ h3{
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
               <div class="col-lg-12">
+                
+
                 <div id="pdf-container"></div>
+
+  <!-- Load pre-built PDF.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const pdfContainer = document.getElementById("pdf-container");
+
+      // Replace 'https://crisleyoliveira.com/Impact_of_Airbnb_and_Real_Estate_Speculation.pdf' with the path to your PDF file.
+      const pdfUrl = 'https://crisleyoliveira.com/Impact_of_Airbnb_and_Real_Estate_Speculation.pdf';
+
+      // Fetch PDF document
+      pdfjsLib.getDocument({ url: pdfUrl }).promise.then(function (pdf) {
+        // Initialize the first page
+        pdf.getPage(1).then(function (page) {
+          const canvas = document.createElement('canvas');
+          pdfContainer.appendChild(canvas);
+
+          const context = canvas.getContext('2d');
+          const viewport = page.getViewport({ scale: 1.5 });
+
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+
+          // Render PDF page to canvas
+          page.render({ canvasContext: context, viewport: viewport });
+        });
+      }).catch(error => console.error('Error loading PDF:', error));
+    });
+  </script>
+
+
               </div>
           </div>
       </div>

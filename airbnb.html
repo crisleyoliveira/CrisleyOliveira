@@ -155,26 +155,21 @@ h3{
         
 
 
-      
         <script>
           document.addEventListener("DOMContentLoaded", function () {
             const pdfContainer = document.getElementById("pdf-container");
       
             // Replace 'your-pdf-file.pdf' with the path to your PDF file.
-            const pdfUrl = 'Impact_of_Airbnb_and_Real_Estate_Speculation.pdf';
+            const pdfUrl = 'https://crisleyoliveira.com/Impact_of_Airbnb_and_Real_Estate_Speculation.pdf';
       
-            // Check if the browser supports the FileReader API.
-            if (window.File && window.FileReader && window.FileList && window.Blob) {
-              const reader = new FileReader();
-      
-              reader.onload = function (event) {
-                const pdfData = event.target.result;
-                renderPdf(pdfData);
-              };
-      
-              reader.readAsArrayBuffer(new Blob([pdfUrl]));
+            // Check if the browser supports the Fetch API.
+            if (window.fetch) {
+              fetch(pdfUrl)
+                .then(response => response.arrayBuffer())
+                .then(pdfData => renderPdf(pdfData))
+                .catch(error => console.error('Error loading PDF:', error));
             } else {
-              console.error('FileReader is not supported in this browser.');
+              console.error('Fetch API is not supported in this browser.');
             }
       
             function renderPdf(pdfData) {
@@ -207,6 +202,8 @@ h3{
             }
           });
         </script>
+
+
 
 
     

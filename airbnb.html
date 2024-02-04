@@ -54,18 +54,21 @@ h3{
               <div class="col-lg-12">
                 
 
-                <div class="powr-pdf-embed" id="powr-pdf-embed"></div>
-<script src="https://www.powr.io/powr.js?platform=html"></script>
-<script>
-  powr.pdfEmbed("#powr-pdf-embed", {
-    url: "https://crisleyoliveira.com/Impact_of_Airbnb_and_Real_Estate_Speculation.pdf", // URL do teu pdf
-    width: "100%", // Largura do pdf
-    height: "600px", // Altura do pdf
-    zoom: "auto", // Zoom inicial do pdf
-    scroll: "auto", // Modo de rolagem do pdf
-    // Outras opções disponíveis no site do plugin
-  });
-</script>
+                <div id="viewer" class="pdfviewer"></div>
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.210/pdf.min.js"></script>
+                
+                
+                <script>
+                var viewer = new PDFViewer({
+                  container: document.getElementById('viewer'),
+                  url: 'https://crisleyoliveira.com/Impact_of_Airbnb_and_Real_Estate_Speculation.pdf'
+                });
+                
+                viewer.on('ready', function() {
+                  // O PDF está pronto para ser apresentado
+                });
+                </script>
 
 
                 

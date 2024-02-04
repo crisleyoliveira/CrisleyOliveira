@@ -153,35 +153,7 @@ h3{
         </section>
         
 
-        <script type="module" src="https://crisleyoliveira.com/js/pdf.js"></script>
-        <script type="module" src="https://crisleyoliveira.com/js/pdf.worker.js"></script>
-
-        <script type="module">
-          document.addEventListener("DOMContentLoaded", function () {
-            const pdfContainer = document.getElementById("pdf-container");
-      
-            // Replace 'your-pdf-file.pdf' with the path to your PDF file.
-            const pdfUrl = 'https://crisleyoliveira.com/Impact_of_Airbnb_and_Real_Estate_Speculation.pdf';
-      
-            // Fetch PDF document
-            pdfjsLib.getDocument({ url: pdfUrl }).promise.then(function (pdf) {
-              // Initialize the first page
-              pdf.getPage(1).then(function (page) {
-                const canvas = document.createElement('canvas');
-                pdfContainer.appendChild(canvas);
-      
-                const context = canvas.getContext('2d');
-                const viewport = page.getViewport({ scale: 1.5 });
-      
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
-      
-                // Render PDF page to canvas
-                page.render({ canvasContext: context, viewport: viewport });
-              });
-            }).catch(error => console.error('Error loading PDF:', error));
-          });
-        </script>
+        
 
 
 

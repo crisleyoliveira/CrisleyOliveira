@@ -1,4 +1,4 @@
-var url = './Sample_Document_Lorem_Ipsum.pdf';
+var url = './Impact_of_Airbnb_and_Real_Estate_Speculation.pdf';
 
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.worker.js';
